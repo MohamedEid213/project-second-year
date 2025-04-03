@@ -1,0 +1,44 @@
+#contact1 {
+    text-align: center;
+    padding: 70px 20px;
+    
+}
+
+#contact1 h1 {
+    color: #1787e0;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#contact1 .form-container {
+    margin-top: 20px;
+}
+
+#contact1 .form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 400px;
+    margin: auto;
+}
+
+#contact1 .form-container form input, 
+#contact1 .form-container form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#contact1 .form-container form button {
+    padding: 10px;
+    background-color: #1787e0;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#contact1 .form-container form button:hover {
+    background-color: #e64a19;
+}
+

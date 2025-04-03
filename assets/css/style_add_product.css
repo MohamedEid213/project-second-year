@@ -1,0 +1,101 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+:root {
+    --color-primary: #0866ff;
+    --color-primary-hover: #0d50bb;
+    --color-select:  #535859;;
+    --color2: #2a2c2d;
+    --color-input: rgba(8, 102, 255, 0.3);
+}
+
+#add_product {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eee;
+        height: auto;
+}
+
+#add_product .form_product {
+
+    background-color: white;    
+    padding: 20px;
+    width: 40%;
+    margin: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 1);
+
+
+}
+
+#add_product .form_product form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#add_product .form_product h1 {
+    padding:  0 15px 10px;
+    text-align: center;
+    color: var(--color-primary)
+
+}
+
+#add_product .form_product form label {
+    display: block;
+    margin-left: 11%;
+    margin-bottom: 3px;
+    font-size: 25px;
+    align-self: self-start;
+    color: var(--color2);
+}
+
+#add_product .form_product form input,
+#add_product .form_product form textarea {
+    width: 80%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#add_product .form_product form input:focus,
+#add_product .form_product form select:focus,
+#add_product .form_product form textarea:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 8px rgba(8, 102, 255, 0.2);
+}
+
+#add_product .form_product form button {
+    width: 60%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: var(--color-primary);
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 10px;
+    color: white;
+    transition: 0.7s;   
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 1);
+}
+
+#add_product .form_product form button:hover {
+    background-color: var(--color-primary-hover);
+}
+
+#add_product .form_product form #form_control {
+    width: 85%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: var(--color-select);
+    font-size: 15px;
+    font-weight: 300;
+}

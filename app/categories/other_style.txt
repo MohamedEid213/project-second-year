@@ -1,0 +1,267 @@
+ 
+		 /*تصميم اخر لي category*/
+
+
+<section id="cover">
+            <div class="image">
+                <img src="https://img.freepik.com/premium-photo/electric-car-charging-station-generative-ai_834602-17645.jpg" alt="">
+                <div class="content">
+                    <h2> Our Featured Products </h2>
+                    <strong> 👋 Welcome <?= $username ?> to Auto Repair Center!</strong>
+                    <p> We're glad to have you here and wish you a great experience.</p>
+                    <div style="text-align:center; margin-top: 20px;">
+                        <a href="#" class="btn">Contact Us</a>
+                    </div>
+                </div>
+                <section class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"></div>
+                        <div class="swiper-slide">Slide 2</div>
+                        <div class="swiper-slide">Slide 3</div>
+                        <div class="swiper-slide">Slide 4</div>
+                        <div class="swiper-slide">Slide 5</div>
+                        <div class="swiper-slide">Slide 6</div>
+                        <div class="swiper-slide">Slide 7</div>
+                        <div class="swiper-slide">Slide 8</div>
+                        <div class="swiper-slide">Slide 9</div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                    <div class="autoplay-progress">
+                        <svg viewBox="0 0 48 48">
+                            <circle cx="24" cy="24" r="20"></circle>
+                        </svg>
+                        <span></span>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+
+		/*css*/
+
+   :root {
+       --main-color: #2196f3;
+       --main-color-alt: #1787e0;
+   }
+   
+   
+   body {
+    position: relative;
+    height: 100%;
+    background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+        height: auto;
+  }
+
+
+  .swiper {
+      width: 100%;
+      height: 250px;
+      position: absolute;
+      bottom: 4%;
+      padding: 0 1rem;
+  }
+
+  .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+    animation: fadeInSlide 1s ease forwards;
+  }
+
+  @keyframes fadeInSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
+
+  .autoplay-progress {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      z-index: 10;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--swiper-theme-color);
+  }
+
+  .autoplay-progress svg {
+      --progress: 0;
+      position: absolute;
+      left: 0;
+      top: 0px;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      stroke-width: 4px;
+      stroke: var(--swiper-theme-color);
+      fill: none;
+      stroke-dashoffset: calc(125.6px * (1 - var(--progress)));
+      stroke-dasharray: 125.6;
+      transform: rotate(-90deg);
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+      color: #2196f3;
+      font-weight: bold;
+  }
+
+  @media (max-width: 768px) {
+      .swiper {
+          height: 200px;
+      }
+  }
+
+  /* cover_image */
+
+  #cover .image {
+    position: relative;
+  }
+#cover .image img {
+        width: 100%;
+        height: auto;
+            max-height: 80vh;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    /* animation: image_cover 1s infinite; */
+  }
+#cover .content {
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    transform: translate(-50%, 0);
+background-color: #007bff;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    font-weight: bold;
+    z-index: 10;
+        border-radius: 12px;
+        font-size: 20px;
+        margin-bottom: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        max-width: 90%;
+            padding: 15px;
+            font-size: 18px;
+        margin-left: auto;
+        margin-right: auto;
+            text-transform: capitalize;
+        animation: fadeIn 1s ease forwards;
+    
+}
+
+#cover .content h2 {
+    text-align: center;
+        margin-top: 15px;
+    color: #fff;
+    font-weight: bold;
+}
+
+#cover .content strong {
+    color: #eaeaea;
+}
+
+#cover .content p {
+    font-size: 16px;
+        margin-top: 10px;
+        color: #e0e0e0;
+}
+
+.btn {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+        transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -20%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* التحكم في عرض المحتوى داخل الـ cover */
+#cover .content {
+    max-width: 90%;
+    padding: 15px;
+    font-size: 18px;
+}
+
+/* تعديل حجم النص داخل الـ cover للهواتف */
+@media (max-width: 768px) {
+    #cover .content {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    #cover .content h2 {
+        font-size: 20px;
+    }
+
+    #cover .content p {
+        font-size: 14px;
+    }
+
+    .btn {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+}
+
+/* استجابة للشاشات الصغيرة جدًا */
+@media (max-width: 480px) {
+    #cover .content {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}

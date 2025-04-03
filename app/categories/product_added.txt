@@ -1,0 +1,567 @@
+   <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Springs.png" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£740.00</li>
+                                </ul>
+                                <h2 class="h2 text-decoration-none ">Springs</h2>
+                                <a href="#" class="card-text">
+                                    The steering wheel allows the driver to control the vehicle's direction, ensuring precise and responsive handling.
+                                </a>
+                                <div class="info">
+                                    <p class="text-muted" id="price">Reviews (24)</p>
+                                    <a href="#">Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Sway Bar.png" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£740.00</li>
+                                </ul>
+                                <h2 class="h2 text-decoration-none ">Sway Bar</h2>
+                                <a href="#" class="card-text">
+                                    The steering wheel allows the driver to control the vehicle's direction, ensuring precise and responsive handling.
+                                </a>
+                                <div class="info">
+                                    <p class="text-muted" id="price">Reviews (24)</p>
+                                    <a href="#">Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Tie Rods.png" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£740.00</li>
+                                </ul>
+                                <h2 class="h2 text-decoration-none ">Tie Rods</h2>
+                                <a href="#" class="card-text">
+                                    The steering wheel allows the driver to control the vehicle's direction, ensuring precise and responsive handling.
+                                </a>
+                                <div class="info">
+                                    <p class="text-muted" id="price">Reviews (24)</p>
+                                    <a href="#">Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Wishbone Arms.png" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£740.00</li>
+                                </ul>
+                                <h2 class="h2 text-decoration-none ">Wishbone Arms</h2>
+                                <a href="#" class="card-text">
+                                    The steering wheel allows the driver to control the vehicle's direction, ensuring precise and responsive handling.
+                                </a>
+                                <div class="info">
+                                    <p class="text-muted" id="price">Reviews (24)</p>
+                                    <a href="#">Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Shock Absorbers.png" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£740.00</li>
+                                </ul>
+                                <h2 class="h2 text-decoration-none ">Shock Absorbers</h2>
+                                <a href="#" class="card-text">
+                                    The steering wheel allows the driver to control the vehicle's direction, ensuring precise and responsive handling.
+                                </a>
+                                <div class="info">
+                                    <p class="text-muted" id="price">Reviews (24)</p>
+                                    <a href="#">Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Gear/Gear Synchronizer Rings.png" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£740.00</li>
+                                </ul>
+                                <h2 class="h2 text-decoration-none ">Gear Synchronizer Rings</h2>
+                                <a href="#" class="card-text">
+                                    The steering wheel allows the driver to control the vehicle's direction, ensuring precise and responsive handling.
+                                </a>
+                                <div class="info">
+                                    <p class="text-muted" id="price">Reviews (24)</p>
+                                    <a href="#">Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Gear/Torque Converter.png" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£740.00</li>
+                                </ul>
+                                <h2 class="h2 text-decoration-none ">Torque Converter</h2>
+                                <a href="#" class="card-text">
+                                    The steering wheel allows the driver to control the vehicle's direction, ensuring precise and responsive handling.
+                                </a>
+                                <div class="info">
+                                    <p class="text-muted" id="price">Reviews (24)</p>
+                                    <a href="#">Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Gear/Transmission Oil Filter.png" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£740.00</li>
+                                </ul>
+                                <h2 class="h2 text-decoration-none ">Transmission Oil Filter</h2>
+                                <a href="#" class="card-text">
+                                    The steering wheel allows the driver to control the vehicle's direction, ensuring precise and responsive handling.
+                                </a>
+                                <div class="info">
+                                    <p class="text-muted" id="price">Reviews (24)</p>
+                                    <a href="#">Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Gear/Transmission Speed Sensor.png" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£740.00</li>
+                                </ul>
+                                <h2 class="h2 text-decoration-none ">Transmission Speed Sensor</h2>
+                                <a href="#" class="card-text">
+                                    The steering wheel allows the driver to control the vehicle's direction, ensuring precise and responsive handling.
+                                </a>
+                                <div class="info">
+                                    <p class="text-muted" id="price">Reviews (24)</p>
+                                    <a href="#">Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Steering Wheel2.jpg" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£740.00</li>
+                                </ul>
+                                <h2 class="h2 text-decoration-none ">Steering Wheel</h2>
+                                <a href="#" class="card-text">
+                                    The steering wheel allows the driver to control the vehicle's direction, ensuring precise and responsive handling.
+                                </a>
+                                <div class="info">
+                                    <p class="text-muted" id="price">Reviews (24)</p>
+                                    <a href="#">Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Muffler.jpg" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£480.00</li>
+                                </ul>
+                                <h2 class="h2 text-decoration-none text-dark">Muffler</h2>
+                                <a href="#" class="card-text">
+                                    The muffler reduces engine noise, ensuring a quieter and more comfortable driving experience.
+                                </a>
+                                <div class="info">
+                                    <p class="text-muted" id="price">Reviews (24)</p>
+                                    <a href="#">Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Front Bumper Dark.jpg" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£360.00</li>
+                                </ul>
+                                <a h2 class="h2 text-decoration-none text-dark">Front Bumper</h2>
+                                    <a href="#" class="card-text">
+                                        Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
+                                    </a>
+                                    <div class="info">
+                                        <p class="text-muted" id="price">Reviews (24)</p>
+                                        <a href="#">Add To Cart</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Car Door Shell (2).jpg" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£300.00</li>
+                                </ul>
+                                <h2 class="h2 text-decoration-none text-dark">Car Door Shell</h2>
+                                <a href="#" class="card-text">
+                                    Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
+                                </a>
+                                <div class="info">
+                                    <p class="text-muted" id="price">Reviews (24)</p>
+                                    <a href="#">Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Alloy Wheel.jpg" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£420.00</li>
+                                </ul>
+                                <h2 class="h2 text-decoration-none text-dark">Alloy Wheel</h2>
+                                <a href="#" class="card-text">
+                                    Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
+                                </a>
+                                <div class="info">
+                                    <p class="text-muted" id="price">Reviews (24)</p>
+                                    <a href="#">Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Rear Car Door Shell.jpg" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£330.00</li>
+                                </ul>
+                                <h2 class="h2 text-decoration-none text-dark">Rear Car Door Shell</h2>
+                                <a href="#" class="card-text">
+                                    Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
+                                </a>
+                                <div class="info">
+                                    <p class="text-muted" id="price">Reviews (24)</p>
+                                    <a href="#">Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Car Seat.jpg" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£380.00</li>
+                                </ul>
+                                <h2 class="h2 text-decoration-none text-dark">Car Seat</h2>
+                                <a href="#" class="card-text">
+                                    Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
+                                </a>
+                                <div class="info">
+                                    <p class="text-muted" id="price">Reviews (24)</p>
+                                    <a href="#">Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Front Bumper.jpg" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£1200.00</li>
+                                </ul>
+                                <h2 class="h2 text-decoration-none text-dark">Front Bumper</h2>
+                                <a href="#" class="card-text">
+                                    Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
+                                </a>
+                                <div class="info">
+                                    <p class="text-muted" id="price">Reviews (24)</p>
+                                    <a href="#">Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Engine Oli.jpg" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£360.00</li>
+                                </ul>
+                                <h2 class="h2 text-decoration-none text-dark">Engine Oil</h2>
+                                <a href="#" class="card-text">
+                                    Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
+                                </a>
+                                <div class="info">
+                                    <p class="text-muted" id="price">Reviews (24)</p>
+                                    <a href="#">Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Engine.jpg" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£800.00</li>
+                                </ul>
+                                <h2 class="h2 text-decoration-none text-dark">Engine</h2>
+                                <a href="#" class="card-text">
+                                    Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
+                                </a>
+                                <div class="info">
+                                    <p class="text-muted" id="price">Reviews (24)</p>
+                                    <a href="#">Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Headlight Assembly.jpg" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£940.00</li>
+                                </ul>
+                                <h2 class="h2 text-decoration-none text-dark">Headlight Assembly</h2>
+                                <a href="#" class="card-text">
+                                    Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
+                                </a>
+                                <div class="info">
+                                    <p class="text-muted" id="price">Reviews (24)</p>
+                                    <a href="#">Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" id="product-list">
+                        <div class="card h-100" id="product">
+                            <a href="shop-single.html">
+                                <img src="image/Gears.jpg" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" id="product-details">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right" id="price">E£2000.00</li>
+                                </ul>
+                                <h2 class="h2 text-decoration-none text-dark">Gears</h2>
+                                <a href="#" class="card-text">
+                                    Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
+                                </a>
+                                <div class="info">
+                                    <p class="text-muted" id="price">Reviews (24)</p>
+                                    <a href="#">Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

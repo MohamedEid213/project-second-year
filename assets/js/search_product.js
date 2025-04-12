@@ -1,15 +1,17 @@
-function search(){
-    let searchBar = document.querySelector('.search-input').value.toUpperCase();
-    let productList = document.querySelector('#product-list');
-    let product = document.querySelectorAll('#product');
-    let productName = document.getElementsByClassName('h2');
 
-
-    for (let i = 0; i< productName.length; i++) {
-        if(productName[i].innerHTML.toUpperCase().indexOf(searchBar) >= 0){
-            product[i].style.display = "";
+function search() {
+    const input = document.querySelector('.search-input');
+    const filter = input.value.toUpperCase();
+    const productItems = document.querySelectorAll('.product-item');
+    
+    productItems.forEach(item => {
+        const title = item.querySelector('.product-title').textContent.toUpperCase();
+        const desc = item.querySelector('.product-desc').textContent.toUpperCase();
+        
+        if (title.includes(filter) || desc.includes(filter)) {
+            item.style.display = "";
         } else {
-            product[i].style.display = "none";
+            item.style.display = "none";
         }
-    }
+    });
 }

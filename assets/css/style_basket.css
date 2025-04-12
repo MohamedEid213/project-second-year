@@ -1,0 +1,22 @@
+
+
+
+
+
+
+.btn-basket {
+        margin-top: 10px;
+        transition: 0.9s ease;
+}
+
+.btn-basket:hover {
+
+    transform: scale(1.03);
+
+}
+
+.btn-basket a {
+    text-decoration: none;
+    
+}
+

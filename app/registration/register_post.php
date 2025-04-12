@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                 VALUES ('$UserName','$hash_password','$gmail','$gender','$birthday') ";
 
             if (mysqli_query($conn, $sql)) {
-                $sql = "SELECT `id`, `email`, `password`,`name`,`User_Permissions`,`ban` FROM `users` WHERE `email` = '$email'";
+                $sql = "SELECT * FROM `users` WHERE `email` = '$email'";
                 $query = mysqli_query($conn, $sql);
                 $DataROW = mysqli_fetch_assoc($query);
                 if ($DataROW) {
@@ -99,6 +99,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                         $_SESSION['username'] = $DataROW['name'];
                         $_SESSION['ban'] = $DataROW['ban'];
                         $_SESSION['user_permissions'] = $DataROW['User_Permissions'];
+                        $_SESSION['image_private'] = $DataROW['image_profile'];
+                        $_SESSION['birthday'] = $DataROW['birthday'];
+                        $_SESSION['gender'] = $DataROW['gender'];
+
 
 
 

@@ -12,8 +12,8 @@
             <a href="/project_2/Home.php" class="logo">Auto Repair Center</a>
             <ul class="main-nav">
                 <li><a href="/project_2/Home.php">Home</a></li>
-                <li><a href="/project_2/app/services/services.php">Services</a></li>
-                <li><a href="/project_2/app/categories/category.php">Categories</a></li>
+                <li><a href="/project_2/app/servicess/services.php">Services</a></li>
+                <li><a href="/project_2/app/categories/category.php">Products</a></li>
 
                 <li><a href="/project_2/app/Baskets/basket.php">Basket</a></li>
             </ul>

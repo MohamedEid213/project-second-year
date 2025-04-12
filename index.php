@@ -10,7 +10,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/index_post.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/project/assets/css/style_login.css">
+    <link rel="stylesheet" href="/project_2/assets/css/style_login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
     <title>Login</title>
     <style>

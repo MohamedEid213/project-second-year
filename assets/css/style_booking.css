@@ -1,0 +1,36 @@
+/* الاستايل العام */
+:root {
+    --main-color: #2196f3;
+    --main-color-alt: #1787e0;
+}
+
+.booking-form {
+    max-width: 500px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+/* الهوفر لمربعات الإدخال */
+.form-control, .form-select {
+    transition: all 0.3s ease-in-out;
+}
+
+.form-control:hover, .form-select:hover {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* هوفر لزرار تأكيد الحجز */
+.btn-primary {
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+    transform: scale(1.04);
+}

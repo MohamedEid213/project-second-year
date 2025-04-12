@@ -13,9 +13,17 @@
     <li>
       <a href="/project_2/app/Profiles/profile.php">
         <svg xmlns=" http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
-        <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-240v-32q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v32q0 33-23.5 56.5T720-160H240q-33 0-56.5-23.5T160-240Zm80 0h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" />
+          <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-240v-32q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v32q0 33-23.5 56.5T720-160H240q-33 0-56.5-23.5T160-240Zm80 0h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" />
         </svg>
         <span>Profile</span>
+      </a>
+    </li>
+    <li>
+      <a href="/project_2/app/discounts/discount.php">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+          <path d="M0 80L0 229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7L48 32C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
+        </svg>
+        <span>Discount</span>
       </a>
     </li>
 
@@ -23,7 +31,7 @@
     <?php if ($_SESSION['user_permissions'] == 'admin' || $_SESSION['user_permissions'] == 'moderator'): ?>
 
       <!-- العناصر التي سوف تظهر لي admin فقط -->
-      <?php if ($_SESSION['user_permissions'] == 'admin'): ?>
+      <!-- <?php if ($_SESSION['user_permissions'] == 'admin'): ?>
         <li>
           <a href="dashboard.html">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
@@ -32,7 +40,7 @@
             <span>Dashboard</span>
           </a>
         </li>
-      <?php endif ?>
+      <?php endif ?> -->
 
       <li>
         <a href="/project_2/app/Add Products/add_products.php">
@@ -50,6 +58,11 @@
         <span>Basket</span>
       </a>
     </li>
+    <li>
+      <a href="/project_2/app/winsh/winsh.php">
+        <i class=" me-2 fa-solid fa-truck"></i> <span>Call Winch</span>
+      </a>
+    </li>
 
     <li>
       <a href="/project_2/app/contact/contact.php">
@@ -59,6 +72,15 @@
         <span>Contact Us</span>
       </a>
     </li>
+    <li>
+      <a href="/project_2/app/about/about.php">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+          <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
+        </svg>
+        <span>About Me</span>
+      </a>
+    </li>
+
   </ul>
 
   <ul id='mode'>

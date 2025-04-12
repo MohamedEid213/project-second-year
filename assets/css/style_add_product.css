@@ -90,7 +90,7 @@
 }
 
 #add_product .form_product form #form_control {
-    width: 85%;
+    width: 80%;
     padding: 12px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
@@ -98,4 +98,19 @@
     color: var(--color-select);
     font-size: 15px;
     font-weight: 300;
+}
+#add_product .form_product form #form_control {
+    font-weight: bold;
+}
+#add_product .form_product form .row {
+    width: 80%;
+}
+
+#add_product .form_product form .row label {
+    margin-left: 0;
+    font-size: 20px;
+}
+
+#add_product .form_product form .row input {
+   width: 100%;
 }

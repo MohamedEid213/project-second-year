@@ -1,0 +1,662 @@
+/* Start Global Value */
+:root {
+    --primary: #D81324;
+    --secondary: #0B2154;
+    --light: #fff;
+    --dark: #000;
+    --main-color: #2196f3;
+    --main-color-alt: #1787e0;
+    --second-color: #01d28e;
+}
+a {
+    text-decoration: none;
+}
+.ico-true {
+    color: var(--main-color);
+} 
+.back-to-top {
+    background-color: var(--main-color);
+    color: var(--light);
+    position: fixed;
+    display: none;
+    right: 45px;
+    bottom: 45px;
+    z-index: 99;
+    padding: 5px 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.back-to-top:hover {
+    color: var(--light);
+}
+.back-to-top:active {
+    border: none !important;
+    outline: none !important;
+}
+/* End Global Value */
+/* Start Box-Car */
+.cont {
+    text-align: center;
+    color: white;
+    margin: 0;
+    overflow: hidden;
+}
+.intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#ECEFFE, #CED6FB);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+.car-image {
+    width: 300px;
+    cursor: pointer;
+    transition: transform 0.5s;
+    
+}
+.shaking {
+animation: shake 0.1s infinite alternate;
+}
+@keyframes shake {
+    from { transform: translateX(-5px); }
+    to { transform: translateX(5px); }
+}
+#landing {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+.intro-text {
+    margin-top: 20px;
+    font-size: 40px;
+    font-weight: bold;
+    max-width: 60%;
+    color: var(--main-color);
+}
+@media (max-width: 768px) {
+    .car-image {
+        width: 150px;
+    }
+
+    .intro-text {
+        font-size: 18px;
+    }
+}
+/* End Box-Car */
+/* Start New Landing */
+.hero-wrap {
+    height: 100vh;
+    background-image: url("../images/bg_1.jpg");
+    background-position-y: center ; 
+    background-size: cover;
+}
+.hero-wrap .overlay {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: .3;
+    background: rgba(0, 0, 0, .9);
+    z-index: 1;
+}
+.slider-text {
+    height: 850px;
+}
+.text-center {
+    text-align: center !important;
+}
+.info {
+    z-index: 99;
+}
+.slider-text h1 {
+    font-size: 44px;
+    color: #fff;
+    line-height: 1.1;
+    font-weight: bolder;
+}
+.slider-text h1 span {
+    color: var(--second-color);
+}
+.slider-text p {
+    font-size: 20px;
+    line-height: 1.6;
+    color: white;
+    margin-bottom: 20px;
+}
+.video {
+    text-decoration: none;
+}
+.video .icon {
+    width: 70px;
+    height: 70px;
+    background: var(--second-color);
+    border-radius: 50%;
+    margin-right: 50px;
+}
+.video-play::before {
+    font-family:'Font Awesome 5 Free';
+    content: "\f04b";
+    font-weight: 900;
+    color: #fff;
+}
+.video .heading-title {
+    position: relative;
+}
+.video .heading-title span {
+    font-family: "Poppins", Arial, sans-serif;
+    color: #fff;
+}
+.video .heading-title::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -40px;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 2px;
+    background: #fff;
+}
+/* End New Landing */
+/* Start How it works */
+.how-it-work {
+    margin: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+.how-it-work .work-content {
+    background-color: var(--light);
+    box-shadow: 0 12px 20px 0 rgb(0 0 0 / 13%),
+                0 12px 4px 0 rgb(0 0 0 / 12%);
+    position: relative;
+    transition: 0.3s;
+    border: 2px solid #fff;
+    color: #fff;
+    width: fit-content;
+    margin: 20px auto;
+    padding: 50px 80px;
+    font-size: 23px;
+}
+.how-it-work .work-content:hover {
+    transform: translateY(-10px);
+}
+.how-it-work .work-content::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -3px;
+    height: 3px;
+    width: 0;
+    background-color: var(--main-color);
+    transition: 0.3s;
+}
+.how-it-work .work-content:hover::before {
+    width: 100%;
+}
+.how-it-work .work-content > img {
+    width: 120px;
+}
+.how-it-work .work-content > .link {
+    display: block;
+    color: var(--main-color);
+    margin: 10px 0 5px;
+    font-size: 25px;
+    font-weight: bold;
+}
+.how-it-work .work-content > .link:hover {
+    color: var(--main-color-alt);
+}
+/* End How it works */
+/* Start products */
+.products {
+    background: linear-gradient(rgba(0, 0, 0, .9), rgba(0, 0, 0, .9)), url(../images/Car\ Body\ Shell.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: 15px solid var(--main-color);
+    padding: 30px 0 80px;
+}
+.products .title .product-title{
+    margin: 50px 0 0;
+    color: var(--light);
+    font-size: 14px;
+    text-transform: uppercase;
+    position: relative;
+    padding: 0 30px;
+}
+.products .title .product-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -1px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+}
+.products .title .product-head {
+    margin: 20px 0 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: -1px;
+    color: var(--light);
+}
+.products .title .product-head span {
+    color: var(--main-color);
+}
+.btn-more {
+    background-color: var(--light) ;
+    padding: 10px 20px;
+    border-radius: 40px;
+    border: 1px solid var(--light);
+    color: var(--dark);
+    transition: 0.3s ease;
+    text-transform: uppercase;
+}
+.btn-more:hover {
+    color: var(--light);
+    background-color:var(--main-color);
+    border: 1px solid var(--light);
+}
+.product-card {
+    background: var(--light);
+    color: var(--dark);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    height: 100%;
+    cursor: grab;
+}
+.product-card img {
+    max-width: 100%;
+    height: 250px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+.swiper-button-prev,
+.swiper-button-next {
+    color: var(--main-color);
+}
+.product-name {
+    font-weight: bold;
+    font-size: 17.6px;
+    margin-bottom: 10px;
+    transition: 0.3s ease;
+}
+.product-name:hover {
+    color: var(--main-color);
+}
+.product-price {
+    font-weight: bold;
+    margin-right: 20px;
+    color: #444;
+}
+.heart-btn {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    color: #444;
+    transition: transform 0.3s ease, color 0.3s ease;
+    z-index: 10;
+}
+.heart-btn:hover {
+    color: var(--main-color);
+    transform: scale(1.2);
+}
+.heart-btn.active {
+    color: var(--second-color);
+}  
+.product-card .card-content {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    margin: 25px auto 0;
+}
+.product-card .card-content .btn {
+    color: var(--main-color);
+    transition: 0.3s ease;
+}
+.product-card .card-content .btn:hover {
+    color: var(--second-color);;
+}
+/* End products */
+/* Start About */
+.about {
+    overflow: hidden;
+}
+.about .image-container {
+    position: relative;
+    width: 500px;
+    height: auto;
+}
+.about .big-image {
+    width: 100%;
+    display: block;
+    position: relative;
+}
+.about .small-image {
+    position: absolute;
+    bottom: -90px;
+    right: -74px;
+    width: 250px;
+    border: 2px solid white;
+    padding: 15px;
+    background: #fff;
+}
+.about .h5 {
+    color: var(--dark);
+    text-align: left;
+    margin: 20px 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    position: relative;
+    padding: 0 30px;
+}
+.about .h5::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -1px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+}
+.about .paragraph {
+    line-height: 1.8;
+    color: #777;
+    font-size: 18px;
+}
+.about .list-icon {
+    margin: 30px 0;
+}
+.about .unorder-list {
+    list-style: none;
+    padding: 12px;
+    position: relative;
+    left: -12px;
+}
+.about .unorder-list li {
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 18px;
+}
+.about .unorder-list li i {
+    padding: 8px 10px;
+    transition: 0.3s;
+    border: 1px solid var(--light);
+}
+.about .unorder-list li i:hover {
+    background-color: var(--light);
+    border: 1px solid var(--main-color);
+    padding: 8px 10px;
+}
+.about .unorder-list li i:hover .about .small-image {
+    bottom: -100px;
+}
+@media (max-width: 1350px) {
+    .about .small-image {
+        display: none;
+    }
+}
+@media (max-width: 1200px) {
+    .about .image-container {
+        width: 100%;
+    }
+    .about .image-container .big-image {
+        width: 100%;
+    }
+}
+@media (max-width: 991px) {
+    .about .image-container {
+        margin-bottom: 70px;
+    }
+    
+}
+@media (max-width: 767px) {
+    .about .unorder-list {
+        padding: 0;
+    }
+}
+/* End About */
+/* Start State */
+#state {
+    background: linear-gradient(rgba(0, 0, 0, .9), rgba(0, 0, 0, .9)), url(../images/Suspension.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: 15px solid var(--main-color);
+}
+#state .state-title {
+    width: fit-content;
+    margin: 50px auto 0;
+    color: var(--light);
+    font-size: 14px;
+    text-transform: uppercase;
+    position: relative;
+    padding: 0 30px
+}
+#state .state-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -1px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+}
+#state .state-head {
+    margin:20px 0 60px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: -1px;
+    color: #fff;
+}
+#state .state-head span {
+    color: var(--main-color);
+}
+.state-content .box {
+    border: 2px solid #fff;
+    color: #fff;
+    width: fit-content;
+    margin: 20px auto;
+    padding: 50px 80px;
+    font-size: 23px;
+    transition: 0.3s ease;
+}
+.state-content .box:hover {
+    border: 2px solid #fff;
+    background-color: #fff;
+    color: black ;
+}
+.state-content #special {
+    border: 2px solid #fff;
+    background-color: #fff;
+    color: black ;
+    width: 359.81px;
+}
+/* Start State */
+/* Start Service */
+.service {
+    overflow: hidden;
+    margin-bottom: 80px;
+}
+.service .ser-head {
+    width: fit-content;
+    margin: 50px auto 0;
+    color: var(--dark);
+    font-size: 14px;
+    text-transform: uppercase;
+    position: relative;
+    padding: 0 30px
+}
+.service .ser-head::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -1px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+}
+.service .ser-h1 {
+    color: var(--dark);
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: -1px;
+    margin: 20px 0;
+}
+.service .ser-h1 span {
+    color: var(--main-color);
+}
+.service .nav .nav-link {
+    background: var(--light);
+    transition: .5s;
+}
+.service .nav .nav-link.active {
+    background: var(--main-color);
+}
+.service .nav .nav-link i {
+    color: var(--main-color-alt);
+}
+.service .nav .nav-link h4 {
+    color: var(--dark);
+}
+.service .nav .nav-link.active h4,
+.service .nav .nav-link.active i {
+    color: #FFFFFF !important;
+}
+.service .ser-title {
+    color: var(--main-color);
+}
+.service .ser-paragragh {
+    color: #777 ;
+}
+.fa-check::before {
+    content: "\f00c";
+}
+.service .ser-button {
+    background-color: var(--main-color);
+    border: 1px solid var(--main-color);
+    font-weight: bold;
+    text-transform: uppercase; 
+    transition: 0.5s;
+}
+.service .ser-button:hover {
+    background-color: var(--light);
+    color: var(--main-color-alt);
+    border: 1px solid var(--main-color-alt);
+}
+/* End Service */
+/* Start Discount */
+.discount {
+    background: linear-gradient(rgba(0, 0, 0, .9), rgba(0, 0, 0, .9)), url(../images/Car\ Body\ Shell.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: 15px solid var(--main-color);
+}
+.discount .dis-title {
+    width: fit-content;
+    margin: 50px auto 0;
+    color: var(--light);
+    font-size: 14px;
+    text-transform: uppercase;
+    position: relative;
+    padding: 0 30px
+}
+.discount .dis-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -1px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+}
+.discount h1 {
+    color: #fff;
+    margin: 30px 0 80px;
+    font-size: 80px;
+    letter-spacing: -2px;
+}
+.discount h1 span {
+    color: var(--main-color);
+}
+.discount a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    width: fit-content;
+    margin: 0 auto;
+    background-color: var(--main-color);
+    padding: 15px 20px;
+    border-radius: 40px;
+    border: 1px solid var(--main-color);
+    color: var(--light);
+    transition: 0.3s ease;
+    text-transform: uppercase;
+}
+.discount a:hover {
+    background-color: var(--light);
+    border: 1px solid var(--main-color);
+    color: var(--dark);
+}
+/* End Discount */
+/* Start Call Us */
+.call-us {
+    margin: 80px 0;
+    padding: 80px 0;
+    background: linear-gradient(rgba(0, 0, 0, .9), rgba(0, 0, 0, .9)), url(../images/car-4.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: 15px solid var(--main-color);
+}
+.call-us .call-head {
+    width: fit-content;
+    margin: 50px 0 0;
+    color: var(--light) ;
+    font-size: 14px;
+    text-transform: uppercase;
+    position: relative;
+    padding: 0 30px;
+} 
+.call-us .call-head::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -1px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+}
+.call-us .call-title {
+    color: var(--main-color);
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: -1px;
+    margin: 20px 0;
+} 
+.call-us .call-para {
+    color: var(--light);
+} 
+.call-us .call-phone {
+    background-color: var(--main-color);
+}
+.call-us .call-phone .btn {
+    background-color: var(--light);
+    color: var(--main-color);
+    font-weight: bold;
+    transition: 0.5s ;
+}
+/* End Call Us */

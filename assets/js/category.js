@@ -22,3 +22,45 @@
         }
       }
     });
+
+    const swiperContainer = document.querySelector(".mySwiper");
+
+swiperContainer.addEventListener("mouseenter", () => {
+  swiper.autoplay.stop();
+});
+
+swiperContainer.addEventListener("mouseleave", () => {
+  swiper.autoplay.start();
+});
+
+
+
+    // Heart button functionality
+    const heartButtons = document.querySelectorAll('.heart-btn');
+    heartButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            this.classList.toggle('active');
+            const icon = this.querySelector('i');
+            if (this.classList.contains('active')) {
+                icon.classList.replace('fa-regular', 'fa-solid');
+            } else {
+                icon.classList.replace('fa-solid', 'fa-regular');
+            }
+        });
+    });
+
+
+
+    // Wishlist functionality
+    const wishlistBtns = document.querySelectorAll('.wishlist-btn');
+    wishlistBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            this.classList.toggle('active');
+            const icon = this.querySelector('i');
+            if (this.classList.contains('active')) {
+                icon.classList.replace('far', 'fas');
+            } else {
+                icon.classList.replace('fas', 'far');
+            }
+        });
+    });

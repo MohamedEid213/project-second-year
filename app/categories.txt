@@ -1,0 +1,153 @@
+🧩 تصنيفات قطع غيار السيارات (Auto Parts Categories):
+🔧 1. Engine & Components
+Engine Block
+
+Pistons & Rings
+
+Timing Belt / Chain
+
+Oil Pump
+
+Gaskets & Seals
+
+⚙️ 2. Transmission & Drivetrain
+Gearbox / Transmission
+
+Clutch
+
+Driveshafts
+
+Differentials
+
+CV Joints
+
+🛞 3. Suspension & Steering
+Shock Absorbers
+
+Struts
+
+Control Arms
+
+Tie Rod Ends
+
+Power Steering Pump
+
+🛑 4. Brakes System
+Brake Pads
+
+Brake Discs (Rotors)
+
+Brake Calipers
+
+Brake Master Cylinder
+
+ABS Sensor
+
+🌡️ 5. Cooling System
+Radiator
+
+Water Pump
+
+Thermostat
+
+Cooling Fan
+
+Hoses & Pipes
+
+⚡ 6. Electrical & Electronics
+Battery
+
+Alternator
+
+Starter Motor
+
+Sensors (O2, MAF, etc.)
+
+Fuses & Relays
+
+🔥 7. Fuel System
+Fuel Pump
+
+Fuel Injectors
+
+Fuel Filter
+
+Fuel Tank
+
+Throttle Body
+
+💨 8. Exhaust System
+Muffler
+
+Catalytic Converter
+
+Exhaust Manifold
+
+Oxygen Sensor
+
+Exhaust Pipe
+
+🛠️ 9. Body Parts
+Bumpers
+
+Doors
+
+Mirrors
+
+Fenders
+
+Grille
+
+💡 10. Lighting
+Headlights
+
+Taillights
+
+Fog Lights
+
+Turn Signals
+
+Interior Lights
+
+🧼 11. Interior & Accessories
+Dashboard Parts
+
+Seat Covers
+
+Floor Mats
+
+Steering Wheel Covers
+
+Air Vents
+
+🌀 12. Air Conditioning & Heating
+AC Compressor
+
+Condenser
+
+Heater Core
+
+Blower Motor
+
+AC Hoses
+
+🛡️ 13. Filters
+Oil Filter
+
+Air Filter
+
+Fuel Filter
+
+Cabin Filter
+
+🧰 14. Tools & Maintenance
+Car Jack
+
+Wrenches
+
+Diagnostic Tools (OBD)
+
+Oil & Fluids
+
+Cleaning Supplies
+

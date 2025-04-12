@@ -12,8 +12,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<link href="/project_2/assets/css/style_login.css" rel="stylesheet">
-<link href="/project_2/assets/css/style_regi.css" rel="stylesheet">
 <link href="/project_2/assets/css/bootstrap.min.css" rel="stylesheet">
 <link href="/project_2/assets/css/normalize.css" rel="stylesheet">
 <link href="/project_2/assets/css/all.min.css" rel="stylesheet">

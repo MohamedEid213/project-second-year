@@ -27,18 +27,32 @@ $email = $_SESSION['email'];
     include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/sidebar.php');
     ?>
 
-    <main id="contact1" class="h-auto">
-        <!-- محتوى الصفحة -->
-        <h1>Contact Us</h1>
-        <p>We're here to help! Fill the form below 👇</pc>
-        <div class="form-container">
-            <form>
-                <input type="text" id="name" placeholder="Your Name">
-                <input type="email" id="email" placeholder="Your Email">
-                <textarea id="message" placeholder="Your Message"></textarea>
-                <button type="submit" onclick="sendMessage()">Send Message</button>
-            </form>
+    <main id="main">
+        <div class="contact">
+            <div class="contant">
+                <h2>Contact Us</h2>
+                <p>Feel free to reach out for any inquries or feedback. We are here to help!</p>
+                <form>
+                    <input type="text" name="Name" id="N" placeholder="Your Name">
+                    <input type="email" name="email" id="E" placeholder="Your Email">
+                    <textarea name="message" id="message" rows="7" placeholder="Enter Your Message"></textarea>
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+                <!--icons-->
+                <div class="social-media">
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-google"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+
+            </div>
+            <!--map-->
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3486.2792027341325!2d31.112262424389698!3d29.097437475414203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145a27c9ad31e973%3A0xc9a95cfad8824ea7!2z2KfZhNmF2LnZh9ivINin2YTYqtmD2YbZiNmE2YjYrNmKINin2YTYudin2YTZiiDYqNio2YbZiiDYs9mI2YrZgQ!5e0!3m2!1sar!2seg!4v1744325996071!5m2!1sar!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
         </div>
+
     </main>
 
     <?php

@@ -64,3 +64,31 @@ swiperContainer.addEventListener("mouseleave", () => {
             }
         });
     });
+
+// // لمعالجة السلة بدون إعادة تحميل الصفحة
+//     $(document).ready(function() {
+//     $('.add-to-cart-form').on('submit', function(e) {
+//         e.preventDefault();
+        
+//         var form = $(this);
+//         var button = form.find('.add-to-cart');
+//         var originalText = button.html();
+        
+//         // تغيير نص الزر أثناء المعالجة
+//         button.html('<i class="fas fa-spinner fa-spin"></i> Adding...');
+        
+//         $.ajax({
+//             type: 'POST',
+//             url: '',
+//             data: form.serialize(),
+//             success: function(response) {
+//                 // إعادة تحميل الصفحة لعرض الرسالة
+//                 location.reload();
+//             },
+//             error: function() {
+//                 alert('Error adding product to cart');
+//                 button.html(originalText);
+//             }
+//         });
+//     });
+// });

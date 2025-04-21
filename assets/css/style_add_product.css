@@ -12,11 +12,15 @@
     --color-input: rgba(8, 102, 255, 0.3);
 }
 
+body {
+    background-color: #eee;
+}
+
 #add_product {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #eee;
+    flex-direction: column;
         height: auto;
 }
 
@@ -25,7 +29,7 @@
     background-color: white;    
     padding: 20px;
     width: 40%;
-    margin: 5px;
+    margin-bottom: 8px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 1);
 
 
@@ -38,11 +42,17 @@
     flex-direction: column;
 }
 
-#add_product .form_product h1 {
-    padding:  0 15px 10px;
-    text-align: center;
-    color: var(--color-primary)
+#add_product .header_product h1 {
+    color: var(--color-primary);
+    font-size: 34px;
 
+}
+
+#add_product .header_product  {
+    display: flex;
+    width: 40%;
+    align-items: center;
+    justify-content: space-between;
 }
 
 #add_product .form_product form label {

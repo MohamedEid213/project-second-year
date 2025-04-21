@@ -3,14 +3,17 @@ session_start();
 include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/vendor/config.php');
 
 // التحقق من تسجيل الدخول
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
+if (!isset($_SESSION['user_id'])) {
     header('location: ./index.php');
     exit();
 }
 
+
 $username = $_SESSION['username'];
 $email = $_SESSION['email'];
+$user_id = $_SESSION['user_id'];
 
+// استعلامات لجلب البيانات
 $Select_Category = 'SELECT * FROM `categories` ORDER BY c_name';
 $All_Category = mysqli_query($conn, $Select_Category);
 
@@ -19,9 +22,42 @@ $All_Brands = mysqli_query($conn, $Select_Brands);
 
 $Select_Product = 'SELECT * FROM `products` ORDER BY product_id DESC';
 $result = mysqli_query($conn, $Select_Product);
-$All_Products = mysqli_fetch_all($result, MYSQLI_ASSOC); // هذا سيجلب جميع المنتجات كمصفوفة
+$All_Products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 
+// معالجة إضافة المنتج إلى السلة
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
+
+
+$product_id = (int)$_POST['product_id'];
+
+// التحقق من وجود المنتج في قاعدة البيانات
+$check_product = "SELECT * FROM products WHERE product_id = $product_id";
+$product_result = mysqli_query($conn, $check_product);
+
+if (mysqli_num_rows($product_result) > 0) {
+// التحقق من وجود المنتج في سلة المستخدم
+$check_cart = "SELECT * FROM basket WHERE Client_id = $user_id AND Product_id = $product_id";
+$cart_result = mysqli_query($conn, $check_cart);
+
+if (mysqli_num_rows($cart_result) > 0) {
+$_SESSION['info'] = "Product is already in your cart!";
+} else {
+// إضافة المنتج إلى السلة
+$insert_cart = "INSERT INTO basket (Client_id, Product_id) VALUES ($user_id, $product_id)";
+if (mysqli_query($conn, $insert_cart)) {
+$_SESSION['success'] = "Product added to cart successfully!";
+} else {
+$_SESSION['error'] = "Error adding product to cart!";
+}
+}
+} else {
+$_SESSION['error'] = "Product not found!";
+}
+
+header("Location: " . $_SERVER['PHP_SELF']);
+exit();
+}
 
 ?>
 
@@ -45,6 +81,22 @@ $All_Products = mysqli_fetch_all($result, MYSQLI_ASSOC); // هذا سيجلب ج
 
     <!-- محتوى الصفحة -->
     <main id="content_page" class="h-auto">
+        <?php
+        // عرض رسائل النجاح أو الخطأ
+        if (isset($_SESSION['success'])) {
+            echo '<div class="alert alert-success">' . $_SESSION['success'] . '</div>';
+            unset($_SESSION['success']);
+        }
+        if (isset($_SESSION['error'])) {
+            echo '<div class="alert alert-danger">' . $_SESSION['error'] . '</div>';
+            unset($_SESSION['error']);
+        }
+        if (isset($_SESSION['info'])) {
+            echo '<div class="alert alert-info">' . $_SESSION['info'] . '</div>';
+            unset($_SESSION['info']);
+        }
+        ?>
+
         <section id="cover">
             <div class="images ">
                 <img class='image' src="https://img.freepik.com/premium-photo/electric-car-charging-station-generative-ai_834602-17645.jpg" alt="">
@@ -56,23 +108,33 @@ $All_Products = mysqli_fetch_all($result, MYSQLI_ASSOC); // هذا سيجلب ج
                         <a href="/project_2/app/contact/contact.php" class="btn">Contact Us</a>
                     </div>
                 </div>
+
                 <section class="swiper mySwiper">
 
                     <?php if (!empty($All_Products)): ?>
                         <div class="swiper-wrapper">
-                            <?php foreach ($All_Products as $product): ?>
+
+                            <?php foreach ($All_Products as $product):   ?>
+
                                 <div class="swiper-slide">
                                     <div class="product-card">
                                         <button class="heart-btn">
                                             <i class="fa-regular fa-heart"></i>
                                         </button>
-                                        <a href="/project_2/app/dateils/Dateils.php?id=<?= base64_encode($product['product_id']) ?>">
+
+                                        <a href="/project_2/app/dateils/Dateils.php?id=<?= base64_encode($product['product_id'])?>">
                                             <img src="/project_2/data/uploads/image_products/<?= $product['Images'] ?>" alt="<?= htmlspecialchars($product['product_name']) ?>">
                                         </a>
                                         <div class="product-info">
                                             <h3><?= htmlspecialchars($product['product_name']) ?></h3>
                                             <p class="price">$<?= $product['price'] ?></p>
-                                            <button class="add-to-cart">Add to Cart</button>
+                                            <form method="POST" class="add-to-cart-form">
+
+                                                <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                                                <button type="submit" name="add_to_cart" class="add-to-cart">
+                                                    Add to Cart
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -87,22 +149,6 @@ $All_Products = mysqli_fetch_all($result, MYSQLI_ASSOC); // هذا سيجلب ج
                         </div>
                     <?php endif; ?>
 
-                    <!-- <div class="swiper-slide">
-                            <div class="product-card">
-                                <button class="heart-btn">
-                                    <i class="fa-regular fa-heart"></i>
-                                </button>
-                                <a href="#">
-                                    <img src="/project_2/assets/image/image_home/products/child_car_seat.png" alt="Child Car Seat">
-                                </a>
-                                <div class="product-info">
-                                    <h3>مقعد سيارة للأطفال</h3>
-                                    <p class="price">$85.00</p>
-                                    <button class="add-to-cart">أضف إلى السلة</button>
-                                </div>
-                            </div>
-                        </div>
-            </div> -->
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-pagination"></div>
@@ -196,7 +242,14 @@ $All_Products = mysqli_fetch_all($result, MYSQLI_ASSOC); // هذا سيجلب ج
                                         <p class="product-desc"><?= $product['description'] ?></p>
                                         <div class="product-footer">
                                             <span class="product-price">$<?= $product['price'] ?></span>
-                                            <button class="add-to-cart">Add to Cart</button>
+                                            <form method="POST" class="add-to-cart-form">
+
+                                                <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                                                <button type="submit" name="add_to_cart" class="add-to-cart">
+                                                    Add to Cart
+                                                </button>
+                                            </form>
+
                                         </div>
                                     </div>
                                 </div>
@@ -268,6 +321,7 @@ $All_Products = mysqli_fetch_all($result, MYSQLI_ASSOC); // هذا سيجلب ج
                     </div> -->
                 </div>
             </div>
+
         </section>
     </main>
 

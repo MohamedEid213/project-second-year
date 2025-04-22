@@ -1,84 +1,137 @@
-
-let typingTimeout; 
-
-function changePerson(image) {
-    var dynamicText = document.getElementById("dynamicText");
-    var mainImage = document.getElementById("mainImage");
-
-    var newName = image.getAttribute("data-title");
-
-    mainImage.src = image.src; // دى بتغير الصوره الاصليه بالصوره الى بتضغط عليها
-
-    // عشان يشيل الوقت المحدد بعد كل عمليه reload 
-    clearTimeout(typingTimeout);
-
-    dynamicText.innerHTML = '<span class="cursor">|</span>'; // ده عشان التهنيج اللى بيحصل فى ال cursor
-
-    let i = 0;
-    function typeEffect() {
+document.addEventListener('DOMContentLoaded', function() {
+    // تأثير الكتابة الآلية
+    const dynamicText = document.getElementById('dynamicText');
+    const roles = ["محمود محمد", "مطور ويب", "خبير واجهات", "محب للتكنولوجيا"];
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+    
+    function type() {
+        const currentRole = roles[roleIndex];
         
-        if (i < newName.length) {
-            let currentText = newName.substring(0, i + 1); // أخذ الأحرف حتى الحالي
-            dynamicText.innerHTML = currentText + '<span class="cursor">|</span>'; // إبقاء المؤشر في النهاية
-            i++;
-            typingTimeout = setTimeout(typeEffect, 150); // عشان يحفظ التايمر
+        if (isDeleting) {
+            dynamicText.textContent = currentRole.substring(0, charIndex - 1);
+            charIndex--;
+            typingSpeed = 50;
         } else {
-            document.querySelector(".cursor").remove(); // عشان المؤشر يتحذف بعد الانتهاء من الكتابه
+            dynamicText.textContent = currentRole.substring(0, charIndex + 1);
+            charIndex++;
+            typingSpeed = 100;
         }
-    }
-
-    // بدء تنفيذ الكتابة مع إيقاف أي تنفيذ سابق
-    typingTimeout = setTimeout(typeEffect, 200);
-}
-
-////////////////////////////////////////////////////////////////////////////////////
-// ده عشان الانيميشن يحصل بعد ال reload
-
-window.onload = function() {
-    const paragraph = document.querySelector(".animated-text p");
-
-    if (localStorage.getItem("pVisible") === "true") {
-        paragraph.classList.add("visible");
-    } else {
-        paragraph.classList.remove("visible");
+        
+        if (!isDeleting && charIndex === currentRole.length) {
+            typingSpeed = 1500;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+            typingSpeed = 500;
+        }
+        
+        setTimeout(type, typingSpeed);
     }
     
-    setTimeout(() => {
-        paragraph.classList.add("visible");
-        localStorage.setItem("pVisible", "true"); 
-    }, 600);  
-};
-
-////////////////////////////////////////////////////////////////////////////////////////
-// ده جزء ال swiper 
-var swiper = new Swiper(".icon-slider", {
-    spaceBetween: 20,
-    grabCursor: true,
-    loop: true,
-    centeredSlides: true,
-    autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-    },
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-    breakpoints: {
-        0: {
-            slidesPerView: 1,
+    // بدء تأثير الكتابة بعد تأخير قصير
+    setTimeout(type, 1000);
+    
+    // تهيئة سلايدر الفريق
+    const teamSwiper = new Swiper('.team-slider', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
         },
-        768: {
-            slidesPerView: 2,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
         },
-        991: {
-            slidesPerView: 4,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
         },
-        1400:{
-            slidesPerView: 3,
-        }, 
-    },
-    speed: 600, 
-    slidesPerGroup: 1, 
-    allowTouchMove: true, 
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+            },
+            992: {
+                slidesPerView: 3,
+            },
+            1200: {
+                slidesPerView: 4,
+            }
+        }
+    });
+    
+    // تغيير العضو البارز عند النقر على الصور
+    const teamMembers = document.querySelectorAll('.team-member img');
+    const mainImage = document.getElementById('mainImage');
+    const memberName = document.querySelector('.member-name #dynamicText');
+    
+    teamMembers.forEach(member => {
+        member.addEventListener('click', function() {
+            // تغيير الصورة الرئيسية
+            mainImage.src = this.src;
+            mainImage.alt = this.alt;
+            
+            // تأثير التغيير
+            mainImage.style.opacity = 0;
+            setTimeout(() => {
+                mainImage.style.opacity = 1;
+            }, 300);
+            
+            // تغيير الاسم والمسمى الوظيفي
+            const newName = this.dataset.title;
+            const newRole = this.dataset.role;
+            
+            memberName.textContent = newName;
+            
+            // يمكنك هنا تحديث المعلومات الأخرى مثل المهارات والوصف
+        });
+    });
+    
+    // تأثير عد الإحصائيات
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const statsSection = document.querySelector('.stats-section');
+    
+    function animateStats() {
+        const sectionPosition = statsSection.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if (sectionPosition < screenPosition) {
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-count'));
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const counter = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        clearInterval(counter);
+                        stat.textContent = target;
+                    } else {
+                        stat.textContent = Math.floor(current);
+                    }
+                }, 16);
+            });
+            
+            // إزالة المستمع بعد التنفيذ لتفادي التكرار
+            window.removeEventListener('scroll', animateStats);
+        }
+    }
+    
+    window.addEventListener('scroll', animateStats);
+    
+    // تحريك الصفحة عند النقر على مؤشر التمرير
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    
+    scrollIndicator.addEventListener('click', function() {
+        window.scrollBy({
+            top: window.innerHeight - 100,
+            behavior: 'smooth'
+        });
+    });
 });

@@ -1,206 +1,455 @@
-* {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-}
-
 :root {
-    --color_bg: #e7f1ff;
-    --color-primary: #0866ff;
-    --color-border-image: #087bff;
-    --color-box-shadow-hover: rgba(13, 190, 234, 0.9);
-    --size-border: 10px;
+    --primary-color: #2563eb;
+    --secondary-color: #0ea5e9;
+    --dark-color: #1e293b;
+    --light-color: #f8fafc;
+    --accent-color: #f59e0b;
+    --gray-color: #64748b;
+    --transition: all 0.3s ease;
 }
 
+/* التصميم العام */
 body {
-    width: 100%;
-    background: var(--color_bg);
-    font-family: "Roboto", serif;
-}   
-
-.about {
-    width: 100%;
-    min-height: calc(100vh - 72px);
-}
-
-.container2 {
-    min-height: 100vh;
-    position: relative;
-}
-
-.content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-top: 30px;
-    padding: 20px 10px  ;
-}
-
-.content .cont_image {
-    width: 25%;
-    position: relative;
-}
-
-.content .cont_image::after,
-.content .cont_image::before {
-    position: absolute;
-    content: "";
-    width: 30%; 
-    height: 30%;
-    opacity: 0.5;
-}
-
-.content .cont_image::after {
-    left: -40px;
-        top: -40px;
-        border-left: var(--size-border) solid var(--color-border-image);
-        border-top: var(--size-border) solid var(--color-border-image);
-}
-
-.content .cont_image::before {
-    right: -40px;
-        bottom: -40px;
-        border-right: var(--size-border) solid var(--color-border-image);
-        border-bottom: var(--size-border) solid var(--color-border-image);
-}
-
-.content .cont_image .image {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: 0.7s ease-in-out;
-    animation: photo 2s 1;
-
-}
-.content .cont_image .image:hover {
-    transform: scale(1.1);
-    box-shadow: 0px 0px 20px rgb(0, 0, 0, 0.9);
-}
-
-@keyframes photo {
-    0%{ transform: scale(0);}
-    100%{   transform: scale(1); }
-}
-
-.content .cont_image .image img {
-    
-    border-radius: 10px;
-    object-fit: cover;
-}
-
-.animated-text {
-    width: 50%;
-    font-size: 40px;
-    font-weight: bold;
-    color: black;
-}
-
-.animated-text p {
-    color: #555555  ;
+    font-family: 'Tajawal', sans-serif;
+    color: var(--dark-color);
+    background-color: var(--light-color);
     line-height: 1.6;
-    font-size: 20px;
-    font-weight: 100;
 }
 
+.about-page {
+    overflow-x: hidden;
+    padding-left: 4.2%;
+}
 
-.animated-text span {
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* قسم البطل */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 50px 0 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    animation: fadeInUp 1s ease;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    animation: fadeInUp 1s ease 0.3s forwards;
+    opacity: 0;
+}
+
+.scroll-indicator {
+    margin-top: 3rem;
+    animation: bounce 2s infinite;
+}
+
+.scroll-indicator span {
+    display: block;
+    width: 30px;
+    height: 50px;
+    border: 2px solid white;
+    border-radius: 15px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.scroll-indicator span::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    animation: scrollDown 2s infinite;
+}
+
+/* قسم العضو البارز */
+.spotlight-section {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.spotlight-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+}
+
+.member-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.member-image {
+    flex: 1;
+    min-width: 300px;
     position: relative;
 }
 
-#dynamicText::after {
-    content: "";
+.member-name {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.member-name::after {
+    content: '';
     position: absolute;
-    width: calc(100% + 8px);
-    height: 60px;
-    background-color: var(--color_bg);
-    border-left: 4px solid var(--color-border-image);
-    right: -8px;
-    animation: typing 25s infinite, cursor 0.9s infinite;
+    bottom: -10px;
+    right: 0;
+    width: 80px;
+    height: 4px;
+    background: var(--accent-color);
+    border-radius: 2px;
 }
 
 #dynamicText {
-    display: inline-block;
-    color: #0C969C;
-    white-space: nowrap;
-}
-
-@keyframes cursor {
-    50% {
-        border-left-color: transparent;
-    }
-}
-
-@keyframes typing {
-
-    10%,
-    15%,
-    30%,
-    35%,
-    50%,
-    55%,
-    70%,
-    75%,
-    90%,
-    95% {
-        width: 0;
-    }
-
-    5%,
-    20%,
-    25%,
-    40%,
-    45%,
-    60%,
-    65%,
-    80%,
-    85% {
-        width: calc(100% + 8px);
-    }
-}
-
-
-
-.swiper {
-    overflow: hidden;
-    width: 90%;
+    color: var(--secondary-color);
     position: relative;
-    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-
-
 }
 
-.swiper-slide {
-    flex-shrink: 0;
-    min-width: 385px;
-    max-width: 400px;
-    margin-bottom: 35px;
+.member-bio p {
+    font-size: 1.1rem;
+    color: var(--gray-color);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
 }
 
-.slide img {
-    width: calc(100% - 10px);
-    height: 270px;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 0.3s ease-in-out;
-}
-
-.slide img:hover {
-    transform: scale(0.9);
-    box-shadow: 0px 0px 20px var(--color-box-shadow-hover);
-}
-
-.swiper-pagination {
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
+.skills {
     display: flex;
-    justify-content: center;
-    gap: 5px;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
 }
 
-.im {
-    width: 320px;
-    height: 400px;
+.skill {
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--primary-color);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--light-color);
+    color: var(--primary-color);
+    border-radius: 50%;
+    transition: var(--transition);
+    font-size: 1.2rem;
+}
+
+.social-link:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-3px);
+}
+
+.image-frame {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+.image-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.3) 0%, rgba(14, 165, 233, 0.3) 100%);
+    opacity: 0;
+    transition: var(--transition);
+    z-index: 1;
+}
+
+.image-frame:hover::before {
+    opacity: 1;
+}
+
+.image-frame img {
+    width: 100%;
+    height: 500px;
+    display: block;
+    transition: var(--transition);
+}
+
+.image-frame:hover img {
+    transform: scale(1.05);
+}
+
+/* قسم الفريق */
+.team-section {
+    padding: 10px 0 40px;
+    background: var(--light-color);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 80px;
+    height: 4px;
+    background: var(--accent-color);
+    border-radius: 2px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--gray-color);
+    max-width: 600px;
+    margin: 0 auto 40px;
+    font-size: 1.1rem;
+}
+
+.team-slider {
+    padding: 30px 0 60px;
+}
+
+.team-member {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    height: 350px;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.team-member img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.member-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+    color: white;
+    transform: translateY(100%);
+    transition: var(--transition);
+}
+
+.team-member:hover .member-overlay {
+    transform: translateY(0);
+}
+
+.member-overlay h3 {
+    margin-bottom: 5px;
+    font-size: 1.3rem;
+}
+
+.member-overlay p {
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    color: var(--primary-color);
+    background: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.swiper-pagination-bullet {
+    background: var(--gray-color);
+    opacity: 0.5;
+    width: 12px;
+    height: 12px;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--primary-color);
+    opacity: 1;
+}
+
+/* قسم الإحصائيات */
+.stats-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    text-align: center;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 30px 20px;
+    border-radius: 10px;
+    transition: var(--transition);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* تأثيرات الحركة */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-20px);
+    }
+
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes scrollDown {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+    }
+}
+
+/* التصميم المتجاوب */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .member-name {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-member {
+        height: 280px;
+    }
 }

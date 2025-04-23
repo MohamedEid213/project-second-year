@@ -41,17 +41,18 @@ $All_product = mysqli_query($conn, $Select_Products);
 
                 <div class="products-container">
                     <?php foreach ($All_product as $product): ?>
-                        <div class="showcase-container" >
-                            <button class="delete-item" title="Remove item">
+                        
+                        <div class="showcase-container">
+                            <a href="/project_2/app/Baskets/delete_basket.php?id=<?= base64_encode($product['basket_id']) ?>" class="delete-item" title="Remove item">
                                 <i class="fa-solid fa-trash-can"></i>
-                            </button>
+                            </a>
 
                             <div class="showcase">
                                 <a href="#" class="showcase-banner">
                                     <img src="/project_2/data/uploads/image_products/<?= $product['Images'] ?>"
                                         alt="Not Found"
                                         class="showcase-img" />
-                    </a>
+                                </a>
 
                                 <div class="showcase-content">
                                     <div class="product-header">
@@ -73,9 +74,9 @@ $All_product = mysqli_query($conn, $Select_Products);
                                     <div class="price-quantity-container">
                                         <div class="price-box">
                                             <p class="price">$<?= $product['price'] ?></p>
-                                            
-                                                <del>$<?= $product['price'] + 200 ?></del>
-                                            
+
+                                            <del>$<?= $product['price'] + 200 ?></del>
+
                                         </div>
 
                                         <div class="quantity-control">
@@ -121,6 +122,9 @@ $All_product = mysqli_query($conn, $Select_Products);
     ?>
     <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="/project_2/assets/js/basket.js"></script>
+    <div id="overlay"></div>
+
 </body>
 
 </html>
+<script src="/project_2/assets/js/sidebar.js"></script>

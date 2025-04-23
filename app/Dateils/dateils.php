@@ -146,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
                             </div>
                     </div>
 
-                    <h2 class="text-center fw-bold">Similar products </h2>      
+                    <h2 class="text-center fw-bold">Similar products </h2>
                     <div class="thumbnail-gallery">
                         <?php foreach ($Data_Product as $products): ?>
                             <div class="thumbnail-container">
@@ -173,6 +173,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
     include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/footer.php');
     include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/script.php');
     ?>
+    <div id="overlay"></div>
+
 </body>
 
 </html>
+<script src="/project_2/assets/js/sidebar.js"></script>

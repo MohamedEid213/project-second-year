@@ -127,13 +127,15 @@ $image = $_SESSION['image_private'];
                 document.getElementById(tabId).classList.add('active');
             });
         });
-
     </script>
 
     <?php
     include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/footer.php');
     include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/script.php');
     ?>
+    <div id="overlay"></div>
+
 </body>
 
 </html>
+<script src="/project_2/assets/js/sidebar.js"></script>

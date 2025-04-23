@@ -87,7 +87,10 @@ $email = $_SESSION['email'];
     ?>
 
     <script src="/project_2/assets/js/booking.js"></script>
+    <div id="overlay"></div>
+
 
 </body>
 
 </html>
+<script src="/project_2/assets/js/sidebar.js"></script>

@@ -29,34 +29,34 @@ $All_Products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
 
 
-$product_id = (int)$_POST['product_id'];
+    $product_id = (int)$_POST['product_id'];
 
-// التحقق من وجود المنتج في قاعدة البيانات
-$check_product = "SELECT * FROM products WHERE product_id = $product_id";
-$product_result = mysqli_query($conn, $check_product);
+    // التحقق من وجود المنتج في قاعدة البيانات
+    $check_product = "SELECT * FROM products WHERE product_id = $product_id";
+    $product_result = mysqli_query($conn, $check_product);
 
-if (mysqli_num_rows($product_result) > 0) {
-// التحقق من وجود المنتج في سلة المستخدم
-$check_cart = "SELECT * FROM basket WHERE Client_id = $user_id AND Product_id = $product_id";
-$cart_result = mysqli_query($conn, $check_cart);
+    if (mysqli_num_rows($product_result) > 0) {
+        // التحقق من وجود المنتج في سلة المستخدم
+        $check_cart = "SELECT * FROM basket WHERE Client_id = $user_id AND Product_id = $product_id";
+        $cart_result = mysqli_query($conn, $check_cart);
 
-if (mysqli_num_rows($cart_result) > 0) {
-$_SESSION['info'] = "Product is already in your cart!";
-} else {
-// إضافة المنتج إلى السلة
-$insert_cart = "INSERT INTO basket (Client_id, Product_id) VALUES ($user_id, $product_id)";
-if (mysqli_query($conn, $insert_cart)) {
-$_SESSION['success'] = "Product added to cart successfully!";
-} else {
-$_SESSION['error'] = "Error adding product to cart!";
-}
-}
-} else {
-$_SESSION['error'] = "Product not found!";
-}
+        if (mysqli_num_rows($cart_result) > 0) {
+            $_SESSION['info'] = "Product is already in your cart!";
+        } else {
+            // إضافة المنتج إلى السلة
+            $insert_cart = "INSERT INTO basket (Client_id, Product_id) VALUES ($user_id, $product_id)";
+            if (mysqli_query($conn, $insert_cart)) {
+                $_SESSION['success'] = "Product added to cart successfully!";
+            } else {
+                $_SESSION['error'] = "Error adding product to cart!";
+            }
+        }
+    } else {
+        $_SESSION['error'] = "Product not found!";
+    }
 
-header("Location: " . $_SERVER['PHP_SELF']);
-exit();
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
 }
 
 ?>
@@ -122,7 +122,7 @@ exit();
                                             <i class="fa-regular fa-heart"></i>
                                         </button>
 
-                                        <a href="/project_2/app/dateils/Dateils.php?id=<?= base64_encode($product['product_id'])?>">
+                                        <a href="/project_2/app/dateils/Dateils.php?id=<?= base64_encode($product['product_id']) ?>">
                                             <img src="/project_2/data/uploads/image_products/<?= $product['Images'] ?>" alt="<?= htmlspecialchars($product['product_name']) ?>">
                                         </a>
                                         <div class="product-info">
@@ -331,7 +331,10 @@ exit();
     ?>
     <script src='/project_2/assets/js/category.js'></script>
     <script src='/project_2/assets/js/search_product.js'></script>
+    <div id="overlay"></div>
+
 
 </body>
 
 </html>
+<script src="/project_2/assets/js/sidebar.js"></script>

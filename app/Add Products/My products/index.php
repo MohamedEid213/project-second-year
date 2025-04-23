@@ -78,6 +78,9 @@ $All_product = mysqli_query($conn, $Select_Products);
     include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/footer.php');
     include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/script.php');
     ?>
+    <div id="overlay"></div>
+
 </body>
 
 </html>
+<script src="/project_2/assets/js/sidebar.js"></script>

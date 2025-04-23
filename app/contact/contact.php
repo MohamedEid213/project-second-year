@@ -60,6 +60,9 @@ $email = $_SESSION['email'];
     include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/script.php');
     ?>
     <script src="/project_2/assets/js/js_contact.js"></script>
+    <div id="overlay"></div>
+
 </body>
 
 </html>
+<script src="/project_2/assets/js/sidebar.js"></script>

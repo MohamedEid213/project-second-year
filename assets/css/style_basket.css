@@ -183,6 +183,7 @@ body {
 
 .showcase-container:hover .delete-item {
   opacity: 1;
+  color: var(--white);
 }
 
 .showcase {

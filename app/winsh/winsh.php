@@ -169,7 +169,10 @@ $email = $_SESSION['email'];
             document.getElementById("confirmationMessage").style.display = "block";
         });
     </script>
+    <div id="overlay"></div>
+
 
 </body>
 
 </html>
+<script src="/project_2/assets/js/sidebar.js"></script>

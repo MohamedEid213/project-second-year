@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // تأثير الكتابة الآلية
     const dynamicText = document.getElementById('dynamicText');
-    const roles = ["محمود محمد", "مطور ويب", "خبير واجهات", "محب للتكنولوجيا"];
+    const roles = ["Shadows Team",  "Interface Expert", "technology lover","Web Developer"];
     let roleIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
@@ -61,36 +61,45 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             1200: {
                 slidesPerView: 4,
+            },   1400: {
+                slidesPerView: 5,
             }
         }
     });
     
-    // تغيير العضو البارز عند النقر على الصور
-    const teamMembers = document.querySelectorAll('.team-member img');
-    const mainImage = document.getElementById('mainImage');
-    const memberName = document.querySelector('.member-name #dynamicText');
-    
-    teamMembers.forEach(member => {
-        member.addEventListener('click', function() {
-            // تغيير الصورة الرئيسية
-            mainImage.src = this.src;
-            mainImage.alt = this.alt;
-            
-            // تأثير التغيير
-            mainImage.style.opacity = 0;
-            setTimeout(() => {
-                mainImage.style.opacity = 1;
-            }, 300);
-            
-            // تغيير الاسم والمسمى الوظيفي
-            const newName = this.dataset.title;
-            const newRole = this.dataset.role;
-            
-            memberName.textContent = newName;
-            
-            // يمكنك هنا تحديث المعلومات الأخرى مثل المهارات والوصف
-        });
+  // تغيير العضو البارز عند النقر على الصور
+const teamMembers = document.querySelectorAll('.team-member img');
+const mainImage = document.getElementById('mainImage');
+const memberName = document.querySelector('.member-name1 #text_name');
+const memberRole = document.querySelector('.member-name2 #dynamicText');
+const memberBio = document.querySelector('.member-bio p');
+const memberSkills = document.querySelector('.skills');
+
+teamMembers.forEach(member => {
+    member.addEventListener('click', function() {
+        // الحصول على العناصر المرتبطة بالعضو المنقور عليه
+        const memberCard = this.closest('.team-member');
+        const memberTitle = memberCard.querySelector('h3').textContent;
+        
+        // تغيير الصورة الرئيسية
+        mainImage.src = this.src;
+        mainImage.alt = this.alt;
+        
+        // تأثير التغيير
+        mainImage.style.opacity = 0;
+        setTimeout(() => {
+            mainImage.style.opacity = 1;
+        }, 300);
+        
+        // تحديث المعلومات النصية
+        memberName.textContent = memberTitle;
+        
+        // يمكنك هنا تحديث المعلومات الأخرى مثل الوصف والمهارات
+        // مثال:
+        // memberBio.textContent = "وصف جديد للعضو";
+        // memberSkills.innerHTML = '<span class="skill">مهارة جديدة</span>';
     });
+});
     
     // تأثير عد الإحصائيات
     const statNumbers = document.querySelectorAll('.stat-number');
@@ -130,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     scrollIndicator.addEventListener('click', function() {
         window.scrollBy({
-            top: window.innerHeight - 100,
+            top: window.innerHeight - 400,
             behavior: 'smooth'
         });
     });

@@ -9,7 +9,7 @@ include('./register_post.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="/project/assets/css/style_regi.css">
+    <link rel="stylesheet" href="/project_2/assets/css/style_regi.css">
     <link rel="icon"
         href="https://thumbs.dreamstime.com/z/secure-login-web-button-icon-vector-illustration-isolated-white-background-shadow-secure-login-web-button-119434393.jpg"
         type="image/x-icon">
@@ -98,7 +98,7 @@ include('./register_post.php');
                 </form>
             </div>
         </div>
-    </section>  
+    </section>
 </body>
 
 </html>

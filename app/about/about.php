@@ -50,7 +50,8 @@ $email = $_SESSION['email'];
                 <div class="container">
                     <div class="spotlight-content">
                         <div class="member-info">
-                            <h2 class="member-name">I'M <span id="dynamicText">Mahmoud Mohammed</span></h2>
+                            <h1 class="member-name1">hi,it's <span id="text_name">shadows team</span></h1>
+                            <h2 class="member-name2">I'M a <span id="dynamicText">Web Developer</span></h2>
                             <div class="member-bio">
                                 <p>Web developer with 5 years of experience building modern, scalable applications. Specializing in front-end technologies and user experience engineering.</p>
                                 <div class="skills">
@@ -68,7 +69,7 @@ $email = $_SESSION['email'];
                         </div>
                         <div class="member-image">
                             <div class="image-frame">
-                                <img id="mainImage" src="/project_2/assets/image/images_team/guide-3.jpg" alt="Mahmoud Mohammed">
+                                <img id="mainImage" src="/project_2/assets/image/images_team/ALL_TEAM.jpg" alt="Mohammed Eid">
                             </div>
                         </div>
                     </div>
@@ -83,42 +84,76 @@ $email = $_SESSION['email'];
 
                     <div class="swiper team-slider">
                         <div class="swiper-wrapper">
+
                             <div class="swiper-slide team-member">
-                                <img src="/project_2/assets/image/image_users/photo_private.jpg" alt="Mahmoud Mohammed" data-title=" محمود محمد" data-role="مطور ويب رئيسي">
+                                <img src="/project_2/assets/image/image_users/photo_private.jpg" alt="Mohammed Eid" data-title="Mohamed Eid" data-role="مطور ويب رئيسي">
                                 <div class="member-overlay">
-                                    <h3>Mahmoud Mohammed</h3>
+                                    <h3>Mohammed Eid</h3>
                                     <p>Senior Web Developer</p>
                                 </div>
                             </div>
 
-
                             <div class="swiper-slide team-member">
-                                <img src="/project_2/assets/image/images_team/testimonial-4.jpg" alt="أميرة علي" data-title="أميرة علي" data-role="مصممة واجهات">
+                                <img src="/project_2/assets/image/images_team/tarek.jpg" alt="" data-title="" data-role="">
                                 <div class="member-overlay">
-                                    <h3>Princess Ali</h3>
+                                    <h3>Tarek Moawad</h3>
                                     <p>Interface designer</p>
                                 </div>
                             </div>
 
                             <div class="swiper-slide team-member">
-                                <img src="/project_2/assets/image/images_team/testimonial-4.jpg" alt="أميرة علي" data-title="أميرة علي" data-role="مصممة واجهات">
+                                <img src="/project_2/assets/image/images_team/باش_مصر.jpg" alt="" data-title="" data-role="">
                                 <div class="member-overlay">
-                                    <h3>أميرة علي</h3>
+                                    <h3>Mohammed Ashraf</h3>
+                                    <p>Senior Fron-end</p>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide team-member">
+                                <img src="/project_2/assets/image/images_team/Mohammed_Shehata.png" alt="" data-title="" data-role="">
+                                <div class="member-overlay">
+                                    <h3>Mohamed Shehate</h3>
                                     <p>مصممة واجهات</p>
                                 </div>
                             </div>
+
                             <div class="swiper-slide team-member">
-                                <img src="/project_2/assets/image/images_team/testimonial-4.jpg" alt="أميرة علي" data-title="أميرة علي" data-role="مصممة واجهات">
+                                <img src="/project_2/assets/image/images_team/omar.png" alt="" data-title="" data-role="">
                                 <div class="member-overlay">
-                                    <h3>أميرة علي</h3>
+                                    <h3>Omar</h3>
                                     <p>مصممة واجهات</p>
                                 </div>
                             </div>
+
                             <div class="swiper-slide team-member">
-                                <img src="/project_2/assets/image/images_team/testimonial-4.jpg" alt="أميرة علي" data-title="أميرة علي" data-role="مصممة واجهات">
+                                <img src="/project_2/assets/image/images_team/mohamed_walid.jpg" alt="" data-title="" data-role="">
                                 <div class="member-overlay">
-                                    <h3>أميرة علي</h3>
-                                    <p>مصممة واجهات</p>
+                                    <h3>Mohammed walid</h3>
+                                    <p>Senior Fron-end</p>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide team-member">
+                                <img src="/project_2/assets/image/images_team/mohamed_nady.jpg" alt="" data-title="" data-role="">
+                                <div class="member-overlay">
+                                    <h3>Mohammed nady</h3>
+                                    <p>Senior Fron-end</p>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide team-member">
+                                <img src="/project_2/assets/image/images_team/mostafa_sholkamy.jpg" alt="" data-title="" data-role="">
+                                <div class="member-overlay">
+                                    <h3>Mostafa Sholkamy</h3>
+                                    <p>Senior Fron-end</p>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide team-member">
+                                <img src="/project_2/assets/image/images_team/نادر.jpg" alt="" data-title="" data-role="">
+                                <div class="member-overlay">
+                                    <h3>nader</h3>
+                                    <p>Senior Fron-end</p>
                                 </div>
                             </div>
 

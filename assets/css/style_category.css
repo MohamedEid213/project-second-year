@@ -62,11 +62,11 @@ font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   }
 
    .swiper {
-       width: 100%;
+       width: 96%;
        height: 350px;
        position: absolute;
        bottom: -310px;
-       left: 0;
+       right: 0;
        padding: 0 1rem;
        z-index: 20;
    }

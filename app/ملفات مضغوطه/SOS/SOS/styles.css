@@ -1,6 +1,6 @@
 :root {
-  --primary-color: #2196f3;
-  --primary-dark: #1787e0;
+  --primary-color: #ff4444;
+  --primary-dark: #cc0000;
   --secondary-color: #2c3e50;
   --text-color: #333;
   --light-gray: #f8f8f8;
@@ -16,6 +16,7 @@
 
 body {
   font-family: 'Cairo', sans-serif;
+  direction: rtl;
   background-color: #f4f4f4;
   color: var(--text-color);
   line-height: 1.6;
@@ -531,18 +532,4 @@ body {
   #map {
     height: 300px;
   }
-}
-
-.close-btn {
-  cursor: pointer;
-font-size: 2rem;
-border-radius: 50%;
-transition: 0.9s;
-
-}
-.close-btn:hover {
-  cursor: pointer;
-  font-size: 2.1rem;
-  background-color: var(--text-color);
-  color: white;
 }

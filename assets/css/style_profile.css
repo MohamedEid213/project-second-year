@@ -295,7 +295,12 @@
      grid-template-columns: 1fr;
    }
   }
- /* Dark Mode Support 
+
+
+  
+ /* Dark Mode Support  */
+
+
  @media (prefers-color-scheme: dark) {
    body {
      background-color: #121212;
@@ -323,4 +328,4 @@
      background: #2d2d2d;
    }
  }
-  */
+ 

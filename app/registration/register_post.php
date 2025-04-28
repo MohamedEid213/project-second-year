@@ -80,7 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
         $check_sql = "SELECT id FROM users WHERE email='$gmail' OR name='$UserName'";
         $check_result = mysqli_query($conn, $check_sql);
         if (mysqli_num_rows($check_result) > 0) {
-            $error = 1;
             $errors['duplicate_error'] = "<p class='error_code'>Username or Email already exists.</p>";
         } else {
 

@@ -57,7 +57,7 @@ $email = $_SESSION['email'];
             <h2>Our Services</h2>
             <div class="service-grid">
                 <div class="service-card">
-                    <div class="service-icon">🔧</div>
+                    <div class="service-icon"><img src="/project_2/assets/image/image_serivce/maintenance_Engine.png" alt="not found"></div>
                     <h3>Engine Repair</h3>
                     <p>Complete diagnostics and repair for all engine types. We specialize in:</p>
                     <ul class="service-list">
@@ -69,7 +69,7 @@ $email = $_SESSION['email'];
                     <a href="/project_2/app/dateils_services/dateils_service.php" class="service-link">Learn More</a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🛑</div>
+                    <div class="service-icon"><img src="/project_2/assets/image/image_serivce/brakes.png" alt="not found"></div>
                     <h3>Brake Service</h3>
                     <p>Professional brake repair and maintenance including:</p>
                     <ul class="service-list">
@@ -81,7 +81,7 @@ $email = $_SESSION['email'];
                     <a href="/project_2/app/dateils_services/dateils_service.php" class="service-link">Learn More</a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🛢️</div>
+                    <div class="service-icon"><img src="/project_2/assets/image/image_serivce/oil-change.png" alt="not found"></div>
                     <h3>Oil Change</h3>
                     <p>Regular maintenance and oil changes with:</p>
                     <ul class="service-list">
@@ -93,7 +93,7 @@ $email = $_SESSION['email'];
                     <a href="/project_2/app/dateils_services/dateils_service.php" class="service-link">Learn More</a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">⚙️</div>
+                    <div class="service-icon"><img src="/project_2/assets/image/image_serivce/transmission.png" alt="not found"></div>
                     <h3>Transmission</h3>
                     <p>Transmission repair and replacement services including:</p>
                     <ul class="service-list">
@@ -105,7 +105,7 @@ $email = $_SESSION['email'];
                     <a href="/project_2/app/dateils_services/dateils_service.php" class="service-link">Learn More</a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">❄️</div>
+                    <div class="service-icon"><img src="/project_2/assets/image/image_serivce/air-conditioner.png" alt="not found"></div>
                     <h3>AC Service</h3>
                     <p>Complete air conditioning system service featuring:</p>
                     <ul class="service-list">
@@ -117,7 +117,7 @@ $email = $_SESSION['email'];
                     <a href="/project_2/app/dateils_services/dateils_service.php" class="service-link">Learn More</a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🚗</div>
+                    <div class="service-icon"><img src="/project_2/assets/image/image_serivce/car-repair.png" alt="not found"></div>
                     <h3>Tire Service</h3>
                     <p>Comprehensive tire care including:</p>
                     <ul class="service-list">

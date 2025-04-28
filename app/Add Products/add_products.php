@@ -17,6 +17,15 @@ if ($_SESSION['user_permissions'] == 'user') {
 $id = $_SESSION['user_id'];
 $email = $_SESSION['email'];
 
+$user_id = $_SESSION['user_id'];
+
+// حساب عدد عناصر السله
+$count_cart = "SELECT COUNT(*) as cart_count FROM `basket` WHERE Client_id = $user_id";
+$result = mysqli_query($conn, $count_cart);
+$row = mysqli_fetch_assoc($result);
+$cart_items_count = $row['cart_count'];
+
+
 $Select_Category = 'SELECT * FROM `categories` ORDER BY c_name';
 $All_Category = mysqli_query($conn, $Select_Category);
 
@@ -57,8 +66,8 @@ if (isset($_POST['submit'])) {
             move_uploaded_file($image_temp, $target_file);
 
 
-            $Row_Data = "INSERT INTO `products`( `product_name`, `model_year`, `Images`, `price`, `Category_id`, `Brand_id`, `description`) 
-        VALUES ('$name','$model_year','$image_name','$price','$category','$brand','$descript')";
+            $Row_Data = "INSERT INTO `products`( `product_name`, `model_year`, `Images`, `price`, `Category_id`, `Brand_id`, `description`,`Added by`) 
+        VALUES ('$name','$model_year','$image_name','$price','$category','$brand','$descript',$user_id)";
             $Add_Product = mysqli_query($conn, $Row_Data);
             header('location: /project_2/app/categories/category.php');
         }
@@ -137,6 +146,14 @@ if (isset($_POST['submit'])) {
     include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/footer.php');
     include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/script.php');
     ?>
+
+    <!-- Floating Cart Icon -->
+    <div class="cart-icon-container">
+        <a href="/project_2/app/Baskets/basket.php" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cart-count"><?= $cart_items_count ?></span>
+        </a>
+    </div>
 
     <div id="overlay"></div>
 

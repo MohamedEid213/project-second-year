@@ -10,6 +10,14 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
 
 $username = $_SESSION['username'];
 $email = $_SESSION['email'];
+
+$user_id = $_SESSION['user_id'];
+
+
+$count_cart = "SELECT COUNT(*) as cart_count FROM `basket` WHERE Client_id = $user_id";
+$result = mysqli_query($conn, $count_cart);
+$row = mysqli_fetch_assoc($result);
+$cart_items_count = $row['cart_count'];
 ?>
 
 <!DOCTYPE html>
@@ -78,8 +86,8 @@ $email = $_SESSION['email'];
                             ⭐⭐⭐⭐⭐ <span>(128)</span>
                         </div>
                         <div class="price">
-                            <span class="original-price">$199.99</span>
-                            <span class="discounted-price glow-text">$119.99</span>
+                            <span class="original-price">£E199.99</span>
+                            <span class="discounted-price glow-text">£E119.99</span>
                         </div>
                         <button class="buy-btn color-shift">Add to Cart</button>
                     </div>
@@ -95,8 +103,8 @@ $email = $_SESSION['email'];
                             ⭐⭐⭐⭐½ <span>(94)</span>
                         </div>
                         <div class="price">
-                            <span class="original-price">$299.99</span>
-                            <span class="discounted-price glow-text">$149.99</span>
+                            <span class="original-price">£E299.99</span>
+                            <span class="discounted-price glow-text">£E149.99</span>
                         </div>
                         <button class="buy-btn color-shift">Add to Cart</button>
                     </div>
@@ -112,8 +120,8 @@ $email = $_SESSION['email'];
                             ⭐⭐⭐⭐ <span>(76)</span>
                         </div>
                         <div class="price">
-                            <span class="original-price">$159.99</span>
-                            <span class="discounted-price glow-text">$111.99</span>
+                            <span class="original-price">£E159.99</span>
+                            <span class="discounted-price glow-text">£E111.99</span>
                         </div>
                         <button class="buy-btn color-shift">Add to Cart</button>
                     </div>
@@ -156,7 +164,7 @@ $email = $_SESSION['email'];
             <div class="deal-item color-shift">
                 <span class="deal-tag">LIMITED</span>
                 <h3>Car Tires</h3>
-                <p>From $49.99</p>
+                <p>From £E49.99</p>
             </div>
             <div class="deal-item color-shift">
                 <span class="deal-tag">SPECIAL</span>
@@ -182,6 +190,15 @@ $email = $_SESSION['email'];
     include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/footer.php');
     include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/script.php');
     ?>
+
+    <!-- Floating Cart Icon -->
+    <div class="cart-icon-container">
+        <a href="/project_2/app/Baskets/basket.php" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cart-count"><?= $cart_items_count ?></span>
+        </a>
+    </div>
+
     <div id="overlay"></div>
 
 </body>

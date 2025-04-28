@@ -10,6 +10,14 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
 
 $username = $_SESSION['username'];
 $email = $_SESSION['email'];
+
+$user_id = $_SESSION['user_id'];
+
+
+$count_cart = "SELECT COUNT(*) as cart_count FROM `basket` WHERE Client_id = $user_id";
+$result = mysqli_query($conn, $count_cart);
+$row = mysqli_fetch_assoc($result);
+$cart_items_count = $row['cart_count'];
 ?>
 
 <!DOCTYPE html>
@@ -86,7 +94,7 @@ $email = $_SESSION['email'];
                         <div class="swiper-wrapper">
 
                             <div class="swiper-slide team-member">
-                                <img src="/project_2/assets/image/image_users/photo_private.jpg" alt="Mohammed Eid" data-title="Mohamed Eid" data-role="مطور ويب رئيسي">
+                                <img src="/project_2/assets/image/images_team/photo_private.jpg" alt="Mohammed Eid" data-title="Mohamed Eid" data-role="مطور ويب رئيسي">
                                 <div class="member-overlay">
                                     <h3>Mohammed Eid</h3>
                                     <p>Senior Web Developer</p>
@@ -157,6 +165,15 @@ $email = $_SESSION['email'];
                                 </div>
                             </div>
 
+
+                            <div class="swiper-slide team-member">
+                                <img src="/project_2/assets/image/images_team/Abdulrahman.jpg" alt="" data-title="" data-role="">
+                                <div class="member-overlay">
+                                    <h3>nader</h3>
+                                    <p>Senior Fron-end</p>
+                                </div>
+                            </div>
+
                             <!-- باقي أعضاء الفريق بنفس الهيكل -->
                         </div>
 
@@ -202,6 +219,14 @@ $email = $_SESSION['email'];
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script src="/project_2/assets/js/main_about.js"></script>
+
+    <!-- Floating Cart Icon -->
+    <div class="cart-icon-container">
+        <a href="/project_2/app/Baskets/basket.php" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cart-count"><?= $cart_items_count ?></span>
+        </a>
+    </div>
 
     <div id="overlay"></div>
 

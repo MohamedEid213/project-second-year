@@ -20,6 +20,13 @@ $All_Category = mysqli_query($conn, $Select_Category);
 $Select_Brands = 'SELECT * FROM `brands` ORDER BY b_name';
 $All_Brands = mysqli_query($conn, $Select_Brands);
 
+
+$count_cart = "SELECT COUNT(*) as cart_count FROM `basket` WHERE Client_id = $user_id";
+$result = mysqli_query($conn, $count_cart);
+$row = mysqli_fetch_assoc($result);
+$cart_items_count = $row['cart_count'];
+
+
 $Select_Product = 'SELECT * FROM `products` ORDER BY product_id DESC';
 $result = mysqli_query($conn, $Select_Product);
 $All_Products = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -127,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
                                         </a>
                                         <div class="product-info">
                                             <h3><?= htmlspecialchars($product['product_name']) ?></h3>
-                                            <p class="price">$<?= $product['price'] ?></p>
+                                            <p class="price">£E<?= $product['price'] ?></p>
                                             <form method="POST" class="add-to-cart-form">
 
                                                 <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
@@ -241,7 +248,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
                                         <h3 class="product-title"><?= htmlspecialchars($product['product_name']) ?></h3>
                                         <p class="product-desc"><?= $product['description'] ?></p>
                                         <div class="product-footer">
-                                            <span class="product-price">$<?= $product['price'] ?></span>
+                                            <span class="product-price">£E<?= $product['price'] ?></span>
                                             <form method="POST" class="add-to-cart-form">
 
                                                 <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
@@ -263,62 +270,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
                             <a href="/project_2/Home.php" class="btn btn-primary">Browse Other Categories</a>
                         </div>
                     <?php endif; ?>
-                    <!-- Product 2 -->
-                    <!-- <div class="col-12 col-md-6 col-lg-4 mb-4 product-item">
-                        <div class="product-card">
-                            <button class="wishlist-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <a href="shop-single.html" class="product-image">
-                                <img src="/project_2/assets/image/image_basket.png" alt="Child Car Seat">
-                            </a>
-                            <div class="product-body">
-                                <div class="product-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                    <i class="far fa-star"></i>
-                                    <span class="rating-count">(18)</span>
-                                </div>
-                                <h3 class="product-title">Child Car Seat</h3>
-                                <p class="product-desc">Safe and comfortable seat for children.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">$85.00</span>
-                                    <button class="add-to-cart">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <Product 3 
-                    <div class="col-12 col-md-6 col-lg-4 mb-4 product-item">
-                        <div class="product-card">
-                            <div class="product-badge">New</div>
-                            <button class="wishlist-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <a href="shop-single.html" class="product-image">
-                                <img src="/project_2/assets/image/image_home/products/car_battery.png" alt="Car Battery">
-                            </a>
-                            <div class="product-body">
-                                <div class="product-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span class="rating-count">(32)</span>
-                                </div>
-                                <h3 class="product-title">Car Battery</h3>
-                                <p class="product-desc">High performance battery for all weather conditions.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">$150.00</span>
-                                    <button class="add-to-cart">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
 
@@ -331,9 +283,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
     ?>
     <script src='/project_2/assets/js/category.js'></script>
     <script src='/project_2/assets/js/search_product.js'></script>
+
+
+
+    <!-- Floating Cart Icon -->
+    <div class="cart-icon-container">
+        <a href="/project_2/app/Baskets/basket.php" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cart-count"><?= $cart_items_count ?></span>
+        </a>
+    </div>
+
     <div id="overlay"></div>
-
-
 </body>
 
 </html>

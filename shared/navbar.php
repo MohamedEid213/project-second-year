@@ -21,8 +21,6 @@
                 <li><a href="/project_2/Home.php">Home</a></li>
                 <li><a href="/project_2/app/servicess/services.php">Services</a></li>
                 <li><a href="/project_2/app/categories/category.php">Products</a></li>
-
-                <li><a href="/project_2/app/Baskets/basket.php">Basket</a></li>
             </ul>
 
             <ul class="main-nav">

@@ -11,6 +11,53 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
 $permissions = $_SESSION['user_permissions'];
 $username = $_SESSION['username'];
 $email = $_SESSION['email'];
+$user_id = $_SESSION['user_id'];
+
+
+$count_cart = "SELECT COUNT(*) as cart_count FROM `basket` WHERE Client_id = $user_id";
+$result = mysqli_query($conn, $count_cart);
+$row = mysqli_fetch_assoc($result);
+$cart_items_count = $row['cart_count'];
+
+
+$Select_Product = 'SELECT * FROM `products` ORDER BY product_id DESC';
+$result = mysqli_query($conn, $Select_Product);
+$All_Products = mysqli_fetch_all($result, MYSQLI_ASSOC);
+// معالجة إضافة المنتج إلى السلة
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
+
+
+    $product_id = (int)$_POST['product_id'];
+
+    // التحقق من وجود المنتج في قاعدة البيانات
+    $check_product = "SELECT * FROM products WHERE product_id = $product_id";
+    $product_result = mysqli_query($conn, $check_product);
+
+    if (mysqli_num_rows($product_result) > 0) {
+        // التحقق من وجود المنتج في سلة المستخدم
+        $check_cart = "SELECT * FROM basket WHERE Client_id = $user_id AND Product_id = $product_id";
+        $cart_result = mysqli_query($conn, $check_cart);
+
+        if (mysqli_num_rows($cart_result) > 0) {
+            $_SESSION['info'] = "Product is already in your cart!";
+        } else {
+            // إضافة المنتج إلى السلة
+            $insert_cart = "INSERT INTO basket (Client_id, Product_id) VALUES ($user_id, $product_id)";
+            if (mysqli_query($conn, $insert_cart)) {
+                $_SESSION['success'] = "Product added to cart successfully!";
+            } else {
+                $_SESSION['error'] = "Error adding product to cart!";
+            }
+        }
+    } else {
+        $_SESSION['error'] = "Product not found!";
+    }
+
+    header("Location: /project_2/app/Baskets/basket.php");
+    exit();
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +86,23 @@ $email = $_SESSION['email'];
 
 
     <main class="">
+
+
+        <?php
+        // عرض رسائل النجاح أو الخطأ
+        if (isset($_SESSION['success'])) {
+            echo '<div class="alert alert-success">' . $_SESSION['success'] . '</div>';
+            unset($_SESSION['success']);
+        }
+        if (isset($_SESSION['error'])) {
+            echo '<div class="alert alert-danger">' . $_SESSION['error'] . '</div>';
+            unset($_SESSION['error']);
+        }
+        if (isset($_SESSION['info'])) {
+            echo '<div class="alert alert-info">' . $_SESSION['info'] . '</div>';
+            unset($_SESSION['info']);
+        }
+        ?>
 
         <!-- Start our car repair workshop -->
         <div class="cont">
@@ -123,24 +187,33 @@ $email = $_SESSION['email'];
                 <div class="swiper mySwiper animated zoomIn wow" data-wow-delay="0.8s">
                     <div class="swiper-wrapper">
 
-                        <!-- Slide 1 -->
-                        <div class="swiper-slide">
-                            <div class="product-card">
-                                <button class="heart-btn position-absolute top-0 end-0 m-2">
-                                    <i class="fa-regular fa-heart"></i>
-                                </button>
-                                <img src="/project_2/assets/image/image_home/products/car wheel.png" alt="Car Wheel">
-                                <div class="product-name">Car Wheel</div>
-                                <div class="card-content ">
-                                    <div class="product-price">$300.00</div>
-                                    <button class="btn">
-                                        <i class="fa-solid fa-cart-plus"></i> Add to Cart
-                                    </button>
+                        <?php if (!empty($All_Products)): ?>
+                            <?php foreach ($All_Products as $product): ?>
+                                <!-- Slide 1 -->
+                                <div class="swiper-slide">
+                                    <div class="product-card">
+                                        <button class="heart-btn position-absolute top-0 end-0 m-2">
+                                            <i class="fa-regular fa-heart"></i>
+                                        </button>
+                                        <img src="/project_2/data/uploads/image_products/<?= $product['Images'] ?>" alt="<?= htmlspecialchars($product['product_name']) ?>">
+                                        <div class="product-name"><?= htmlspecialchars($product['product_name']) ?></div>
+                                        <div class="card-content ">
+                                            <div class="product-price">£E<?= $product['price'] ?></div>
+                                            <form method="POST" class="add-to-cart-form">
+
+                                                <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                                                <button type="submit" name="add_to_cart" class="btn">
+                                                    <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                                                </button>
+                                            </form>
+
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            <?php endforeach; ?>
+                        <?php endif ?>
                         <!-- Slide 2 -->
-                        <div class="swiper-slide">
+                        <!-- <div class="swiper-slide">
                             <div class="product-card">
                                 <button class="heart-btn position-absolute top-0 end-0 m-2">
                                     <i class="fa-regular fa-heart"></i>
@@ -154,9 +227,9 @@ $email = $_SESSION['email'];
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- Slide 3 -->
-                        <div class="swiper-slide">
+                        <!-- <div class="swiper-slide">
                             <div class="product-card">
                                 <button class="heart-btn position-absolute top-0 end-0 m-2">
                                     <i class="fa-regular fa-heart"></i>
@@ -170,9 +243,9 @@ $email = $_SESSION['email'];
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- Slide 4 -->
-                        <div class="swiper-slide">
+                        <!-- <div class="swiper-slide">
                             <div class="product-card">
                                 <button class="heart-btn position-absolute top-0 end-0 m-2">
                                     <i class="fa-regular fa-heart"></i>
@@ -186,9 +259,9 @@ $email = $_SESSION['email'];
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- Slide 5 -->
-                        <div class="swiper-slide">
+                        <!-- <div class="swiper-slide">
                             <div class="product-card">
                                 <button class="heart-btn position-absolute top-0 end-0 m-2">
                                     <i class="fa-regular fa-heart"></i>
@@ -202,9 +275,9 @@ $email = $_SESSION['email'];
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- Slide 6 -->
-                        <div class="swiper-slide">
+                        <!-- <div class="swiper-slide">
                             <div class="product-card">
                                 <button class="heart-btn position-absolute top-0 end-0 m-2">
                                     <i class="fa-regular fa-heart"></i>
@@ -218,7 +291,9 @@ $email = $_SESSION['email'];
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
+
+
                     </div>
 
                     <!-- Arrows -->
@@ -472,179 +547,18 @@ $email = $_SESSION['email'];
     <!-- Main Js -->
     <script src="/project_2/assets/js/home_car-box.js"></script>
     <script src="/project_2/assets/js/home_main.js"></script>
-    
+
+
+    <!-- Floating Cart Icon -->
+    <div class="cart-icon-container">
+        <a href="/project_2/app/Baskets/basket.php" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cart-count"><?= $cart_items_count ?></span>
+        </a>
+    </div>
+
     <div id="overlay"></div>
 </body>
 
 </html>
 <script src="/project_2/assets/js/sidebar.js"></script>
-
-
-
-<!-- 
-
-html
-
-
-    <div class="services container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container">
-            <div class="text-center">
-                <h6 class="h-6 my-0 text-uppercase">Featured products <h6>
-                <h1 class="ser-h1 mb-5 text-danger">Popular products</h1>
-            </div>
-            <div class="owl-carousel testimonial-carousel position-relative">
-                <div class="testimonial-item text-center">
-                    <img class="" src="/project_2/assets/image/image_home/Car cleaning.jpeg" >
-                    <div class="caption">
-                        <h5 class="mb-0 text-start">Client Name</h5>
-                        <p class="d-flex mb-0 d-block p-link">
-                            <a href="#" class="btn btn-primary py-2 mr-1 a-first">Book Now</a>
-                            <a href="#" class="btn btn-secondary py-2 mr-1 a-second">Details</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="" src="/project_2/assets/image/image_home/Oil and filter change.jpeg">
-                    <div class="caption">
-                        <h5 class="mb-0 text-start">Client Name</h5>
-                        <p class="d-flex mb-0 d-block p-link">
-                            <a href="#" class="btn btn-primary py-2 mr-1 a-first">Book Now</a>
-                            <a href="#" class="btn btn-secondary py-2 mr-1 a-second">Details</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="" src="/project_2/assets/image/image_home/exhaust system repair.jpeg">
-                    <div class="caption">
-                        <h5 class="mb-0 text-start">Client Name</h5>
-                        <p class="d-flex mb-0 d-block p-link">
-                            <a href="#" class="btn btn-primary py-2 mr-1 a-first">Book Now</a>
-                            <a href="#" class="btn btn-secondary py-2 mr-1 a-second">Details</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="" src="/project_2/assets/image/image_home/Roadside Assistance.jpeg">
-                    <div class="caption">
-                        <h5 class="mb-0 text-start">Client Name</h5>
-                        <p class="d-flex mb-0 d-block p-link">
-                            <a href="#" class="btn btn-primary py-2 mr-1 a-first">Book Now</a>
-                            <a href="#" class="btn btn-secondary py-2 mr-1 a-second">Details</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="" src="/project_2/assets/image/image_home/Roadside Assistance.jpeg">
-                    <div class="caption">
-                        <h5 class="mb-0 text-start">Client Name</h5>
-                        <p class="d-flex mb-0 d-block p-link">
-                            <a href="#" class="btn btn-primary py-2 mr-1 a-first">Book Now</a>
-                            <a href="#" class="btn btn-secondary py-2 mr-1 a-second">Details</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="" src="/project_2/assets/image/image_home/Roadside Assistance.jpeg">
-                    <div class="caption">
-                        <h5 class="mb-0 text-start">Client Name</h5>
-                        <p class="d-flex mb-0 d-block p-link">
-                            <a href="#" class="btn btn-primary py-2 mr-1 a-first">Book Now</a>
-                            <a href="#" class="btn btn-secondary py-2 mr-1 a-second">Details</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Testimonial End 
-
-
-
-
-=================
-css
-
-
-/*** Testimonial ***/
-
-/* Start Services */
-.services {
-    background: linear-gradient(rgba(0, 0, 0, .9), rgba(0, 0, 0, .9)), url(../images/Car\ Body\ Shell.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.testimonial-carousel {
-    margin: auto;
-    
-}
-.services  img{
-    width: 100%;
-    /* height: 220px; */
-    aspect-ratio: 16 / 10; 
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-.services .caption {
-    padding: 20px 30px 30px;
-    border: 1px solid #00000040;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: var(--light);
-}
-.services .caption .p-link {
-    width: 100%;
-    margin-top: 15px;
-}
-.services .caption .p-link .a-first {
-    width: 50%;
-    margin-right: 10px;
-    background-color: var(--primary) !important;
-    border: 1px solid var(--primary) !important;
-    color: #fff !important;
-}
-.services .caption .p-link .a-second {
-    width: 50%;
-    background: var(--secondary) !important;
-    border: 1px solid var(--secondary) !important;
-    color: #fff !important;
-}
-/* End Services */
-.testimonial-carousel .owl-item .testimonial-text,
-.testimonial-carousel .owl-item.center .testimonial-text * {
-    transition: .5s;
-}
-
-.testimonial-carousel .owl-item.center .testimonial-text {
-    /* background: var(--primary) !important; */
-}
-
-.testimonial-carousel .owl-item.center .testimonial-text * {
-    color: #FFFFFF !important;
-}
-
-.testimonial-carousel .owl-dots {
-    margin-top: 24px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-}
-
-.testimonial-carousel .owl-dot {
-    position: relative;
-    display: inline-block;
-    margin: 0 5px;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    border: 1px solid #CCCCCC;
-    transition: .5s;
-}
-
-.testimonial-carousel .owl-dot.active {
-    background: var(--primary);
-    border-color: var(--primary);
-}
-
-
-
-
--->

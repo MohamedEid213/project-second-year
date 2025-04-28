@@ -41,7 +41,7 @@ $All_product = mysqli_query($conn, $Select_Products);
 
                 <div class="products-container">
                     <?php foreach ($All_product as $product): ?>
-                        
+
                         <div class="showcase-container">
                             <a href="/project_2/app/Baskets/delete_basket.php?id=<?= base64_encode($product['basket_id']) ?>" class="delete-item" title="Remove item">
                                 <i class="fa-solid fa-trash-can"></i>
@@ -73,9 +73,9 @@ $All_product = mysqli_query($conn, $Select_Products);
                                     </div>
                                     <div class="price-quantity-container">
                                         <div class="price-box">
-                                            <p class="price">$<?= $product['price'] ?></p>
+                                            <p class="price">£E<?= $product['price'] ?></p>
 
-                                            <del>$<?= $product['price'] + 200 ?></del>
+                                            <del>£E<?= $product['price'] + 200 ?></del>
 
                                         </div>
 

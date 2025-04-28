@@ -34,8 +34,8 @@ if (isset($_GET['id'])) {
 
     <main class="">
         <section class="container col-md-5 my-5 ">
-            <h1 class="text-strat  fw-bold my-4">Show Department
-                <a href="./index.php" class="btn btn-dark float-end"> List Department</a>
+            <h1 class="text-strat  fw-bold my-4">Show Product
+                <a href="./index.php" class="btn btn-dark float-end"> List Products</a>
             </h1>
             <div class="card shadow p-4 bg-dark text-light">
 

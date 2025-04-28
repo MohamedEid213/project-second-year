@@ -10,6 +10,13 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
 
 $username = $_SESSION['username'];
 $email = $_SESSION['email'];
+$user_id = $_SESSION['user_id'];
+
+
+                                                        $count_cart = "SELECT COUNT(*) as cart_count FROM `basket` WHERE Client_id = $user_id";
+                                                        $result = mysqli_query($conn, $count_cart);
+                                                        $row = mysqli_fetch_assoc($result);
+                                                        $cart_items_count = $row['cart_count'];
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +37,7 @@ $email = $_SESSION['email'];
 
     <main class="">
 
-   
+
 
 
         <section class="hero-section">
@@ -306,6 +313,15 @@ $email = $_SESSION['email'];
             document.getElementById("contactPopup").style.display = "none";
         }
     </script>
+
+
+    <!-- Floating Cart Icon -->
+    <div class="cart-icon-container">
+        <a href="/project_2/app/Baskets/basket.php" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cart-count"><?= $cart_items_count ?></span>
+        </a>
+    </div>
 
     <div id="overlay"></div>
 

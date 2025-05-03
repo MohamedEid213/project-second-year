@@ -61,9 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
     } else {
         $_SESSION['error'] = "Product not found!";
     }
-
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit();
 }
 
 ?>

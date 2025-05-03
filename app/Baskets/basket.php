@@ -59,7 +59,7 @@ $All_product = mysqli_query($conn, $Select_Products);
 
                                         <h3 class="showcase-title">
                                             <?= $product['product_name'] ?>
-                                        </h3>
+                                    </h3>
                                     </div>
 
                                     <p class="showcase-desc">

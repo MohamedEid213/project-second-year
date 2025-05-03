@@ -2,7 +2,7 @@
 <header id="header">
     <div class="header">
         <div class="container1">
-            <ul>
+            <ul class="main-nav">
                 <li>
                     <button onclick=toggleSidebar() id="toggle-btn">
                         <i class="fa-solid fa-bars"></i>
@@ -24,6 +24,7 @@
             </ul>
 
             <ul class="main-nav">
+
                 <li><a href="/project_2/app/log_out/out.php"><i class="fas fa-door-open"></i>
                     </a></li>
             </ul>

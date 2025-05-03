@@ -49,8 +49,8 @@
 
         <main class="">
             <section class="container col-md-5 my-5 ">
-                <h1 class="text-strat  fw-bold my-4">Edit Department
-                    <a href="/project_2/app/Add Products/My products/index.php" class="btn btn-dark float-end"> List Department</a>
+                <h1 class="text-strat  fw-bold my-4">Edit Product
+                    <a href="/project_2/app/Add Products/My products/index.php" class="btn btn-dark float-end"> List Products</a>
                 </h1>
                 <form action="" method="post">
 

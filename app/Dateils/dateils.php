@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
             }
             ?>
             <div class="container">
-                <div class="product-card">
+                <div class="product-card2">
                     <div class="product-main">
                         <?php foreach ($product_result as $product):   ?>
                             <div class="product-images">

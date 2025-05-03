@@ -20,7 +20,8 @@ $cart_items_count = $row['cart_count'];
 
 
 
-
+$Sql_Services = "SELECT * FROM `services`";
+$result_Services = mysqli_query($conn, $Sql_Services);
 
 
 ?>
@@ -69,7 +70,7 @@ $cart_items_count = $row['cart_count'];
         <section id="services" class="services">
             <h2>Our Services</h2>
             <div class="service-grid">
-                <div class="service-card">
+                <!-- <div class="service-card">
                     <div class="service-icon"><img src="/project_2/assets/image/image_serivce/maintenance_Engine.png" alt="not found"></div>
                     <h3>Engine Repair</h3>
                     <p>Complete diagnostics and repair for all engine types. We specialize in:</p>
@@ -128,19 +129,21 @@ $cart_items_count = $row['cart_count'];
                         <li>Performance Check</li>
                     </ul>
                     <a href="/project_2/app/dateils_services/dateils_service.php" class="service-link">Learn More</a>
-                </div>
+                </div> -->
+                <?php foreach ($result_Services as $row_Services) : ?>
                 <div class="service-card">
-                    <div class="service-icon"><img src="/project_2/assets/image/image_serivce/car-repair.png" alt="not found"></div>
-                    <h3>Tire Service</h3>
-                    <p>Comprehensive tire care including:</p>
+                    <div class="service-icon"><img src="/project_2/assets/image/image_serivce/<?= $row_Services['image'] ?>" alt="not found"></div>
+                    <h3><?=$row_Services['s_name']?></h3>
+                    <p><?=$row_Services['s_description']?></p>
                     <ul class="service-list">
                         <li>Tire Rotation</li>
                         <li>Wheel Balancing</li>
                         <li>Tire Replacement</li>
                         <li>Alignment Service</li>
                     </ul>
-                    <a href="/project_2/app/dateils_services/dateils_service.php" class="service-link">Learn More</a>
-                </div>
+                    <a href="/project_2/app/dateils_services/dateils_service.php?id=<?=base64_encode($row_Services['service_id']);?>" class="service-link">Learn More</a>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </section>
 

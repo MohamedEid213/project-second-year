@@ -83,6 +83,7 @@
  }
 
  .profile-title {
+  text-transform: capitalize;
    font-size: 1rem;
    opacity: 0.9;
    background: rgba(255, 255, 255, 0.2);
@@ -212,6 +213,7 @@
  .info-value {
    font-size: 1.1rem;
    font-weight: 500;
+   text-transform: capitalize;
  }
 
  .edit-btn {

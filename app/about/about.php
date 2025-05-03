@@ -121,7 +121,7 @@ $cart_items_count = $row['cart_count'];
                                 <img src="/project_2/assets/image/images_team/Mohammed_Shehata.png" alt="" data-title="" data-role="">
                                 <div class="member-overlay">
                                     <h3>Mohamed Shehate</h3>
-                                    <p>مصممة واجهات</p>
+                                    <p>Frontend Developer</p>
                                 </div>
                             </div>
 
@@ -129,7 +129,7 @@ $cart_items_count = $row['cart_count'];
                                 <img src="/project_2/assets/image/images_team/omar.png" alt="" data-title="" data-role="">
                                 <div class="member-overlay">
                                     <h3>Omar</h3>
-                                    <p>مصممة واجهات</p>
+                                    <p>Senior Fron-end</p>
                                 </div>
                             </div>
 
@@ -169,7 +169,7 @@ $cart_items_count = $row['cart_count'];
                             <div class="swiper-slide team-member">
                                 <img src="/project_2/assets/image/images_team/Abdulrahman.jpg" alt="" data-title="" data-role="">
                                 <div class="member-overlay">
-                                    <h3>nader</h3>
+                                    <h3>Abdul Rahman Essam</h3>
                                     <p>Senior Fron-end</p>
                                 </div>
                             </div>

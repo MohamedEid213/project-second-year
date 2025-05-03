@@ -273,7 +273,7 @@ animation: shake 0.1s infinite alternate;
     background-color:var(--main-color);
     border: 1px solid var(--light);
 }
-.product-card {
+.product-card1 {
     background: var(--light);
     color: var(--dark);
     padding: 20px;
@@ -283,7 +283,7 @@ animation: shake 0.1s infinite alternate;
     height: 100%;
     cursor: grab;
 }
-.product-card img {
+.product-card1 img {
     max-width: 100%;
     height: 250px;
     object-fit: contain;
@@ -322,17 +322,17 @@ animation: shake 0.1s infinite alternate;
 .heart-btn.active {
     color: var(--second-color);
 }  
-.product-card .card-content {
+.product-card1 .card-content {
     display: flex;
     align-items: center;
     width: fit-content;
     margin: 25px auto 0;
 }
-.product-card .card-content .btn {
+.product-card1 .card-content .btn {
     color: var(--main-color);
     transition: 0.3s ease;
 }
-.product-card .card-content .btn:hover {
+.product-card1 .card-content .btn:hover {
     color: var(--second-color);;
 }
 /* End products */

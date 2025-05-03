@@ -55,12 +55,12 @@ $image = $_SESSION['image_private'];
 
         <div class="profile-content">
             <div class="profile-tabs">
-                <div class="tab active" data-tab="about">About</div>
+                <div class="tab active" data-tab="about1">About</div>
                 <div class="tab" data-tab="activity">Activity</div>
                 <div class="tab" data-tab="settings">Settings</div>
             </div>
 
-            <div class="tab-content active" id="about">
+            <div class="tab-content active" id="about1">
                 <div class="info-grid">
                     <div class="info-card">
                         <div class="info-label">Email</div>

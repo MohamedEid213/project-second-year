@@ -191,7 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
                             <?php foreach ($All_Products as $product): ?>
                                 <!-- Slide 1 -->
                                 <div class="swiper-slide">
-                                    <div class="product-card">
+                                    <div class="product-card1">
                                         <button class="heart-btn position-absolute top-0 end-0 m-2">
                                             <i class="fa-regular fa-heart"></i>
                                         </button>

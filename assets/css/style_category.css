@@ -604,6 +604,6 @@ font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
    }
 
    /* أنماط الزر أثناء التحميل */
-   .add-to-cart .fa-spinner {
+   .add-to-cart .fa- {
        margin-right: 5px;
    }

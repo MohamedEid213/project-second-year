@@ -131,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
                                         </a>
                                         <div class="product-info">
                                             <h3><?= htmlspecialchars($product['product_name']) ?></h3>
-                                            <p class="price">£E<?= $product['price'] ?></p>
+                                            <p class="price">£E <?= $product['price'] ?></p>
                                             <form method="POST" class="add-to-cart-form">
 
                                                 <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
@@ -245,7 +245,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
                                         <h3 class="product-title"><?= htmlspecialchars($product['product_name']) ?></h3>
                                         <p class="product-desc"><?= $product['description'] ?></p>
                                         <div class="product-footer">
-                                            <span class="product-price">£E<?= $product['price'] ?></span>
+                                            <span class="product-price">£E <?= $product['price'] ?></span>
                                             <form method="POST" class="add-to-cart-form">
 
                                                 <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">

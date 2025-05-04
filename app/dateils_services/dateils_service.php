@@ -18,8 +18,10 @@ $result = mysqli_query($conn, $count_cart);
 $row = mysqli_fetch_assoc($result);
 $cart_items_count = $row['cart_count'];
 
-
 $id_service = base64_decode($_GET['id']);
+
+$select_service = "SELECT "
+
 
 
 ?>

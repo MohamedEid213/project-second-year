@@ -53,6 +53,7 @@ $cart_items_count = $row['cart_count'];
                 </div>
             </section>
 
+            
             <!-- Team Member Spotlight -->
             <section class="spotlight-section">
                 <div class="container">

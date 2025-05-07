@@ -29,7 +29,7 @@ html {
 }
 
 #sidebar {
-  height: 100vh;
+  height: calc(100% - 50px);
   width: 240px;
   background-color: var(--base-clr);
   position: fixed;
@@ -164,31 +164,8 @@ html {
   justify-content: center;
 }
 
-/* تحسينات للهواتف */
-@media (max-width: 768px) {
-  #sidebar {
-    width: 72px;
-  }
-
-  #sidebar:not(.close) {
-    width: 240px;
-    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
-  }
-
-  #sidebar>ul>li>a>span {
-    opacity: 0;
-    width: 0;
-    height: 0;
-    overflow: hidden;
-    position: absolute;
-  }
-
-  #sidebar:not(.close)>ul>li>a>span {
-    opacity: 1;
-    width: auto;
-    height: auto;
-    position: static;
-  }
+#theme-text {
+ cursor: pointer;
 }
 
 
@@ -210,6 +187,10 @@ body.sidebar-active {
   overflow: hidden;
 }
 
+.private {
+  display: none;
+}
+
 /* زر التبديل للهواتف */
 #sidebar-toggle {
   display: none;
@@ -223,10 +204,14 @@ body.sidebar-active {
   z-index: 101;
 }
 
-@media (max-width: 768px) {
-  #sidebar-toggle {
+@media (max-width: 1270px) {
+.private {
     display: block;
   }
+}
+
+@media (max-width: 768px) {
+
 
   #sidebar {
     transform: translateX(-100%);

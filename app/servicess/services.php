@@ -24,6 +24,8 @@ $Sql_Services = "SELECT * FROM `services`";
 $result_Services = mysqli_query($conn, $Sql_Services);
 
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -70,6 +72,7 @@ $result_Services = mysqli_query($conn, $Sql_Services);
         <section id="services" class="services">
             <h2>Our Services</h2>
             <div class="service-grid">
+
                 <!-- <div class="service-card">
                     <div class="service-icon"><img src="/project_2/assets/image/image_serivce/maintenance_Engine.png" alt="not found"></div>
                     <h3>Engine Repair</h3>
@@ -130,6 +133,7 @@ $result_Services = mysqli_query($conn, $Sql_Services);
                     </ul>
                     <a href="/project_2/app/dateils_services/dateils_service.php" class="service-link">Learn More</a>
                 </div> -->
+
                 <?php foreach ($result_Services as $row_Services) : ?>
                 <div class="service-card">
                     <div class="service-icon"><img src="/project_2/assets/image/image_serivce/<?= $row_Services['image'] ?>" alt="not found"></div>

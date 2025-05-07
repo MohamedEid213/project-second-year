@@ -11,6 +11,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
 $username = $_SESSION['username'];
 $email = $_SESSION['email'];
 $user_id = $_SESSION['user_id'];
+$service_id = base64_decode($_GET['id']);
 
 
 $count_cart = "SELECT COUNT(*) as cart_count FROM `basket` WHERE Client_id = $user_id";
@@ -18,10 +19,12 @@ $result = mysqli_query($conn, $count_cart);
 $row = mysqli_fetch_assoc($result);
 $cart_items_count = $row['cart_count'];
 
-$id_service = base64_decode($_GET['id']);
 
-$select_service = "SELECT "
+$Sql = "SELECT * FROM `services` WHERE `service_id` = '$service_id'";
+$service_data = mysqli_query($conn, $Sql);
 
+$Sql_Services = "SELECT * FROM `services`";
+$result_Services = mysqli_query($conn, $Sql_Services);
 
 
 ?>
@@ -61,9 +64,10 @@ $select_service = "SELECT "
                         <h2 class="section-title">Diagnostic Process</h2>
                         <div class="section-divider"></div>
                     </div>
+    <?php foreach($service_data as $service ): ?>
                     <div class="video-content">
                         <div class="video-wrapper">
-                            <video src="/project_2/app/dateils_services/Videos/engine_diagnatics.mp4" controls loop type="video/mp4" class="video-player" poster="/project_2/assets/images/video-poster.jpg"></video>
+                            <video src="/project_2/app/dateils_services/Videos/<?=$service['video']?>" controls loop type="video/mp4" class="video-player" poster="/project_2/assets/images/video-poster.jpg"></video>
                             <div class="video-overlay">
                                 <button class="play-button">
                                     <i class="fas fa-play"></i>
@@ -72,8 +76,8 @@ $select_service = "SELECT "
                         </div>
                         <div class="video-description">
                             <div class="description-content">
-                                <h3 class="description-title">Comprehensive Engine Analysis</h3>
-                                <p class="description-text">Our advanced diagnostic process ensures thorough examination of your vehicle's engine system to identify and resolve any issues efficiently.</p>
+                                <h3 class="description-title"><?= $service['s_name']?></h3>
+                                <p class="description-text"><?= $service['s_description']?></p>
                                 <ul class="feature-list">
                                     <li class="feature-item">
                                         <i class="fas fa-check-circle feature-icon"></i>
@@ -103,6 +107,7 @@ $select_service = "SELECT "
                             </div>
                         </div>
                     </div>
+                    <?php endforeach ?>
                 </section>
 
                 <!-- // Features Section -->
@@ -140,16 +145,19 @@ $select_service = "SELECT "
                         <p class="section-subtitle">Explore our comprehensive range of automotive services</p>
                     </div>
                     <div class="services-container">
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-oil-can"></i>
-                            </div>
-                            <h3 class="service-title">Oil Change Service</h3>
-                            <p class="service-description">Professional oil change with high-quality lubricants to keep your engine running smoothly.</p>
-                            <a href="/project_2/app/services/oil_change.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
 
-                        <div class="service-card">
+                        <?php foreach ($result_Services as $row_Services) : ?>
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <img src="/project_2/assets/image/image_serivce/<?= $row_Services['image'] ?>" alt="not found">
+                                </div>
+                                <h3 class="service-title"><?= $row_Services['s_name'] ?></h3>
+                                <p class="service-description"><?= $row_Services['s_description'] ?></p>
+                                <a href="/project_2/app/dateils_services/dateils_service.php?id=<?= base64_encode($row_Services['service_id']); ?>" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        <?php endforeach; ?>
+
+                        <!-- <div class="service-card">
                             <div class="service-icon">
                                 <i class="fas fa-brake-warning"></i>
                             </div>
@@ -192,7 +200,7 @@ $select_service = "SELECT "
                             <h3 class="service-title">Full Inspection</h3>
                             <p class="service-description">Comprehensive 100-point vehicle inspection and report.</p>
                             <a href="/project_2/app/services/full_inspection.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
+                        </div> -->
                     </div>
                 </section>
 
@@ -289,9 +297,6 @@ $select_service = "SELECT "
     videoPlayer.addEventListener('pause', () => {
         videoOverlay.style.display = 'flex';
     });
-
-
-    
 </script>
 
 <!-- 

@@ -46,22 +46,22 @@ body {
 }
 
 .hero-title {
-    font-size: 3rem;
+    font-size: calc(16px * 3);
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
     animation: fadeInUp 1s ease;
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
+    font-size: 24px;
     opacity: 0.9;
-    margin-bottom: 2rem;
+    margin-bottom: 32px;
     animation: fadeInUp 1s ease 0.3s forwards;
     opacity: 0;
 }
 
 .scroll-indicator {
-    margin-top: 3rem;
+    margin-top: 48px;
     animation: bounce 2s infinite;
 }
 
@@ -124,7 +124,7 @@ body {
 .member-name2 {
     font-size: 30px;
     color: var(--dark-color);
-    margin-bottom: 1.5rem;
+    margin-bottom: 24px;
     position: relative;
     font-weight: bold;
 }
@@ -145,7 +145,7 @@ body {
 } */
 
 .member-bio p {
-    font-size: 1.1rem;
+    font-size: 18px;
     color: var(--gray-color);
     margin-bottom: 1.5rem;
     line-height: 1.8;
@@ -163,7 +163,7 @@ body {
     color: var(--primary-color);
     padding: 5px 15px;
     border-radius: 20px;
-    font-size: 0.9rem;
+    font-size: 15px;
     border: 1px solid rgba(37, 99, 235, 0.2);
 }
 
@@ -183,7 +183,7 @@ body {
     color: var(--primary-color);
     border-radius: 50%;
     transition: var(--transition);
-    font-size: 1.2rem;
+    font-size: 19px;
 }
 
 .social-link:hover {
@@ -226,9 +226,9 @@ body {
 
 .section-title {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 40px;
     color: var(--dark-color);
-    margin-bottom: 1rem;
+    margin-bottom: 16ox;
     position: relative;
 }
 
@@ -249,7 +249,7 @@ body {
     color: var(--gray-color);
     max-width: 600px;
     margin: 0 auto 40px;
-    font-size: 1.1rem;
+    font-size: 17px;
 }
 
 .team-slider {
@@ -295,12 +295,12 @@ body {
 
 .member-overlay h3 {
     margin-bottom: 5px;
-    font-size: 1.3rem;
+    font-size: 21px;
 }
 
 .member-overlay p {
     opacity: 0.8;
-    font-size: 0.9rem;
+    font-size: 15px;
 }
 
 .swiper-button-prev,
@@ -359,14 +359,14 @@ body {
 }
 
 .stat-number {
-    font-size: 3rem;
+    font-size: 48px;
     font-weight: 700;
     margin-bottom: 10px;
     color: white;
 }
 
 .stat-label {
-    font-size: 1.1rem;
+    font-size: 17px;
     opacity: 0.9;
 }
 
@@ -417,19 +417,19 @@ body {
 /* التصميم المتجاوب */
 @media (max-width: 768px) {
     .hero-title {
-        font-size: 2.2rem;
+        font-size: 36px;
     }
 
     .hero-subtitle {
-        font-size: 1.2rem;
+        font-size: 19px;
     }
 
     .member-name {
-        font-size: 2rem;
+        font-size: 32px;
     }
 
     .section-title {
-        font-size: 2rem;
+        font-size: 32px;
     }
 
     .stats-grid {
@@ -439,7 +439,7 @@ body {
 
 @media (max-width: 480px) {
     .hero-title {
-        font-size: 1.8rem;
+        font-size: 29px;
     }
 
     .stats-grid {

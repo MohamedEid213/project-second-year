@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // تهيئة سلايدر الفريق
     const teamSwiper = new Swiper('.team-slider', {
+
         slidesPerView: 1,
         spaceBetween: 20,
         loop: true,
@@ -71,9 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const teamMembers = document.querySelectorAll('.team-member img');
 const mainImage = document.getElementById('mainImage');
 const memberName = document.querySelector('.member-name1 #text_name');
-const memberRole = document.querySelector('.member-name2 #dynamicText');
-const memberBio = document.querySelector('.member-bio p');
-const memberSkills = document.querySelector('.skills');
+
 
 teamMembers.forEach(member => {
     member.addEventListener('click', function() {
@@ -94,10 +93,7 @@ teamMembers.forEach(member => {
         // تحديث المعلومات النصية
         memberName.textContent = memberTitle;
         
-        // يمكنك هنا تحديث المعلومات الأخرى مثل الوصف والمهارات
-        // مثال:
-        // memberBio.textContent = "وصف جديد للعضو";
-        // memberSkills.innerHTML = '<span class="skill">مهارة جديدة</span>';
+        
     });
 });
     

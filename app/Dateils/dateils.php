@@ -60,6 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
     <title>Product Details</title>
     <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/header.php'); ?>
     <link rel="stylesheet" href="/project_2/assets/css/style_details.css">
+    <link rel="stylesheet" href="/project_2/assets/css/style_payment.css">
+
 
 </head>
 
@@ -131,9 +133,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
                                         <span class="price">$<?= $product['price'] ?></span>
                                         <span class="stock">In Stock</span>
                                     </div>
-                                    <form action="" method="post">
+                                    <div class="button-group">
                                         <button class="add-to-cart" name="add_to_cart">🛒 Add to Cart</button>
-                                    </form>
+                                        <button onclick="openPaymentModal()" class="pay-now">💳 Pay Now</button>
+                                    </div>
                                 </div>
                             <?php endforeach; ?>
 
@@ -187,6 +190,120 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
     </div>
 
     <div id="overlay"></div>
+
+    <!-- إضافة Modal الدفع في نهاية الصفحة قبل إغلاق body -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <div class='modal-header'>
+                <span class="close-modal" onclick="closePaymentModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+
+                <form id="paymentForm">
+                    <div class="row">
+                        <div class="col">
+                            <h3 class="title">Billing Address</h3>
+                            <div class="inputBox">
+                                <span>Full Name:</span>
+                                <input type="text" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="inputBox">
+                                <span>Email:</span>
+                                <input type="email" placeholder="example@example.com" required>
+                            </div>
+                            <div class="inputBox">
+                                <span>Address:</span>
+                                <input type="text" placeholder="Room - Street - Locality" required>
+                            </div>
+                            <div class="inputBox">
+                                <span>City:</span>
+                                <input type="text" placeholder="Enter your city" required>
+                            </div>
+                            <div class="flex">
+                                <div class="inputBox">
+                                    <span>State:</span>
+                                    <input type="text" placeholder="Enter your state" required>
+                                </div>
+                                <div class="inputBox">
+                                    <span>Zip Code:</span>
+                                    <input type="text" placeholder="123 456" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="">
+
+                                <h3 class="title">Payment</h3>
+                            </div>
+
+                            <div class="inputBox">
+                                <span>Cards Accepted:</span>
+                                <img src="/project_2/assets/image/card_img.png" alt="Accepted Cards">
+                            </div>
+                            <div class="inputBox">
+                                <span>Name on Card:</span>
+                                <input type="text" placeholder="Enter card holder name" required>
+                            </div>
+                            <div class="inputBox">
+                                <span>Credit Card Number:</span>
+                                <input type="text" placeholder="1111-2222-3333-4444" required>
+                            </div>
+                            <div class="inputBox">
+                                <span>Exp Month:</span>
+                                <input type="text" placeholder="January" required>
+                            </div>
+                            <div class="flex">
+                                <div class="inputBox">
+                                    <span>Exp Year:</span>
+                                    <input type="number" placeholder="2024" required>
+                                </div>
+                                <div class="inputBox">
+                                    <span>CVV:</span>
+                                    <input type="text" placeholder="123" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">Proceed to Checkout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- إضافة JavaScript للتحكم في المودال -->
+    <script>
+        function openPaymentModal() {
+            document.getElementById('paymentModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // إغلاق المودال عند النقر خارج المحتوى
+        window.onclick = function(event) {
+            const modal = document.getElementById('paymentModal');
+            if (event.target == modal) {
+                closePaymentModal();
+            }
+        }
+
+        // التحقق من صحة النموذج
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // هنا يمكنك إضافة التحقق من صحة البيانات وإرسالها
+            const formData = new FormData(this);
+
+            // إظهار رسالة نجاح
+            alert('تم معالجة الدفع بنجاح!');
+            closePaymentModal();
+        });
+    </script>
 
 </body>
 

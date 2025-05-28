@@ -25,6 +25,8 @@ $All_product = mysqli_query($conn, $Select_Products);
     <title>Shopping Cart</title>
     <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/header.php'); ?>
     <link rel="stylesheet" href="/project_2/assets/css/style_basket.css">
+    <link rel="stylesheet" href="/project_2/assets/css/style_payment.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -59,7 +61,7 @@ $All_product = mysqli_query($conn, $Select_Products);
 
                                         <h3 class="showcase-title">
                                             <?= $product['product_name'] ?>
-                                    </h3>
+                                        </h3>
                                     </div>
 
                                     <p class="showcase-desc">
@@ -87,8 +89,7 @@ $All_product = mysqli_query($conn, $Select_Products);
                                     </div>
 
                                     <div class="action-buttons">
-
-                                        <button class="buy-now-btn">Buy Now</button>
+                                        <button class="buy-now-btn" onclick="openPaymentModal(<?= $product['price'] ?>, '<?= $product['product_name'] ?>')">Buy Now</button>
                                     </div>
                                 </div>
                             </div>
@@ -123,6 +124,120 @@ $All_product = mysqli_query($conn, $Select_Products);
     <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="/project_2/assets/js/basket.js"></script>
     <div id="overlay"></div>
+
+    <!-- إضافة Modal الدفع في نهاية الصفحة قبل إغلاق body -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <div class='modal-header'>
+                <span class="close-modal" onclick="closePaymentModal()">&times;</span>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <h3 class="title">Billing Address</h3>
+                    <div class="inputBox">
+                        <span>Full Name:</span>
+                        <input type="text" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>Email:</span>
+                        <input type="email" placeholder="example@example.com" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>Address:</span>
+                        <input type="text" placeholder="Room - Street - Locality" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>City:</span>
+                        <input type="text" placeholder="Enter your city" required>
+                    </div>
+                    <div class="flex">
+                        <div class="inputBox">
+                            <span>State:</span>
+                            <input type="text" placeholder="Enter your state" required>
+                        </div>
+                        <div class="inputBox">
+                            <span>Zip Code:</span>
+                            <input type="text" placeholder="123 456" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <h3 class="title">Payment</h3>
+                    <div class="inputBox">
+                        <span>Cards Accepted:</span>
+                        <img src="/project_2/assets/image/card_img.png" alt="Accepted Cards">
+                    </div>
+                    <div class="inputBox">
+                        <span>Name on Card:</span>
+                        <input type="text" placeholder="Enter card holder name" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>Credit Card Number:</span>
+                        <input type="text" placeholder="1111-2222-3333-4444" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>Exp Month:</span>
+                        <input type="text" placeholder="January" required>
+                    </div>
+                    <div class="flex">
+                        <div class="inputBox">
+                            <span>Exp Year:</span>
+                            <input type="number" placeholder="2024" required>
+                        </div>
+                        <div class="inputBox">
+                            <span>CVV:</span>
+                            <input type="text" placeholder="123" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="submit-btn">Proceed to Checkout</button>
+            </form>
+        </div>
+    </div>
+    </div>
+
+    <!-- إضافة JavaScript للتحكم في المودال -->
+    <script>
+        function openPaymentModal(price, productName) {
+            document.getElementById('paymentModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+
+            // تحديث تفاصيل الطلب
+            document.getElementById('productName').textContent = productName;
+            document.getElementById('totalAmount').textContent = '£E' + price;
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // إغلاق المودال عند النقر خارج المحتوى
+        window.onclick = function(event) {
+            const modal = document.getElementById('paymentModal');
+            if (event.target == modal) {
+                closePaymentModal();
+            }
+        }
+
+        // التحقق من صحة النموذج
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // هنا يمكنك إضافة التحقق من صحة البيانات وإرسالها
+            const formData = new FormData(this);
+
+            // إظهار رسالة نجاح
+            alert('تم معالجة الدفع بنجاح!');
+            closePaymentModal();
+
+            // إعادة توجيه المستخدم إلى صفحة التأكيد أو الصفحة الرئيسية
+            // window.location.href = '/project_2/app/confirmation.php';
+        });
+    </script>
 
 </body>
 

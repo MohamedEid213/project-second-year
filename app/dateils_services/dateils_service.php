@@ -27,6 +27,11 @@ $Sql_Services = "SELECT * FROM `services`";
 $result_Services = mysqli_query($conn, $Sql_Services);
 
 
+
+$Select_brand = 'SELECT * FROM `brands` ORDER BY b_name';
+$All_Brands = mysqli_query($conn, $Select_brand);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +43,7 @@ $result_Services = mysqli_query($conn, $Sql_Services);
     <link rel="stylesheet" href="/project_2/assets/css/style_dateils_service.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/project_2/assets/css/style_booking.css">
 </head>
 
 <body>
@@ -64,49 +70,49 @@ $result_Services = mysqli_query($conn, $Sql_Services);
                         <h2 class="section-title">Diagnostic Process</h2>
                         <div class="section-divider"></div>
                     </div>
-    <?php foreach($service_data as $service ): ?>
-                    <div class="video-content">
-                        <div class="video-wrapper">
-                            <video src="/project_2/app/dateils_services/Videos/<?=$service['video']?>" controls loop type="video/mp4" class="video-player" poster="/project_2/assets/images/video-poster.jpg"></video>
-                            <div class="video-overlay">
-                                <button class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </button>
+                    <?php foreach ($service_data as $service): ?>
+                        <div class="video-content">
+                            <div class="video-wrapper">
+                                <video src="/project_2/app/dateils_services/Videos/<?= $service['video'] ?>" controls loop type="video/mp4" class="video-player" poster="/project_2/assets/images/video-poster.jpg"></video>
+                                <div class="video-overlay">
+                                    <button class="play-button">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="video-description">
-                            <div class="description-content">
-                                <h3 class="description-title"><?= $service['s_name']?></h3>
-                                <p class="description-text"><?= $service['s_description']?></p>
-                                <ul class="feature-list">
-                                    <li class="feature-item">
-                                        <i class="fas fa-check-circle feature-icon"></i>
-                                        <span>Complete system scanning and error code analysis</span>
-                                    </li>
-                                    <li class="feature-item">
-                                        <i class="fas fa-check-circle feature-icon"></i>
-                                        <span>Professional diagnostic equipment with live data</span>
-                                    </li>
-                                    <li class="feature-item">
-                                        <i class="fas fa-check-circle feature-icon"></i>
-                                        <span>Detailed report with recommended solutions</span>
-                                    </li>
-                                    <li class="feature-item">
-                                        <i class="fas fa-check-circle feature-icon"></i>
-                                        <span>Expert interpretation of diagnostic results</span>
-                                    </li>
-                                </ul>
-                                <div class="cta-buttons">
-                                    <a href="/project_2/app/booking/booking.php" class="btn btn-primary btn-lg">
-                                        <i class="fas fa-calendar-alt"></i> Book Now
-                                    </a>
-                                    <a href="#other-services" class="btn btn-outline btn-lg">
-                                        <i class="fas fa-list-alt"></i> Other Services
-                                    </a>
+                            <div class="video-description">
+                                <div class="description-content">
+                                    <h3 class="description-title"><?= $service['s_name'] ?></h3>
+                                    <p class="description-text"><?= $service['s_description'] ?></p>
+                                    <ul class="feature-list">
+                                        <li class="feature-item">
+                                            <i class="fas fa-check-circle feature-icon"></i>
+                                            <span>Complete system scanning and error code analysis</span>
+                                        </li>
+                                        <li class="feature-item">
+                                            <i class="fas fa-check-circle feature-icon"></i>
+                                            <span>Professional diagnostic equipment with live data</span>
+                                        </li>
+                                        <li class="feature-item">
+                                            <i class="fas fa-check-circle feature-icon"></i>
+                                            <span>Detailed report with recommended solutions</span>
+                                        </li>
+                                        <li class="feature-item">
+                                            <i class="fas fa-check-circle feature-icon"></i>
+                                            <span>Expert interpretation of diagnostic results</span>
+                                        </li>
+                                    </ul>
+                                    <div class="cta-buttons">
+                                        <button onclick="openBookingModal()" class="btn btn-primary btn-lg">
+                                            <i class="fas fa-calendar-alt"></i> Book Now
+                                        </button>
+                                        <a href="#other-services" class="btn btn-outline btn-lg">
+                                            <i class="fas fa-list-alt"></i> Other Services
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     <?php endforeach ?>
                 </section>
 
@@ -157,50 +163,6 @@ $result_Services = mysqli_query($conn, $Sql_Services);
                             </div>
                         <?php endforeach; ?>
 
-                        <!-- <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-brake-warning"></i>
-                            </div>
-                            <h3 class="service-title">Brake System Repair</h3>
-                            <p class="service-description">Complete brake inspection and repair for your safety on the road.</p>
-                            <a href="/project_2/app/services/brake_repair.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-car-battery"></i>
-                            </div>
-                            <h3 class="service-title">Battery Replacement</h3>
-                            <p class="service-description">Professional battery testing and replacement with premium brands.</p>
-                            <a href="/project_2/app/services/battery_replacement.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-tire"></i>
-                            </div>
-                            <h3 class="service-title">Tire Services</h3>
-                            <p class="service-description">Tire rotation, balancing, alignment, and replacement services.</p>
-                            <a href="/project_2/app/services/tire_services.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-fan"></i>
-                            </div>
-                            <h3 class="service-title">AC Repair</h3>
-                            <p class="service-description">Complete air conditioning system diagnosis and repair.</p>
-                            <a href="/project_2/app/services/ac_repair.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-car-side"></i>
-                            </div>
-                            <h3 class="service-title">Full Inspection</h3>
-                            <p class="service-description">Comprehensive 100-point vehicle inspection and report.</p>
-                            <a href="/project_2/app/services/full_inspection.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div> -->
                     </div>
                 </section>
 
@@ -275,6 +237,101 @@ $result_Services = mysqli_query($conn, $Sql_Services);
     <div id="overlay"></div>
 
     <script src="/project_2/assets/js/dark_mode.js"></script>
+
+    <!-- إضافة Modal الحجز في نهاية الصفحة قبل إغلاق body -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Book your service now</h2>
+                <span class="close-modal" onclick="closeBookingModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label><i class="fa fa-user"></i> Full Name</label>
+                        <input type="text" id="fullName" class="form-control" placeholder="Enter name..." required>
+                        <div class="invalid-feedback">Please enter your full name using letters only.</div>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa fa-envelope"></i> Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter email..." required>
+                        <div class="invalid-feedback">Please enter a valid email address.</div>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa fa-phone"></i> Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="Enter phone number..." required>
+                        <div class="invalid-feedback">Please enter a phone number of at least 11 digits.</div>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa fa-calendar"></i> Date</label>
+                        <input type="date" id="date" class="form-control" required>
+                        <div class="invalid-feedback">Please select a date.</div>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa fa-truck"></i> Car Type</label>
+                        <select id="deliveryOption" class="form-select">
+                            <?php foreach ($All_Brands as $brand) : ?>
+                                <option class="fw-bold" value="<?= $brand['brand_id'] ?>"> <?= $brand['b_name'] ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                    <div class="form-group" id="addressBox" style="display: none;">
+                        <label><i class="fa fa-map-marker-alt"></i> Delivery address</label>
+                        <input type="text" id="deliveryAddress" class="form-control" placeholder="Enter delivery address">
+                        <div class="invalid-feedback">Please enter your delivery address.</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Confirm your reservation</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- إضافة JavaScript للتحكم في المودال -->
+    <script>
+        function openBookingModal() {
+            document.getElementById('bookingModal').style.display = 'block';
+            document.body.style.overflow = 'hidden'; // منع التمرير في الصفحة الخلفية
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // إعادة تفعيل التمرير
+        }
+
+        // إغلاق المودال عند النقر خارج المحتوى
+        window.onclick = function(event) {
+            const modal = document.getElementById('bookingModal');
+            if (event.target == modal) {
+                closeBookingModal();
+            }
+        }
+
+        // التحكم في ظهور حقل العنوان
+        document.getElementById('deliveryOption').addEventListener('change', function() {
+            const addressBox = document.getElementById('addressBox');
+            addressBox.style.display = this.value === 'delivery' ? 'block' : 'none';
+        });
+
+        // التحقق من صحة النموذج
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // هنا يمكنك إضافة التحقق من صحة البيانات وإرسالها
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                date: document.getElementById('date').value,
+                deliveryOption: document.getElementById('deliveryOption').value,
+                deliveryAddress: document.getElementById('deliveryAddress').value
+            };
+
+            // إظهار رسالة نجاح
+            alert('تم إرسال طلب الحجز بنجاح!');
+            closeBookingModal();
+        });
+    </script>
 </body>
 
 </html>

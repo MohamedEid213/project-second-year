@@ -1,3 +1,4 @@
+
 <!-- Start Header -->
 <header id="header">
     <div class="header">
@@ -24,9 +25,7 @@
             </ul>
 
             <ul class="main-nav">
-
-                <li><a href="/project_2/app/log_out/out.php"><i class="fas fa-door-open"></i>
-                    </a></li>
+                <li><a href="/project_2/app/log_out/out.php"><i class="fas fa-door-open"></i></a></li>
             </ul>
         </div>
     </div>

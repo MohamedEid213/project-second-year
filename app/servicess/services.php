@@ -49,8 +49,8 @@ $result_Services = mysqli_query($conn, $Sql_Services);
                 <h1>Expert Auto Repair Services</h1>
                 <p>Professional care for your vehicle with state-of-the-art equipment</p>
                 <div class="hero-buttons">
-                    <a href="#contact" class="cta-button primary">Schedule Service</a>
-                    <a href="#services" class="cta-button secondary">Our Services</a>
+                    <a href="#" class="cta-button secondary" >Schedule Service</a>
+                    <a href="/project_2/app/contact/contact.php" class="cta-button primary">Contact Us</a>
                 </div>
                 <div class="hero-features">
                     <div class="feature">
@@ -73,79 +73,19 @@ $result_Services = mysqli_query($conn, $Sql_Services);
             <h2>Our Services</h2>
             <div class="service-grid">
 
-                <!-- <div class="service-card">
-                    <div class="service-icon"><img src="/project_2/assets/image/image_serivce/maintenance_Engine.png" alt="not found"></div>
-                    <h3>Engine Repair</h3>
-                    <p>Complete diagnostics and repair for all engine types. We specialize in:</p>
-                    <ul class="service-list">
-                        <li>Engine Diagnostics</li>
-                        <li>Engine Rebuilding</li>
-                        <li>Performance Tuning</li>
-                        <li>Timing Belt Service</li>
-                    </ul>
-                    <a href="/project_2/app/dateils_services/dateils_service.php" class="service-link">Learn More</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon"><img src="/project_2/assets/image/image_serivce/brakes.png" alt="not found"></div>
-                    <h3>Brake Service</h3>
-                    <p>Professional brake repair and maintenance including:</p>
-                    <ul class="service-list">
-                        <li>Brake Pad Replacement</li>
-                        <li>Rotor Resurfacing</li>
-                        <li>Brake Fluid Service</li>
-                        <li>ABS System Repair</li>
-                    </ul>
-                    <a href="/project_2/app/dateils_services/dateils_service.php" class="service-link">Learn More</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon"><img src="/project_2/assets/image/image_serivce/oil-change.png" alt="not found"></div>
-                    <h3>Oil Change</h3>
-                    <p>Regular maintenance and oil changes with:</p>
-                    <ul class="service-list">
-                        <li>Synthetic Oil Options</li>
-                        <li>Filter Replacement</li>
-                        <li>Multi-Point Inspection</li>
-                        <li>Fluid Level Check</li>
-                    </ul>
-                    <a href="/project_2/app/dateils_services/dateils_service.php" class="service-link">Learn More</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon"><img src="/project_2/assets/image/image_serivce/transmission.png" alt="not found"></div>
-                    <h3>Transmission</h3>
-                    <p>Transmission repair and replacement services including:</p>
-                    <ul class="service-list">
-                        <li>Transmission Flush</li>
-                        <li>Clutch Repair</li>
-                        <li>Transmission Rebuild</li>
-                        <li>Diagnostic Testing</li>
-                    </ul>
-                    <a href="/project_2/app/dateils_services/dateils_service.php" class="service-link">Learn More</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon"><img src="/project_2/assets/image/image_serivce/air-conditioner.png" alt="not found"></div>
-                    <h3>AC Service</h3>
-                    <p>Complete air conditioning system service featuring:</p>
-                    <ul class="service-list">
-                        <li>AC Recharge</li>
-                        <li>Leak Detection</li>
-                        <li>Component Replacement</li>
-                        <li>Performance Check</li>
-                    </ul>
-                    <a href="/project_2/app/dateils_services/dateils_service.php" class="service-link">Learn More</a>
-                </div> -->
 
                 <?php foreach ($result_Services as $row_Services) : ?>
-                <div class="service-card">
-                    <div class="service-icon"><img src="/project_2/assets/image/image_serivce/<?= $row_Services['image'] ?>" alt="not found"></div>
-                    <h3><?=$row_Services['s_name']?></h3>
-                    <p><?=$row_Services['s_description']?></p>
-                    <ul class="service-list">
-                        <li>Tire Rotation</li>
-                        <li>Wheel Balancing</li>
-                        <li>Tire Replacement</li>
-                        <li>Alignment Service</li>
-                    </ul>
-                    <a href="/project_2/app/dateils_services/dateils_service.php?id=<?=base64_encode($row_Services['service_id']);?>" class="service-link">Learn More</a>
+                    <div class="service-card">
+                        <div class="service-icon"><img src="/project_2/assets/image/image_serivce/<?= $row_Services['image'] ?>" alt="not found"></div>
+                        <h3><?= $row_Services['s_name'] ?></h3>
+                        <p><?= $row_Services['s_description'] ?></p>
+                        <ul class="service-list">
+                            <li>Tire Rotation</li>
+                            <li>Wheel Balancing</li>
+                            <li>Tire Replacement</li>
+                            <li>Alignment Service</li>
+                        </ul>
+                        <a href="/project_2/app/dateils_services/dateils_service.php?id=<?= base64_encode($row_Services['service_id']); ?>" class="service-link">Learn More</a>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -220,40 +160,6 @@ $result_Services = mysqli_query($conn, $Sql_Services);
             </div>
         </section>
 
-        <section id="contact" class="contact">
-            <h2>Contact Us</h2>
-            <div class="contact-info">
-                <div class="contact-details">
-                    <h3>Get In Touch</h3>
-                    <p>📍 123 Auto Service Lane</p>
-                    <p>📞 (555) 123-4567</p>
-                    <p>✉️ service@autocarepro.com</p>
-                    <div class="emergency-service">
-                        <h4>24/7 Emergency Service</h4>
-                        <p>🚨 Emergency: (555) 999-8888</p>
-                    </div>
-                </div>
-                <div class="business-hours">
-                    <h3>Business Hours</h3>
-                    <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
-                    <p>Saturday: 9:00 AM - 4:00 PM</p>
-                    <p>Sunday: Closed</p>
-                    <div class="appointment">
-                        <h4>Schedule an Appointment</h4>
-                        <p>Book online or call us today!</p>
-                        <a href="#" class="cta-button">Book Now</a>
-                    </div>
-                </div>
-                <div class="location">
-                    <h3>Find Us</h3>
-                    <p>Conveniently located in downtown, with easy access to major highways.</p>
-                    <div class="map-placeholder">
-                        <!-- Map iframe would go here in production -->
-                        <div class="map-overlay">Map Location</div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
     <?php

@@ -120,17 +120,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
 
 
         <!-- Start Landing -->
-        <div id="landing" class="hero-wrap wow bounceInUp" data-wow-delay="0.1s" data-stellar-background-ratio="0.5">
+        <div id="landing" class="hero-wrap wow bounceInUp" data-wow-delay="0.1s"data-stellar-background-ratio="0.5">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
                     <div class="col-lg-8 ftco-animate info">
                         <div class="text w-100 text-center mb-md-5 pb-md-5 wow bounceInUp">
                             <h1 class="mb-4 wow bounceInUp" data-wow-delay="0.5s">Welcome to <span>Auto Repair center</span> </h1>
-                            <p class="wow bounceInUp" data-wow-delay="1s">A car repair workshop offering professional services for maintenance and repair of all vehicle types,
-                                ensuring quality and affordable prices for all customers.
+                            <p class="wow bounceInUp" data-wow-delay="1s">A car repair workshop offering professional services for
+                                maintenance and repair of all vehicle types, ensuring quality and affordable prices for all customers.
                             </p>
-                            <a href="/project_2/assets/image/image_home/Landing-Video.mp4" class="video d-flex align-items-center mt-4 justify-content-center wow bounceInUp" data-wow-delay="1.5s">
+                            <a href="/project_2/assets/image/image_home/Landing-Video.mp4" 
+                            class="video d-flex align-items-center mt-4 justify-content-center wow bounceInUp" data-wow-delay="1.5s">
                                 <div class="icon d-flex align-items-center justify-content-center">
                                     <span class="video-play"></span>
                                 </div>
@@ -213,6 +214,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
                                 </div>
                             <?php endforeach; ?>
                         <?php endif ?>
+
+
                         <!-- Slide 2 -->
                         <!-- <div class="swiper-slide">
                             <div class="product-card">

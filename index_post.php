@@ -41,11 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $_SESSION['birthday'] = $DataROW['birthday'];
                     $_SESSION['gender'] = $DataROW['gender'];
 
-
-
-
-
-
                     header('Location:/project_2/Home.php');
                     exit();
                 } else {

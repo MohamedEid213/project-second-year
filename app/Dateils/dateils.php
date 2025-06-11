@@ -120,14 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
                                     </p>
                                 </div>
 
-                                <!-- <div class="features">
-                                    <h2>Key Features</h2>
-                                    <ul>
-                                        <li><span class="feature-dot"></span>High-Quality Oil & Filter</li>
-                                        <li><span class="feature-dot"></span>Improved Fuel Efficiency</li>
-                                        <li><span class="feature-dot"></span>Comprehensive Inspection</li>
-                                    </ul>
-                                </div> -->
+                            
                                 <div class="price-section">
                                     <div class="price-header">
                                         <span class="price">$<?= $product['price'] ?></span>

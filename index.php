@@ -28,6 +28,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/index_post.php');
 
 <body>
     <nav class="nav_link">
+        
         <a class="nav_button" href="/project_2/app/registration/registration.php">Registration</a>
     </nav>
     <main>

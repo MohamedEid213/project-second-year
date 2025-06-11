@@ -2,6 +2,7 @@
     <footer>
         <div class="footer">
             <div class="container1">
+
                 <div class="box">
                     <div class="text">
                         <h3>Auto Repair Center</h3>
@@ -11,6 +12,7 @@
                         <a href="#" class="more">Read More</a>
                     </div>
                 </div>
+
                 <div class="box">
                     <ul class="links">
                         <li><a href="#">Home</a></li>
@@ -20,6 +22,7 @@
                         <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
+
                 <div class="box">
                     <div class="line">
                         <i class="fas fa-map-marker-alt fa-fw"></i>
@@ -37,6 +40,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="box-social">
                     <ul class="unlisted">
                         <div class="you">
@@ -54,6 +58,8 @@
                     </ul>
                 </div>
             </div>
+
+            
             <p class="copyright">&copy; 2025 <span>Auto Repair Center</span> All Right Reserved</p>
         </div>
     </footer>

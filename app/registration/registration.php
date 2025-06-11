@@ -35,9 +35,9 @@ include('./register_post.php');
                 </div>
 
                 <form method="POST">
-                    <?php if (isset($errors['duplicate_error'])) {
-                        echo $errors['duplicate_error'];
-                    } ?>
+        <?php if (isset($errors['...'])) {
+            echo $errors['...'];
+        } ?>
 
                     <?php if (isset($errors['username_error'])) {
                         echo $errors['username_error'];
@@ -62,11 +62,11 @@ include('./register_post.php');
 
                         <label class="date-label">Date of birth:</label>
                         <div class="date-fields">
+
                             <select name="birthday_day" required>
                                 <option disabled selected>Day</option>
                                 <?php for ($day = 1; $day <= 31; $day++) echo "<option>$day</option>"; ?>
                             </select>
-
                             <select name="birthday_month" required>
                                 <option disabled selected>Month</option>
                                 <?php
@@ -74,7 +74,6 @@ include('./register_post.php');
                                 foreach ($months as $index => $month) echo "<option value='" . ($index + 1) . "'>$month</option>";
                                 ?>
                             </select>
-
                             <select name="birthday_year" required>
                                 <option disabled selected>Year</option>
                                 <?php for ($year = date('Y'); $year >= 1970; $year--) echo "<option>$year</option>"; ?>

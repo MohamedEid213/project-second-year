@@ -121,14 +121,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
 
         <!-- Start Landing -->
         <div id="landing" class="hero-wrap wow bounceInUp" data-wow-delay="0.1s"data-stellar-background-ratio="0.5">
+
             <div class="overlay"></div>
             <div class="container">
+
                 <div class="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
                     <div class="col-lg-8 ftco-animate info">
-                        <div class="text w-100 text-center mb-md-5 pb-md-5 wow bounceInUp">
-                            <h1 class="mb-4 wow bounceInUp" data-wow-delay="0.5s">Welcome to <span>Auto Repair center</span> </h1>
-                            <p class="wow bounceInUp" data-wow-delay="1s">A car repair workshop offering professional services for
-                                maintenance and repair of all vehicle types, ensuring quality and affordable prices for all customers.
+                    <div class="text w-100 text-center mb-md-5 pb-md-5 wow bounceInUp">
+                <h1 class="mb-4 wow bounceInUp" data-wow-delay="0.5s">Welcome to <span>Auto Repair center</span> </h1>
+                <p class="wow bounceInUp" data-wow-delay="1s">A car repair workshop offering professional services for
+                    maintenance and repair of all vehicle types, ensuring quality and affordable prices for all customers.
                             </p>
                             <a href="/project_2/assets/image/image_home/Landing-Video.mp4" 
                             class="video d-flex align-items-center mt-4 justify-content-center wow bounceInUp" data-wow-delay="1.5s">
@@ -142,8 +144,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
+
         <!-- End Landing -->
 
         <!-- Start how-it-work -->
@@ -495,11 +499,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
         <!-- Start Discount -->
         <div class="discount container-fluid py-5">
             <div class="container text-center wow">
+
                 <h6 class="dis-title animate__fadeInLeft wow" data-wow-delay="0.2s">Start Shopping with top discounts</h6>
                 <h1 class="animated zoomIn wow" data-wow-delay="0.5s">Get <span>20%</span> Discount <br>on your first Purchase</h1>
+
                 <a href="/project_2/app/discounts/discount.php" class="wow animated zoomIn" data-wow-delay="0.8s">
                     Explore auto parts
                 </a>
+
             </div>
         </div>
         <!-- End Discount -->
@@ -509,17 +516,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
         <div class="container-fluid call-us">
             <div class="container wow zoomIn" data-wow-delay="0.5s">
                 <div class="row g-4">
+
                     <div class="col-lg-8 col-md-6">
                         <h6 class="text-uppercase call-head">Call To Action</h6>
                         <h1 class="mb-4 call-title">Have Any Pre Booking Question</h1>
-                        <p class="mb-0 call-para">You can contact us for the best car maintenance services. We are available to answer your inquiries and schedule appointments easily. Call us today!</p>
+                        <p class="mb-0 call-para">You can contact us for the best car maintenance services. 
+                            We are available to answer your inquiries and schedule appointments easily. Call us today!</p>
                     </div>
+
                     <div class="col-lg-4 col-md-6">
                         <div class="call-phone d-flex flex-column justify-content-center text-center h-100 p-4">
                             <h3 class="text-white mb-4"><i class="fa-solid fa-phone"></i>+0114 442 7878</h3>
                             <a href="https://wa.me/201144427878" class="btn py-3 px-5">Contact Us<i class="fa fa-arrow-right ms-3"></i></a>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>

@@ -30,7 +30,7 @@ $result_Services = mysqli_query($conn, $Sql_Services);
 
 $Select_brand = 'SELECT * FROM `brands` ORDER BY b_name';
 $All_Brands = mysqli_query($conn, $Select_brand);
-
+}
 
 ?>
 
@@ -38,7 +38,8 @@ $All_Brands = mysqli_query($conn, $Select_brand);
 <html lang="en">
 
 <head>
-    <title>Service Details</title>
+    <
+title>Service Details</title>
     <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/header.php'); ?>
     <link rel="stylesheet" href="/project_2/assets/css/style_dateils_service.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -311,12 +312,10 @@ $All_Brands = mysqli_query($conn, $Select_brand);
         document.getElementById('deliveryOption').addEventListener('change', function() {
             const addressBox = document.getElementById('addressBox');
             addressBox.style.display = this.value === 'delivery' ? 'block' : 'none';
-        });
-
+        })
         // التحقق من صحة النموذج
         document.getElementById('bookingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
+            e.preventDefault();;
             // هنا يمكنك إضافة التحقق من صحة البيانات وإرسالها
             const formData = {
                 fullName: document.getElementById('fullName').value,
@@ -330,19 +329,18 @@ $All_Brands = mysqli_query($conn, $Select_brand);
             // إظهار رسالة نجاح
             alert('تم إرسال طلب الحجز بنجاح!');
             closeBookingModal();
-        });
-    </script>
-</body>
+
+
 
 </html>
-<script src="/project_2/assets/js/sidebar.js"></script>
+<scpt src="/project_2/asss/js/sidebar.js"/script>
 <script>
-    // Video play button functionality
-    const videoPlayer = document.querySelector('.video-player');
-    const playButton = document.querySelector('.play-button');
-    const videoOverlay = document.querySelector('.video-overlay');
+    // Video play buttounctionality
+   const videoPlayer = documenuerySelector'.viplayer');
+    const playButton cument.querySelector('.play-button');
+    const videoOverlay = dont.querySelector('.video-overlay');
 
-    playButton.addEventListener('click', () => {
+   yButton.addEventListener('click', () => {
         videoPlayer.play();
         videoOverlay.style.display = 'none';
     });

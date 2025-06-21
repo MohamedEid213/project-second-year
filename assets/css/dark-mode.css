@@ -547,29 +547,27 @@ color: var(--light-color);
     color: var(--text-clr);
 }
 
+[data-theme="dark"] .modal-content{
+    background: var(--navbar-bg);
+    color: var(--text-color);
+}
 
+[data-theme="dark"] .modal-content .title {
+    color: var(--text-color);
+}
 
+[data-theme="dark"] .modal-body #paymentForm .row .col .inputBox span {
+    color: var(--text-color); 
 
+}
 
+[data-theme="dark"] .modal-content .modal-header h2{
+    color: var(--text-clr);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+[data-theme="dark"] .modal-content .modal-body .form-group label,
+.modal-content .modal-body .form-group input,
+.modal-content .modal-body .form-group select .form-select{
+    color: var(--text-clr);
+}
 

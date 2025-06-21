@@ -58,9 +58,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
 
 <head>
     <title>Product Details</title>
-    <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/header.php'); ?>
     <link rel="stylesheet" href="/project_2/assets/css/style_details.css">
     <link rel="stylesheet" href="/project_2/assets/css/style_payment.css">
+    <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/header.php'); ?>
 
 
 </head>

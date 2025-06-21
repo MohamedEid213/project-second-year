@@ -50,6 +50,21 @@
     </li>
 
     <?php if ($_SESSION['user_permissions'] == 'admin' || $_SESSION['user_permissions'] == 'moderator'): ?>
+
+      <?php if ($_SESSION['user_permissions'] == 'admin') : ?>
+        <li>
+          <a href="/project_2/app/dashboard/dashboard.php">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path d="M500 384H384V160h116V384zM356 384H240V64h116V384zM212 384H96V224h116V384zM76 384H12V288h64V384z" />
+            </svg>
+
+            <span>Dashboard</span>
+          </a>
+        </li>
+
+      <?php endif ?>
+
+
       <li>
         <a href="/project_2/app/Add Products/add_products.php">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

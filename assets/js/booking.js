@@ -61,13 +61,24 @@ document.getElementById('deliveryOption').addEventListener('change', function() 
     }
     
     if (isValid) {
-      // إخفاء نموذج الحجز وعرض شريط التحميل مع رسالة إعادة التوجيه
+      // إخفاء نموذج الحجز وعرض رسالة النجاح
       document.getElementById('bookingFormContainer').style.display = 'none';
-      document.getElementById('loading').style.display = 'block';
-      // تأخير لمدة ثانيتين قبل الانتقال إلى صفحة الدفع
+      document.getElementById('successMessage').style.display = 'flex';
+      
+      // إخفاء رسالة النجاح بعد 3 ثواني
       setTimeout(function() {
-        window.location.href = 'payment.html';
-      }, 2000);
+        const successMessage = document.getElementById('successMessage');
+        successMessage.classList.add('fade-out');
+        
+        // إخفاء العنصر تماماً بعد انتهاء الرسوم المتحركة
+        setTimeout(function() {
+          successMessage.style.display = 'none';
+          // إعادة عرض نموذج الحجز
+          document.getElementById('bookingFormContainer').style.display = 'block';
+          // إعادة تعيين النموذج
+          document.getElementById('bookingForm').reset();
+        }, 300);
+      }, 3000);
     }
   });
   

@@ -34,11 +34,23 @@ $user_id = $_SESSION['user_id'];
     <title>Products Dashboard</title>
 </head>
 
-<body>
-    <main id="product_dashboard" class="container">
+<body id="product_dashboard_page">
+    <div class="container">
         <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/sidebar_dashboard.php'); ?>
 
-        <div class="content">
+        <main>
+            <div class="profile-container">
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b><?php echo htmlspecialchars($username); ?></b></p>
+                        <small class="text-muted">User</small>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="/project_2/assets/image/photo_dashboard/profile-1.jpg" alt="User Avatar">
+                    </div>
+                </div>
+            </div>
+
             <div class="dashboard-header center-header">
                 <h1>Products Dashboard</h1>
                 <p class="dashboard-desc">Manage your products, view statistics, and add new items easily.</p>
@@ -97,54 +109,50 @@ $user_id = $_SESSION['user_id'];
                             <td class="product-name">Foldable Mini Drone</td>
                             <td>85631</td>
                             <td>Due</td>
-                            <td><span class="status-pending">Pending</span></td>
-                            <td>
-                                <button class="table-action edit"><i class="fas fa-pen"></i></button>
-                                <button class="table-action delete"><i class="fas fa-trash"></i></button>
-                                <button class="table-action details">Details</button>
+                            <td><span class="status status-pending">Pending</span></td>
+                            <td class="action-icons">
+                                <a href="#" title="Edit"><i class="fas fa-pen"></i></a>
+                                <a href="#" title="Delete" class="delete"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                         <tr>
                             <td class="product-name">LARVENDER KF102 Drone</td>
                             <td>36378</td>
                             <td>Refunded</td>
-                            <td><span class="status-declined">Declined</span></td>
-                            <td>
-                                <button class="table-action edit"><i class="fas fa-pen"></i></button>
-                                <button class="table-action delete"><i class="fas fa-trash"></i></button>
-                                <button class="table-action details">Details</button>
+                            <td><span class="status status-inactive">Declined</span></td>
+                            <td class="action-icons">
+                                <a href="#" title="Edit"><i class="fas fa-pen"></i></a>
+                                <a href="#" title="Delete" class="delete"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                         <tr>
                             <td class="product-name">Ruko F11 Pro Drone</td>
                             <td>49347</td>
                             <td>Due</td>
-                            <td><span class="status-pending">Pending</span></td>
-                            <td>
-                                <button class="table-action edit"><i class="fas fa-pen"></i></button>
-                                <button class="table-action delete"><i class="fas fa-trash"></i></button>
-                                <button class="table-action details">Details</button>
+                            <td><span class="status status-pending">Pending</span></td>
+                            <td class="action-icons">
+                                <a href="#" title="Edit"><i class="fas fa-pen"></i></a>
+                                <a href="#" title="Delete" class="delete"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                         <tr>
                             <td class="product-name">Drone with Camera Drone</td>
                             <td>96996</td>
                             <td>Paid</td>
-                            <td><span class="status-delivered">Delivered</span></td>
-                            <td>
-                                <button class="table-action edit"><i class="fas fa-pen"></i></button>
-                                <button class="table-action delete"><i class="fas fa-trash"></i></button>
-                                <button class="table-action details">Details</button>
+                            <td><span class="status status-active">Delivered</span></td>
+                            <td class="action-icons">
+                                <a href="#" title="Edit"><i class="fas fa-pen"></i></a>
+                                <a href="#" title="Delete" class="delete"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-        </div>
-        </div>
+        </main>
 
-    </main>
 
+    </div>
+    <script src="/project_2/assets/js/dashboard.js"></script>
 </body>
 
 </html>

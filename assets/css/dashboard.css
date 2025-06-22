@@ -58,7 +58,7 @@ body {
     color: var(--color-dark);
 }
 
-.container {
+#dashboard .container {
     background-color: var(--color-background);
     display: grid;
     width: 99%;
@@ -263,11 +263,11 @@ aside .sidebar .message-count {
     border-radius: var(--border-radius-1);
 }
 
-main {
+#dashboard main {
     margin-top: 1.4rem;
 }
 
-main .header {
+#dashboard main .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -276,14 +276,14 @@ main .header {
     padding: 0 1rem;
 }
 
-main .header h1 {
+#dashboard main .header h1 {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--color-dark);
     margin: 0;
 }
 
-main .date {
+#dashboard main .date {
     display: inline-block;
     background-color: var(--color-light);
     border-radius: var(--border-radius-1);
@@ -292,18 +292,18 @@ main .date {
     margin-bottom: 1rem;
 }
 
-main .date input[type="date"] {
+#dashboard main .date input[type="date"] {
     background: transparent;
     color: var(--color-dark);
 }
 
-main .insights {
+#dashboard main .insights {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.6rem;
 }
 
-main .insights>div {
+#dashboard main .insights>div {
     background: var(--color-white);
     padding: var(--card-padding);
     border-radius: var(--card-border-radius);
@@ -312,11 +312,11 @@ main .insights>div {
     transition: all 300ms ease;
 }
 
-main .insights>div:hover {
+#dashboard main .insights>div:hover {
     box-shadow: none;
 }
 
-main .insights>div i {
+#dashboard main .insights>div i {
     background: var(--primary-color);
     padding: 0.5rem;
     border-radius: 50%;
@@ -324,26 +324,26 @@ main .insights>div i {
     font-size: 2rem;
 }
 
-main .insights>div.expenses i {
+#dashboard main .insights>div.expenses i {
     background: var(--color-danger);
 }
 
-main .insights>div.income i {
+#dashboard main .insights>div.income i {
     background: var(--color-success);
 }
 
-main .insights>div .middle {
+#dashboard main .insights>div .middle {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-main .insights h3 {
+#dashboard main .insights h3 {
     margin: 1rem 0 0.6rem;
     font-size: 1rem;
 }
 
-main .insights .progress {
+#dashboard main .insights .progress {
     position: relative;
     width: 92px;
     height: 92px;
@@ -351,12 +351,12 @@ main .insights .progress {
     margin-top: 3rem;
 }
 
-main .insights svg {
+#dashboard main .insights svg {
     width: 7rem;
     height: 7rem;
 }
 
-main .insights svg circle {
+#dashboard main .insights svg circle {
     fill: none;
     stroke: var(--primary-color);
     stroke-width: 14;
@@ -366,22 +366,22 @@ main .insights svg circle {
     stroke-dashoffset: 92;
 }
 
-main .insights .sales svg circle {
+#dashboard main .insights .sales svg circle {
     stroke-dashoffset: -30;
     stroke-dasharray: 200;
 }
 
-main .insights .expenses svg circle {
+#dashboard main .insights .expenses svg circle {
     stroke-dashoffset: 20;
     stroke-dasharray: 80;
 }
 
-main .insights .income svg circle {
+#dashboard main .insights .income svg circle {
     stroke-dashoffset: 35;
     stroke-dasharray: 110;
 }
 
-main .insights .progress .number {
+#dashboard main .insights .progress .number {
     position: absolute;
     top: 0;
     left: 0;
@@ -392,20 +392,20 @@ main .insights .progress .number {
     align-items: center;
 }
 
-main .insights small {
+#dashboard main .insights small {
     margin-top: 1.3rem;
     display: block;
 }
 
-main .recent-orders {
+#dashboard main .recent-orders {
     margin-top: 2rem;
 }
 
-main .recent-orders h2 {
+#dashboard main .recent-orders h2 {
     margin-bottom: 0.8rem;
 }
 
-main .recent-orders table {
+#dashboard main .recent-orders table {
     background: var(--color-white);
     width: 100%;
     border-radius: var(--card-border-radius);
@@ -417,43 +417,43 @@ main .recent-orders table {
     border-spacing: 0;
 }
 
-main .recent-orders table:hover {
+#dashboard main .recent-orders table:hover {
     box-shadow: none;
 }
 
-main table tbody td {
+#dashboard main table tbody td {
     height: 2.8rem;
     border-bottom: 1px solid var(--color-light);
     color: var(--color-dark-variant);
 }
 
-main table tbody tr:last-child td {
+#dashboard main table tbody tr:last-child td {
     border: none;
 }
 
-main .recent-orders a {
+#dashboard main .recent-orders a {
     text-align: center;
     display: block;
     margin: 1rem auto;
     color: var(--primary-color);
 }
 
-.right {
+#dashboard .right {
     margin-top: 1.4rem;
 }
 
-.right .top {
+#dashboard .right .top {
     display: flex;
     justify-content: end;
     gap: 2rem;
 
 }
 
-.right .top button {
+#dashboard .right .top button {
     display: none;
 }
 
-.right .theme-toggler {
+#dashboard .right .theme-toggler {
     background: var(--color-light);
     display: flex;
     justify-content: space-between;
@@ -464,7 +464,7 @@ main .recent-orders a {
     border-radius: var(--border-radius-1);
 }
 
-.right .theme-toggler i {
+#dashboard .right .theme-toggler i {
     font-size: 1.2rem;
     width: 50%;
     height: 100%;
@@ -473,27 +473,27 @@ main .recent-orders a {
     justify-content: center;
 }
 
-.right .theme-toggler i.active {
+#dashboard .right .theme-toggler i.active {
     background: var(--primary-color);
     color: var(--color-white);
     border-radius: var(--border-radius-1);
 }
 
-.right .top .profile {
+#dashboard .right .top .profile {
     display: flex;
     gap: 1rem;
     text-align: right;
 }
 
-.right .recent-updates {
+#dashboard .right .recent-updates {
     margin-top: 1rem;
 }
 
-.right .recent-updates h2 {
+#dashboard .right .recent-updates h2 {
     margin-bottom: 0.8rem;
 }
 
-.right .recent-updates .updates {
+#dashboard .right .recent-updates .updates {
     background: var(--color-white);
     padding: var(--card-padding);
     border-radius: var(--card-border-radius);
@@ -501,26 +501,26 @@ main .recent-orders a {
     transition: all 300ms ease;
 }
 
-.right .recent-updates .updates:hover {
+#dashboard .right .recent-updates .updates:hover {
     box-shadow: none;
 }
 
-.right .recent-updates .updates .update {
+#dashboard .right .recent-updates .updates .update {
     display: grid;
     grid-template-columns: 2.6rem auto;
     gap: 1rem;
     margin-bottom: 1rem;
 }
 
-.right .sales-analytics {
+#dashboard .right .sales-analytics {
     margin-top: 2rem;
 }
 
-.right .sales-analytics h2 {
+#dashboard .right .sales-analytics h2 {
     margin-bottom: 0.8rem;
 }
 
-.right .sales-analytics .item {
+#dashboard .right .sales-analytics .item {
     background: var(--color-white);
     display: flex;
     align-items: center;
@@ -533,11 +533,11 @@ main .recent-orders a {
     cursor: pointer;
 }
 
-.right .sales-analytics .item:hover {
+#dashboard .right .sales-analytics .item:hover {
     box-shadow: none;
 }
 
-.right .sales-analytics .item .right {
+#dashboard .right .sales-analytics .item .right {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -545,7 +545,7 @@ main .recent-orders a {
     width: 100%;
 }
 
-.right .sales-analytics .item .icon {
+#dashboard .right .sales-analytics .item .icon {
     padding: 0.6rem;
     color: var(--color-white);
     border-radius: 50%;
@@ -553,15 +553,15 @@ main .recent-orders a {
     display: flex;
 }
 
-.right .sales-analytics .item.offline .icon {
+#dashboard .right .sales-analytics .item.offline .icon {
     background: var(--color-danger);
 }
 
-.right .sales-analytics .item.customers .icon {
+#dashboard .right .sales-analytics .item.customers .icon {
     background: var(--color-success);
 }
 
-.right .sales-analytics .add-product {
+#dashboard .right .sales-analytics .add-product {
     background-color: transparent;
     border: 2px dashed var(--primary-color);
     color: var(--primary-color);
@@ -570,24 +570,24 @@ main .recent-orders a {
     justify-content: center;
 }
 
-.right .sales-analytics .add-product:hover {
+#dashboard .right .sales-analytics .add-product:hover {
     background-color: var(--primary-color);
     color: white;
 }
 
-.right .sales-analytics .add-product div {
+#dashboard .right .sales-analytics .add-product div {
     display: flex;
     align-items: center;
     gap: 0.6rem;
 }
 
-.right .sales-analytics .add-product div h3 {
+#dashboard .right .sales-analytics .add-product div h3 {
     font-weight: 500;
 }
 
 /* ==================== TABLETS ==================== */
 @media screen and (max-width: 1200px) {
-    .container {
+    #dashboard .container {
         width: 94%;
         grid-template-columns: 5rem auto 23rem;
     }
@@ -609,12 +609,12 @@ main .recent-orders a {
         justify-content: center;
     }
 
-    main .insights {
+    #dashboard main .insights {
         grid-template-columns: 1fr;
         gap: 0;
     }
 
-    main .recent-orders {
+    #dashboard main .recent-orders {
         width: 94%;
         position: absolute;
         left: 50%;
@@ -622,29 +622,29 @@ main .recent-orders a {
         margin: 2rem 0 0 8.8rem;
     }
 
-    main .recent-orders table {
+    #dashboard main .recent-orders table {
         width: 83vw;
     }
 
-    main table thead {
+    #dashboard main table thead {
         display: none;
     }
 
-    main table tbody tr {
+    #dashboard main table tbody tr {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 0.5rem;
         margin-bottom: 1rem;
     }
 
-    main table tbody tr td {
+    #dashboard main table tbody tr td {
         border: none;
     }
 }
 
 /* ==================== MOBILE ==================== */
 @media screen and (max-width: 768px) {
-    .container {
+    #dashboard .container {
         width: 100%;
         grid-template-columns: 1fr;
     }
@@ -686,28 +686,28 @@ main .recent-orders a {
         width: auto;
     }
 
-    main {
+    #dashboard main {
         margin-top: 8rem;
         padding: 0 1rem;
     }
 
-    main .recent-orders {
+    #dashboard main .recent-orders {
         position: relative;
         margin: 3rem 0 0 0;
         width: 100%;
     }
 
-    main .recent-orders table {
+    #dashboard main .recent-orders table {
         width: 100%;
         margin: 0;
     }
 
-    .right {
+    #dashboard .right {
         width: 94%;
         margin: 0 auto 4rem;
     }
 
-    .right .top {
+    #dashboard .right .top {
         position: fixed;
         top: 0;
         left: 0;
@@ -721,17 +721,17 @@ main .recent-orders a {
         box-shadow: 0 1rem 1rem var(--color-light);
     }
 
-    .right .top .theme-toggler {
+    #dashboard .right .top .theme-toggler {
         width: 4.4rem;
         position: absolute;
         left: 66%;
     }
 
-    .right .profile .info {
+    #dashboard .right .profile .info {
         display: none;
     }
 
-    .right .top button {
+    #dashboard .right .top button {
         display: inline-block;
         background: transparent;
         cursor: pointer;
@@ -741,12 +741,12 @@ main .recent-orders a {
         transition: all 0.3s ease;
     }
 
-    .right .top button:hover {
+    #dashboard.right .top button:hover {
         color: var(--primary-color);
         transform: scale(1.1);
     }
 
-    .right .top button i {
+    #dashboard .right .top button i {
         font-size: 2rem;
     }
 }
@@ -775,16 +775,16 @@ main .recent-orders a {
         font-size: 0.85rem;
     }
 
-    .right .top {
+    #dashboard .right .top {
         padding: 0 0.5rem;
         height: 4rem;
     }
 
-    .right .top button i {
+    #dashboard .right .top button i {
         font-size: 1.8rem;
     }
 
-    .right .top .theme-toggler {
+    #dashboard .right .top .theme-toggler {
         width: 4rem;
         left: 70%;
     }

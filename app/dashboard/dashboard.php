@@ -1,3 +1,21 @@
+<?php
+session_start();
+include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/vendor/config.php');
+
+// التحقق من تسجيل الدخول
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
+  header('location: ./index.php');
+  exit();
+}
+
+$permissions = $_SESSION['user_permissions'];
+$username = $_SESSION['username'];
+$email = $_SESSION['email'];
+$user_id = $_SESSION['user_id'];
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,80 +32,9 @@
   <title>Dashboard</title>
 </head>
 
-<body>
+<body id="dashboard">
   <div class="container">
-    <aside>
-      <div class="top">
-        <div class="logo">
-          <img class="logo-img" src="/project_2/assets/image/photo_dashboard/logo.png" alt="">
-          <h2 class="text-muted">Repair <span class="primary">Center</span></h2>
-        </div>
-        <div class="close" id="close-btn">
-          <i class="fas fa-close"></i>
-        </div>
-        <!--End Top div tag-->
-      </div>
-      <div class="sidebar-menu">
-        <div class="sidebar">
-          <a href="#" class="active">
-            <span class="material-symbols-outlined">grid_view</span>
-            <h3>Dashboard</h3>
-          </a>
-        </div>
-        <div class="sidebar">
-          <a href="#">
-            <i class="fas fa-user"></i>
-            <h3>Customers</h3>
-          </a>
-        </div>
-        <div class="sidebar">
-          <a href="#">
-            <i class="fab fa-first-order"></i>
-            <h3>Orders</h3>
-          </a>
-        </div>
-        <div class="sidebar">
-          <a href="#">
-            <i class="fa-solid fa-message"></i>
-            <h3>Messages</h3>
-            <span class="message-count">26</span>
-          </a>
-        </div>
-        <div class="sidebar">
-          <a href="#">
-            <i class="fas fa-table"></i>
-            <h3>products</h3>
-          </a>
-        </div>
-        <div class="sidebar">
-          <a href="#">
-            <i class="fas fa-chart-bar"></i>
-            <h3>Reports</h3>
-          </a>
-        </div>
-        <div class="sidebar">
-          <a href="#">
-            <i class="fas fa-cog"></i>
-            <h3>Settings</h3>
-          </a>
-        </div>
-        <div class="sidebar">
-          <a href="#">
-            <i class="fas fa-plus"></i>
-            <h3>Add products</h3>
-          </a>
-        </div>
-      <div class="sidebar-bottom">
-        <div class="sidebar">
-          <a href="#">
-            <i class="fas fa-sign-in"></i>
-            <h3>LogOut</h3>
-          </a>
-        </div>
-      </div>
-      </div>
-
-    </aside>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/sidebar_dashboard.php');?>
     <main>
       <h1>Dashboard</h1>
       <div class="date">
@@ -227,10 +174,6 @@
         <button id="menu-btn">
           <i class="fas fa-bars"></i>
         </button>
-        <div class="theme-toggler">
-          <i class="fas fa-sun active" id="lightIcon"></i>
-          <i class="fas fa-moon"></i>
-        </div>
         <div class="profile">
           <div class="info">
             <p>Hey, <b>Daniel</b></p>

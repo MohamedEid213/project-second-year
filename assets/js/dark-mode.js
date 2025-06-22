@@ -1,6 +1,8 @@
 // Dark mode functionality
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
+    const dashboard = document.getElementById('dashboard');
+
     var text = document.getElementById('theme-text');
     
     // Check for saved theme preference or use system preference

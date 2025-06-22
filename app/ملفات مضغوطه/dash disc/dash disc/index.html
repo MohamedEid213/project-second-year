@@ -1,0 +1,87 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discount Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Overview and management of all discount codes</h1>
+
+    <div class="cards">
+      <div class="card">Active Discounts<br><span>3</span></div>
+      <div class="card">Expired Discounts<br><span>1</span></div>
+      <div class="card">Scheduled Discounts<br><span>1</span></div>
+      <div class="card">Total Discounts<br><span>5</span></div>
+    </div>
+
+    <div class="actions">
+      <input type="text" placeholder="Search discount codes...">
+      <select>
+        <option>All Status</option>
+        <option>Active</option>
+        <option>Expired</option>
+        <option>Scheduled</option>
+      </select>
+      <button>+ New Discount</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Type</th>
+          <th>Value</th>
+          <th>Expiry Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>WELCOME20</td>
+          <td>Percentage</td>
+          <td class="green">20%</td>
+          <td>2024-12-31</td>
+          <td><span class="badge active">Active</span></td>
+          <td><span class="icons">👁 ✏ 🗑</span></td>
+        </tr>
+        <tr>
+          <td>FIRST50</td>
+          <td>Fixed Amount</td>
+          <td class="green">$50</td>
+          <td>2024-11-30</td>
+          <td><span class="badge active">Active</span></td>
+          <td><span class="icons">👁 ✏ 🗑</span></td>
+        </tr>
+        <tr>
+          <td>SUMMER25</td>
+          <td>Percentage</td>
+          <td class="green">25%</td>
+          <td>2024-08-31</td>
+          <td><span class="badge expired">Expired</span></td>
+          <td><span class="icons">👁 ✏ 🗑</span></td>
+        </tr>
+        <tr>
+          <td>HOLIDAY30</td>
+          <td>Percentage</td>
+          <td class="green">30%</td>
+          <td>2024-12-25</td>
+          <td><span class="badge scheduled">Scheduled</span></td>
+          <td><span class="icons">👁 ✏ 🗑</span></td>
+        </tr>
+        <tr>
+          <td>FLASH15</td>
+          <td>Percentage</td>
+          <td class="green">15%</td>
+          <td>2024-10-15</td>
+          <td><span class="badge active">Active</span></td>
+          <td><span class="icons">👁 ✏ 🗑</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

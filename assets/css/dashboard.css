@@ -85,6 +85,7 @@ h1 {
     text-align: center;
 }
 
+
 h2 {
     font-size: 1.4rem;
 }
@@ -103,6 +104,26 @@ h5 {
 
 small {
     font-size: 0.75rem;
+}
+.title {
+    color: #6c63ff;
+    position: relative;
+    font-size: 2.5rem;
+    letter-spacing: 1.5px;
+}
+
+.title::after{
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            margin: 10px 0 0 0;
+            width: 80px;
+            height: 4px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, #6c63ff 0%, #43e97b 100%);
+            transform: translate(-50%, 0);
 }
 
 .profile-photo {
@@ -287,9 +308,9 @@ aside .sidebar .message-count {
     display: inline-block;
     background-color: var(--color-light);
     border-radius: var(--border-radius-1);
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     padding: 0.5rem 1.6rem;
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
 }
 
 #dashboard main .date input[type="date"] {
@@ -307,7 +328,7 @@ aside .sidebar .message-count {
     background: var(--color-white);
     padding: var(--card-padding);
     border-radius: var(--card-border-radius);
-    margin-top: 1rem;
+    margin-top: 0rem;
     box-shadow: var(--box-shadow);
     transition: all 300ms ease;
 }

@@ -34,9 +34,9 @@ $user_id = $_SESSION['user_id'];
 
 <body id="dashboard">
   <div class="container">
-<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/sidebar_dashboard.php');?>
+    <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/sidebar_dashboard.php'); ?>
     <main>
-      <h1>Dashboard</h1>
+      <h1 class="title">Dashboard</h1>
       <div class="date">
         <input type="date">
       </div>

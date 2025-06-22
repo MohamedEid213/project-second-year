@@ -7,19 +7,13 @@
     font-family: 'Poppins', Arial, sans-serif;
 }
 
-body {
-    background: #f6f6f9;
-    min-height: 100vh;
-    display: block;
-    color: #222;
-}
 .container {
     background-color: var(--color-background);
     display: grid;
     width: 99%;
     margin: 0 auto;
     gap: 1rem;
-    grid-template-columns: 14rem auto ;
+    grid-template-columns: 14rem auto;
     padding-right: 24px;
 }
 
@@ -31,9 +25,9 @@ body {
     align-items: stretch;
 }
 
- .content {
+.content {
     width: 100%;
-    margin: 32px auto 0 auto;
+    margin: 0 auto 0 auto;
     max-width: 1200px;
     padding: 0 16px;
     /* background: rgba(255, 255, 255, 0.85); */
@@ -59,6 +53,7 @@ body {
     gap: 8px;
     margin-right: auto;
 }
+
 .topbar-actions button {
     background: #f6f6f9;
     border: none;

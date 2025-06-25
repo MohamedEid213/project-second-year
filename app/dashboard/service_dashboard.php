@@ -33,7 +33,7 @@ $username = $_SESSION['username'];
                     <div class="service-profile-bar">
                         <div class="service-profile-info">
                             <div class="service-profile-text">
-                                <p>Hey, <b><?php echo htmlspecialchars($username); ?></b></p>
+                                <p>Hey, <span><?php echo htmlspecialchars($username); ?></span></p>
                                 <small class="service-profile-role">User</small>
                             </div>
                             <div class="service-profile-photo">
@@ -49,53 +49,39 @@ $username = $_SESSION['username'];
                     </div>
 
                     <!-- Stats Cards -->
-                    <div class="data-info">
-                        <div class="box">
-                            <i class="fas fa-user"></i>
-                            <div class="data">
-                                <p>Customers</p>
-                                <span>150</span>
-                            </div>
+                    <section class="stats">
+                        <div class="stat-box"><span>👤</span>
+                            <h3>150</h3>
+                            <p>Customers</p>
                         </div>
-                        <div class="box">
-                            <i class="fas fa-calendar-alt"></i>
-                            <div class="data">
-                                <p>Appointments</p>
-                                <span>85</span>
-                            </div>
+                        <div class="stat-box"><span>📅</span>
+                            <h3>85</h3>
+                            <p>Appointments</p>
                         </div>
-                        <div class="box">
-                            <i class="fas fa-tools"></i>
-                            <div class="data">
-                                <p>Services Offered</p>
-                                <span>12</span>
-                            </div>
+                        <div class="stat-box"><span>🛠️</span>
+                            <h3>12</h3>
+                            <p>Services Offered</p>
                         </div>
-                        <div class="box">
-                            <i class="fas fa-dollar-sign"></i>
-                            <div class="data">
-                                <p>Total Revenue</p>
-                                <span>$4,600</span>
-                            </div>
+                        <div class="stat-box"><span>💵</span>
+                            <h3>$4,600</h3>
+                            <p>Total Revenue</p>
                         </div>
-                    </div>
+                    </section>
 
                     <!-- Appointments Table -->
-                    <div class="products-section">
-                        <div class="products-header">
-                            <div class="title-info">
-                                <p>Service Appointments</p>
-                                <i class="fas fa-table"></i>
-                            </div>
-                            <button class="add-product-btn"><i class="fas fa-plus"></i> Add Appointment</button>
+
+                    <section class="table-section">
+                        <div class="table-header">
+                            <h2>Service Appointments</h2>
+                            <button class="add-btn">+ Add Appointment</button>
                         </div>
-                        <table class="product-list-table">
+                        <table>
                             <thead>
                                 <tr>
                                     <th>Service Type</th>
                                     <th>Booking ID</th>
                                     <th>Payment Status</th>
-                                    <th>Status</th>
+                                    <th>Job Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -104,49 +90,33 @@ $username = $_SESSION['username'];
                                     <td>Oil Change</td>
                                     <td>10234</td>
                                     <td>Due</td>
-                                    <td><span class="status status-pending">Pending</span></td>
-                                    <td class="action-icons">
-                                        <a href="#" title="Edit"><i class="fas fa-pen"></i></a>
-                                        <a href="#" title="Delete" class="delete"><i class="fas fa-trash"></i></a>
-                                        <a href="#" title="Details"><i class="fas fa-eye"></i></a>
-                                    </td>
+                                    <td><span class="status pending">Pending</span></td>
+                                    <td><button class="edit">✏️</button><button class="delete">🗑️</button><button class="details">Details</button></td>
                                 </tr>
                                 <tr>
                                     <td>Brake Inspection</td>
                                     <td>10289</td>
                                     <td>Paid</td>
-                                    <td><span class="status status-completed">Completed</span></td>
-                                    <td class="action-icons">
-                                        <a href="#" title="Edit"><i class="fas fa-pen"></i></a>
-                                        <a href="#" title="Delete" class="delete"><i class="fas fa-trash"></i></a>
-                                        <a href="#" title="Details"><i class="fas fa-eye"></i></a>
-                                    </td>
+                                    <td><span class="status delivered">Completed</span></td>
+                                    <td><button class="edit">✏️</button><button class="delete">🗑️</button><button class="details">Details</button></td>
                                 </tr>
                                 <tr>
                                     <td>Tire Rotation</td>
                                     <td>10345</td>
                                     <td>Refunded</td>
-                                    <td><span class="status status-cancelled">Cancelled</span></td>
-                                    <td class="action-icons">
-                                        <a href="#" title="Edit"><i class="fas fa-pen"></i></a>
-                                        <a href="#" title="Delete" class="delete"><i class="fas fa-trash"></i></a>
-                                        <a href="#" title="Details"><i class="fas fa-eye"></i></a>
-                                    </td>
+                                    <td><span class="status declined">Canceled</span></td>
+                                    <td><button class="edit">✏️</button><button class="delete">🗑️</button><button class="details">Details</button></td>
                                 </tr>
                                 <tr>
                                     <td>Engine Diagnostic</td>
                                     <td>10478</td>
                                     <td>Due</td>
-                                    <td><span class="status status-pending">Pending</span></td>
-                                    <td class="action-icons">
-                                        <a href="#" title="Edit"><i class="fas fa-pen"></i></a>
-                                        <a href="#" title="Delete" class="delete"><i class="fas fa-trash"></i></a>
-                                        <a href="#" title="Details"><i class="fas fa-eye"></i></a>
-                                    </td>
+                                    <td><span class="status pending">Pending</span></td>
+                                    <td><button class="edit">✏️</button><button class="delete">🗑️</button><button class="details">Details</button></td>
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
+                    </section>
                 </main>
             </div>
         </div>

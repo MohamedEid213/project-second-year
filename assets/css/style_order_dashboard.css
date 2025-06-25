@@ -193,7 +193,7 @@ main {
 
 .title_order {
     color: #6c63ff;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
  .title_order::after {

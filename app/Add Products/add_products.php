@@ -32,6 +32,7 @@ $All_Category = mysqli_query($conn, $Select_Category);
 $Select_Brands = 'SELECT * FROM `brands` ORDER BY b_name';
 $All_Brands = mysqli_query($conn, $Select_Brands);
 
+$errors = [];
 if (isset($_POST['submit'])) {
     if (!empty($_POST['name']) && !empty($_POST['price']) && !empty($_POST['category']) && !empty($_POST['brand']) && !empty($_POST['descript'])) {
         $name = $_POST['name'];
@@ -49,28 +50,33 @@ if (isset($_POST['submit'])) {
         $image_size = $_FILES['image']['size'];
         $image_errors = $_FILES['image']['error'];
 
-
         $allowed_extansions = array('jpg', 'gif', 'jpeg', 'png', 'jfif');
-        $image_extansions = strtolower(end(explode('.', $image_name)));
-
+        $image_extansions = strtolower(pathinfo($image_name, PATHINFO_EXTENSION));
+        $is_image = false;
         if ($image_errors == 4) {
-            $errors[] = '<div>No File Uploaded</div>';
+            $errors[] = 'You must upload an image file.';
         } else {
-            if (!in_array($image_extansions, $allowed_extansions)) {
-                $errors[] = '<div> File is Not Valid </div>';
+            // تحقق من نوع الملف (MIME type) بالإضافة للامتداد
+            $mime_types = array('image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/jfif');
+            if (in_array($image_extansions, $allowed_extansions) && in_array($image_type, $mime_types)) {
+                $is_image = true;
             }
-
-
+            if (!$is_image) {
+                $errors[] = 'Only image files (jpg, jpeg, png, gif, jfif) are allowed.';
+            }
+        }
+        if (empty($errors)) {
             $upload_dir = $_SERVER['DOCUMENT_ROOT'] . '/project_2/data/uploads/image_products/';
             $target_file = $upload_dir . basename($image_name);
             move_uploaded_file($image_temp, $target_file);
-
 
             $Row_Data = "INSERT INTO `products`( `product_name`, `model_year`, `Images`, `price`, `Category_id`, `Brand_id`, `description`,`Added by`) 
         VALUES ('$name','$model_year','$image_name','$price','$category','$brand','$descript',$user_id)";
             $Add_Product = mysqli_query($conn, $Row_Data);
             header('location: /project_2/app/categories/category.php');
         }
+    } else {
+        $errors[] = 'Please fill in all required fields.';
     }
 }
 ?>
@@ -98,6 +104,13 @@ if (isset($_POST['submit'])) {
                 <a href="/project_2/app/Add Products/My products/index.php" class="btn btn-dark p-2 "> <i class="fas fa-list me-2"></i> List Products</a>
             </div>
             <div class="form_product">
+                <?php if (!empty($errors)): ?>
+                    <div class="error-message">
+                        <?php foreach ($errors as $error): ?>
+                            <div><?= htmlspecialchars($error) ?></div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
                 <form action="" method="post" enctype="multipart/form-data">
                     <div class="row justify-content-between">
                         <nav class="col-8">

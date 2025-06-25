@@ -47,12 +47,12 @@
                     <h3>Service</h3>
                 </a>
             </div>
-            <div class="sidebar">
+            <!-- <div class="sidebar">
                 <a href="#">
                     <i class="fas fa-cog"></i>
                     <h3>Settings</h3>
                 </a>
-            </div>
+            </div> -->
             <div class="sidebar">
                 <a href="#">
                     <i class="fas fa-plus"></i>

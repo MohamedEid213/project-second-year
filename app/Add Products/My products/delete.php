@@ -8,6 +8,4 @@ if (isset($_GET['id'])) {
     $Query = mysqli_query($conn, $Delete_Products);
     header('location: /project_2/app/Add Products/My products/index.php');
     exit();
-
 }
-

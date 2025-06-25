@@ -11,26 +11,26 @@
         </div>
         <div class="sidebar-menu">
             <div class="sidebar">
-                <a href="/project_2/app/dashboard/dashboard.php" class="active">
-                    <span class="material-symbols-outlined">grid_view</span>
+                <a href="/project_2/app/dashboard/dashboard.php">
+                    <i class="fas fa-tachometer-alt"></i>
                     <h3>Dashboard</h3>
                 </a>
             </div>
             <div class="sidebar">
                 <a href="/project_2/app/dashboard/client_dashboard.php">
-                    <i class="fas fa-user"></i>
-                    <h3>Client</h3>
+                    <i class="fas fa-users"></i>
+                    <h3>Clients</h3>
                 </a>
             </div>
             <div class="sidebar">
                 <a href="/project_2/app/dashboard/product_dashboard.php">
-                    <i class="fas fa-table"></i>
+                    <i class="fas fa-box"></i>
                     <h3>products</h3>
                 </a>
             </div>
             <div class="sidebar">
-                <a href="#">
-                    <i class="fab fa-first-order"></i>
+                <a href="/project_2/app/dashboard/order_dashboard.php">
+                    <i class="fas fa-shopping-cart"></i>
                     <h3>Orders</h3>
                 </a>
             </div>
@@ -42,9 +42,9 @@
                 </a>
             </div> -->
             <div class="sidebar">
-                <a href="#">
+                <a href="/project_2/app/dashboard/service_dashboard.php">
                     <i class="fas fa-chart-bar"></i>
-                    <h3>Reports</h3>
+                    <h3>Service</h3>
                 </a>
             </div>
             <div class="sidebar">

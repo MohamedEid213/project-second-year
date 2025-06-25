@@ -27,15 +27,15 @@
 }
 /* ====== Global Styles ====== */
 :root {
-  --primary: #1877f2;       /* Facebook blue */
+  --primary: #1877f2;       
   --primary-dark: #166fe5;
-  --secondary: #42b72a;     /* Facebook green */
-  --danger: #f02849;        /* Error/Delete red */
-  --warning: #fa3e3e;       /* Discount/Sale */
-  --light: #f0f2f5;         /* Background light */
-  --light-gray: #e4e6eb;    /* Borders */
-  --gray: #65676b;          /* Secondary text */
-  --dark: #1c1e21;          /* Primary text */
+  --secondary: #42b72a;     
+  --danger: #f02849;       
+  --warning: #fa3e3e;     
+  --light: #f0f2f5;       
+  --light-gray: #e4e6eb;   
+  --gray: #65676b;         
+  --dark: #1c1e21;          
   --white: #ffffff;
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s ease;
@@ -59,15 +59,6 @@ body {
   margin: 20px auto;
   padding: 0 15px;
 }
-
-/* ====== Empty Cart Styles ====== */
-/* .empty-cart {
-    display: flex;
-   justify-content: center;
-  align-items: center; 
-  min-height: 60vh;
-  text-align: center;
-}*/
 
 .empty-container {
   display: flex;

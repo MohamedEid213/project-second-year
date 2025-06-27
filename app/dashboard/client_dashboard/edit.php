@@ -187,7 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 
-<body id="clients_page_layout" class="dark-theme-variables">
+<body id="clients_page_layout" >
     <div class="container">
         <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/sidebar_dashboard.php'); ?>
         <main>
@@ -228,6 +228,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </main>
     </div>
+
+    <script>
+        // تفعيل الوضع الداكن أو الفاتح تلقائياً حسب localStorage
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark') {
+            document.body.classList.add('dark-theme-variables');
+        } else {
+            document.body.classList.remove('dark-theme-variables');
+        }
+    </script>
 </body>
 
 </html>

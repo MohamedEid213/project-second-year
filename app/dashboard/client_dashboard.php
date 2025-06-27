@@ -120,7 +120,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 
 </head>
 
-<body id="clients_page_layout" class="dark-theme-variables"> <!-- Unique ID to prevent CSS conflicts -->
+<body id="clients_page_layout">
     <div class="container">
         <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/sidebar_dashboard.php'); ?>
 
@@ -225,7 +225,15 @@ if ($result && mysqli_num_rows($result) > 0) {
         </main>
     </div>
 
-
+    <script>
+        // تفعيل الوضع الداكن أو الفاتح تلقائياً حسب localStorage
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark') {
+            document.body.classList.add('dark-theme-variables');
+        } else {
+            document.body.classList.remove('dark-theme-variables');
+        }
+    </script>
 </body>
 
 </html>

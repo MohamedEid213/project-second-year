@@ -15,17 +15,27 @@ if ($_SESSION['user_permissions'] != 'admin') {
 
 $username = $_SESSION['username'];
 
-// جلب كل الخدمات
-$services = mysqli_query($conn, "SELECT * FROM services ORDER BY service_id DESC");
+// جلب جميع الخدمات
+$services = mysqli_query($conn, "SELECT * FROM services");
 $services = mysqli_fetch_all($services, MYSQLI_ASSOC);
 
 // إحصائيات
 $total_services = count($services);
 $active_services = 0;
+$inactive_services = 0;
+$latest_service_date = null;
+
 foreach ($services as $srv) {
-    if ($srv['status'] == 'active') $active_services++;
+    $status = strtolower(trim($srv['status']));
+    if ($status == 'actitive') $active_services++;
+    if ($status == 'inactive') $inactive_services++;
+    if (!$latest_service_date || strtotime($srv['create_at']) > strtotime($latest_service_date)) {
+        $latest_service_date = $srv['create_at'];
+    }
 }
-$inactive_services = $total_services - $active_services;
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,21 +77,25 @@ $inactive_services = $total_services - $active_services;
 
                     <!-- Stats Cards -->
                     <section class="stats">
-                        <div class="stat-box"><span>👤</span>
-                            <h3>150</h3>
-                            <p>Customers</p>
+                        <div class="stat-box">
+                            <span class="stat-icon stat-icon-blue"><i class="fas fa-cogs"></i></span>
+                            <h3><?= $total_services ?></h3>
+                            <p>Total Services</p>
                         </div>
-                        <div class="stat-box"><span>📅</span>
-                            <h3>85</h3>
-                            <p>Appointments</p>
+                        <div class="stat-box">
+                            <span class="stat-icon stat-icon-green"><i class="fas fa-check-circle"></i></span>
+                            <h3><?= $active_services ?></h3>
+                            <p>Active Services</p>
                         </div>
-                        <div class="stat-box"><span>🛠️</span>
-                            <h3>12</h3>
-                            <p>Services Offered</p>
+                        <div class="stat-box">
+                            <span class="stat-icon stat-icon-red"><i class="fas fa-times-circle"></i></span>
+                            <h3><?= $inactive_services ?></h3>
+                            <p>Inactive Services</p>
                         </div>
-                        <div class="stat-box"><span>💵</span>
-                            <h3>$4,600</h3>
-                            <p>Total Revenue</p>
+                        <div class="stat-box">
+                            <span class="stat-icon stat-icon-orange"><i class="fas fa-clock"></i></span>
+                            <h3><?= $latest_service_date ? date('Y-m-d', strtotime($latest_service_date)) : '--' ?></h3>
+                            <p>Last Added</p>
                         </div>
                     </section>
 
@@ -89,48 +103,57 @@ $inactive_services = $total_services - $active_services;
 
                     <section class="table-section">
                         <div class="table-header">
-                            <h2>Service Appointments</h2>
-                            <button class="add-btn">+ Add Appointment</button>
+                            <h2>Services List</h2>
+                            <a href="add.php" class="add-btn">+ Add Service</a>
                         </div>
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Service Type</th>
-                                    <th>Booking ID</th>
-                                    <th>Payment Status</th>
-                                    <th>Job Status</th>
+                                    <th>id</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>Image</th>
+                                    <th>Video</th>
+                                    <th>Created At</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Oil Change</td>
-                                    <td>10234</td>
-                                    <td>Due</td>
-                                    <td><span class="status pending">Pending</span></td>
-                                    <td><button class="edit">✏️</button><button class="delete">🗑️</button><button class="details">Details</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Brake Inspection</td>
-                                    <td>10289</td>
-                                    <td>Paid</td>
-                                    <td><span class="status delivered">Completed</span></td>
-                                    <td><button class="edit">✏️</button><button class="delete">🗑️</button><button class="details">Details</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Tire Rotation</td>
-                                    <td>10345</td>
-                                    <td>Refunded</td>
-                                    <td><span class="status declined">Canceled</span></td>
-                                    <td><button class="edit">✏️</button><button class="delete">🗑️</button><button class="details">Details</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Engine Diagnostic</td>
-                                    <td>10478</td>
-                                    <td>Due</td>
-                                    <td><span class="status pending">Pending</span></td>
-                                    <td><button class="edit">✏️</button><button class="delete">🗑️</button><button class="details">Details</button></td>
-                                </tr>
+                                <?php $i = 1;
+                                foreach ($services as $service): ?>
+                                    <tr>
+                                        <td><?= $i++ ?></td>
+                                        <td><?= htmlspecialchars($service['s_name']) ?></td>
+                                        <td><?= htmlspecialchars($service['s_description']) ?></td>
+                                        <td>
+                                            <?php if ($service['status'] == 'actitive'): ?>
+                                                <span class="status delivered">Active</span>
+                                            <?php else: ?>
+                                                <span class="status declined">Inactive</span>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td>
+                                            <?php if ($service['image']): ?>
+                                                <img src="/project_2/assets/image/image_serivce/<?= htmlspecialchars($service['image']) ?>" alt="Service Image" style="width:40px;height:40px;">
+                                            <?php endif; ?>
+                                        </td>
+                                        <td>
+                                            <?php if ($service['video']): ?>
+                                                <a href="/project_2/data/uploads/image_products/<?= htmlspecialchars($service['video']) ?>" target="_blank">View</a>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td><?= htmlspecialchars($service['create_at']) ?></td>
+                                        <td>
+                                            <a href="service_dashboard/edit.php?id=<?= $service['service_id'] ?>" class="table-action edit" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="service_dashboard/delete.php?id=<?= $service['service_id'] ?>" class="table-action delete" title="Delete" onclick="return confirm('Are you sure?');">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </section>
@@ -139,6 +162,7 @@ $inactive_services = $total_services - $active_services;
         </div>
     </div>
     <script src="/project_2/assets/js/dashboard.js"></script>
+
 </body>
 
 </html>

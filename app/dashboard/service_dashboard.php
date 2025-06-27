@@ -104,7 +104,7 @@ foreach ($services as $srv) {
                     <section class="table-section">
                         <div class="table-header">
                             <h2>Services List</h2>
-                            <a href="add.php" class="add-btn">+ Add Service</a>
+                            <a href="#" class="add-btn">+ Add Service</a>
                         </div>
                         <table>
                             <thead>

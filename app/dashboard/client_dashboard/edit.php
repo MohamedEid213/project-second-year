@@ -66,6 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Edit User Permissions</title>
     <link rel="stylesheet" href="/project_2/assets/css/dashboard.css">
     <link rel="stylesheet" href="/project_2/assets/css/style_client_dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         .edit-form-container {
             max-width: 420px;
@@ -187,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 
-<body id="clients_page_layout" >
+<body id="clients_page_layout">
     <div class="container">
         <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/sidebar_dashboard.php'); ?>
         <main>

@@ -39,11 +39,10 @@ body {
     text-align: right;
 }
 
-.profile-photo {
-    width: 2.8rem;
-    height: 2.8rem;
+.profile-photo,
+.user-avatar {
     border-radius: 50%;
-    overflow: hidden;
+    object-fit: cover;
 }
 
 @media (max-width: 768px) {
@@ -84,6 +83,18 @@ body {
     /* box-shadow: 0 2px 16px 0 #e0e0e0; */
 }
 
+.topbar,
+.topbar-actions,
+.user-info,
+.title-info,
+.data-info .box,
+.main-area {
+    display: flex;
+    align-items: center;
+    /* أو flex-start أو stretch حسب العنصر */
+    /* غالبًا يوجد gap أو justify-content متشابه */
+}
+
 .topbar {
     display: flex;
     align-items: center;
@@ -103,10 +114,10 @@ body {
     margin-right: auto;
 }
 
-.topbar-actions button {
+.topbar-actions button,
+.add-product-btn {
     background: #f6f6f9;
     border: none;
-    outline: none;
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -121,7 +132,8 @@ body {
     position: relative;
 }
 
-.topbar-actions button:hover {
+.topbar-actions button:hover,
+.add-product-btn:hover {
     background: #e0e7ff;
     color: #222;
     box-shadow: 0 4px 16px 0 #b3b3ff44;
@@ -281,7 +293,7 @@ tbody tr:hover {
 /* حالات الجدول */
 .status-pending {
     background: #fff8e1;
-    color: #ffb300;
+    color: #ff9800;
     border-radius: 8px;
     padding: 6px 18px;
     font-weight: 600;
@@ -289,7 +301,7 @@ tbody tr:hover {
 
 .status-delivered {
     background: #e8f5e9;
-    color: #43a047;
+    color: #43e97b;
     border-radius: 8px;
     padding: 6px 18px;
     font-weight: 600;
@@ -297,10 +309,15 @@ tbody tr:hover {
 
 .status-declined {
     background: #ffebee;
-    color: #e53935;
+    color: #f44336;
     border-radius: 8px;
     padding: 6px 18px;
     font-weight: 600;
+}
+
+.status-active {
+    background-color: rgba(65, 241, 182, 0.1);
+    color: #43e97b;
 }
 
 .table-action {
@@ -419,6 +436,11 @@ tbody tr:hover {
     .products-section {
         padding: 6px 1px 8px 1px;
     }
+
+    .product-list-table th,
+    .product-list-table td {
+        font-size: 0.85rem;
+    }
 }
 
 .page-title {
@@ -456,7 +478,7 @@ tbody tr:hover {
 .products-section {
     margin-top: 32px;
     margin-right: 3%;
-    background-color: var(--color-white);
+    background-color: var(--color-white, #fff);
     border-radius: var(--card-border-radius);
     box-shadow: var(--box-shadow);
     padding: var(--card-padding);
@@ -475,7 +497,7 @@ tbody tr:hover {
 
 .products-section th,
 .products-section td {
-    background: transparent !important;
+
     border-radius: 0;
     box-shadow: none;
     padding: 0.8rem 1rem;
@@ -484,13 +506,14 @@ tbody tr:hover {
 
 .products-section th {
     border-bottom: 1px solid var(--color-light);
-    color: var(--color-dark);
+    color: var(--color-light);
     font-weight: 600;
 }
 
 .products-section tbody td {
     height: 2.8rem;
     border-bottom: 1px solid var(--color-light);
+    color: black;
 }
 
 .products-section tbody tr:last-child td {
@@ -517,30 +540,35 @@ tbody tr:hover {
 }
 
 .add-product-btn {
-    background: #6c63ff;
+    background: linear-gradient(90deg, #6c63ff 0%, #43e97b 100%);
     color: #fff;
-    font-size: 1.08rem;
-    font-weight: 600;
+    font-size: 1.15rem;
+    font-weight: 700;
     border: none;
-    border-radius: 12px;
-    padding: 10px 24px;
-    box-shadow: 0 2px 8px 0 #b3b3ff33;
+    border-radius: 16px;
+    padding: 18px 12px;
+    width: 15%;
+    box-shadow: 0 4px 16px 0 #b3b3ff55;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 8px;
-    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    gap: 12px;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+    letter-spacing: 0.5px;
+    outline: none;
 }
 
 .add-product-btn i {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
+    transition: transform 0.2s;
 }
 
 .add-product-btn:hover {
-    background: #5548c8;
-    box-shadow: 0 4px 16px 0 #b3b3ff44;
-    transform: scale(1.04);
+    background: linear-gradient(90deg, #5548c8 0%, #43e97b 100%);
+    box-shadow: 0 8px 24px 0 #6c63ff55;
+    transform: translateY(-2px) scale(1.06);
 }
+
 
 .center-header {
     text-align: center !important;
@@ -624,6 +652,11 @@ tbody tr:hover {
     --color-table-row-hover: #e0e7ff;
     --color-table-header: #fff;
     --color-table-cell: #f6f6f9;
+    --table-header-bg: #6c63ff;
+    --table-header-color: #fff;
+    --table-row-bg: #fff;
+    --table-row-hover-bg: #f6f6f9;
+    --table-text-color: #23233a;
 }
 
 body.dark-theme-variables {
@@ -637,6 +670,11 @@ body.dark-theme-variables {
     --color-table-row-hover: #23233a;
     --color-table-header: #23233a;
     --color-table-cell: #23233a;
+    --table-header-bg: #23233a;
+    --table-header-color: #fff;
+    --table-row-bg: #181a1e;
+    --table-row-hover-bg: #23233a;
+    --table-text-color: #f6f6f9;
 }
 
 /* --- Final Layout Solution for Product Dashboard --- */
@@ -708,8 +746,7 @@ body.dark-theme-variables {
 /* --- Unifying Product List Table Styles --- */
 
 .products-section {
-    margin-top: 2rem;
-    background-color: var(--color-white);
+    background-color: var(--color-white, #fff);
     padding: var(--card-padding);
     border-radius: var(--card-border-radius);
     box-shadow: var(--box-shadow);
@@ -721,34 +758,66 @@ body.dark-theme-variables {
 }
 
 .product-list-table {
+    border-collapse: separate;
+    border-spacing: 0 12px;
     width: 100%;
-    border-collapse: collapse;
-    text-align: center;
+    background: none;
 }
 
-.product-list-table th {
-    height: 2.8rem;
-    border-bottom: 1px solid var(--color-light);
-    color: var(--color-dark);
-}
-
+.product-list-table th,
 .product-list-table td {
-    height: 2.8rem;
-    border-bottom: 1px solid var(--color-light);
-    color: var(--color-dark-variant);
+    border-radius: 0 !important;
 }
 
-.product-list-table tbody tr:last-child td {
-    border: none;
+.product-list-table tbody tr,
+.product-list-table tbody td {
+    background: transparent !important;
+    box-shadow: none !important;
 }
 
-.product-list-table tbody tr:hover td {
-    background-color: var(--color-light);
-    color: var(--color-dark);
+.product-list-table tbody tr:hover {
+    background: #f6f6f9;
+    box-shadow: 0 4px 16px 0 #b3b3ff33;
 }
 
+.product-list-table tbody tr td:first-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
 
-/* New Status Styles */
+.product-list-table tbody tr td:not(:first-child):not(:last-child) {
+    border-radius: 0;
+}
+
+.product-list-table td.description-cell {
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    position: relative;
+}
+
+.product-list-table td.description-cell:hover {
+    white-space: normal;
+    overflow: visible;
+    background: #f9f9ff;
+    z-index: 2;
+    box-shadow: 0 2px 12px 0 #b3b3ff33;
+}
+
+.product-list-table td img {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* شارات الحالة */
 .status {
     padding: 0.3rem 0.8rem;
     border-radius: 1rem;
@@ -758,14 +827,25 @@ body.dark-theme-variables {
     display: inline-block;
 }
 
+.status-pending {
+    background-color: rgba(255, 187, 85, 0.1);
+    color: #ffbb55;
+}
+
+.status-delivered {
+    background-color: rgba(65, 241, 182, 0.1);
+    color: #41f1b6;
+}
+
+.status-declined {
+    background-color: rgba(255, 119, 130, 0.1);
+    color: #ff7782;
+}
+
+/* New Status Styles */
 .status-active {
     background-color: rgba(65, 241, 182, 0.1);
     color: var(--color-success);
-}
-
-.status-pending {
-    background-color: rgba(255, 187, 85, 0.1);
-    color: var(--color-wraning);
 }
 
 .status-inactive {
@@ -789,4 +869,105 @@ body.dark-theme-variables {
     color: var(--color-danger);
 }
 
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.round-btn {
+    background: #f6f6f9;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    font-size: 1.2rem;
+    color: #6c63ff;
+    box-shadow: 0 2px 8px 0 #e0e0e0;
+    position: relative;
+}
+
+.avatar-img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* تحسين أزرار الجدول */
+.table-action {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1.2rem;
+    margin: 0 4px;
+    padding: 8px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    box-shadow: 0 2px 8px 0 #b3b3ff33;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-action.edit {
+    color: #fff;
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.table-action.edit:hover {
+    background: linear-gradient(135deg, #6c63ff 0%, #43e97b 100%);
+    color: #fff;
+    transform: scale(1.12);
+}
+
+.table-action.delete {
+    color: #fff;
+    background: linear-gradient(135deg, #e53935 0%, #ffb300 100%);
+}
+
+.table-action.delete:hover {
+    background: linear-gradient(135deg, #ff1744 0%, #ffb300 100%);
+    color: #fff;
+    transform: scale(1.12);
+}
+
+/* خصائص الجدول موحدة */
+.product-list-table th,
+.product-list-table td {
+    border-radius: 10px;
+    font-size: 0.95rem;
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px 0;
+}
+
+.product-list-table th {
+    background: var(--table-header-bg) !important;
+    color: var(--table-header-color) !important;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #43e97b;
+}
+
+.product-list-table td {
+    background: transparent;
+    color: var(--table-text-color) !important;
+    font-size: 0.92rem;
+    font-weight: 500;
+    border-radius: 0 !important;
+    box-shadow: none;
+    vertical-align: middle;
+}
+
+.product-list-table tbody tr:hover td {
+    background: var(--table-row-hover-bg) !important;
+    color: var(--table-text-color) !important;
+    transition: background 0.2s, color 0.2s;
+}

@@ -18,6 +18,26 @@ $username = $_SESSION['username'];
 $email = $_SESSION['email'];
 $user_id = $_SESSION['user_id'];
 
+// جلب المنتجات من قاعدة البيانات
+$query = "SELECT p.*, c.c_name, b.b_name, u.name AS added_by_name
+            FROM products p
+            JOIN categories c ON p.Category_id = c.category_id
+            JOIN brands b ON p.Brand_id = b.brand_id
+            JOIN users u ON p.`Added by` = u.id
+            ORDER BY p.product_id DESC";
+$result = mysqli_query($conn, $query);
+
+if (!$result) {
+    die("SQL Error: " . mysqli_error($conn));
+}
+
+$products = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+// إحصائيات المنتجات
+$total_products = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as count FROM products"))['count'];
+$total_categories = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as count FROM categories"))['count'];
+$total_brands = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as count FROM brands"))['count'];
+$total_price = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(price) as total FROM products"))['total'];
 
 ?>
 
@@ -62,34 +82,33 @@ $user_id = $_SESSION['user_id'];
             </div>
             <div class="data-info">
                 <div class="box">
-                    <i class="fas fa-user"></i>
-                    <div class="data">
-                        <p>user</p>
-                        <span>100</span>
-                    </div>
-                </div>
-                <div class="box">
-                    <i class="fas fa-pen"></i>
-                    <div class="data">
-                        <p>posts</p>
-                        <span>765</span>
-                    </div>
-                </div>
-                <div class="box">
                     <i class="fas fa-table"></i>
                     <div class="data">
-                        <p>products</p>
-                        <span>34</span>
+                        <p>Products</p>
+                        <span><?= $total_products ?></span>
                     </div>
                 </div>
                 <div class="box">
-                    <i class="fas fa-dollar"></i>
+                    <i class="fas fa-list"></i>
                     <div class="data">
-                        <p>revenue</p>
-                        <span>$126</span>
+                        <p>Categories</p>
+                        <span><?= $total_categories ?></span>
                     </div>
                 </div>
-                <!--End div data-info-->
+                <div class="box">
+                    <i class="fas fa-tags"></i>
+                    <div class="data">
+                        <p>Brands</p>
+                        <span><?= $total_brands ?></span>
+                    </div>
+                </div>
+                <div class="box">
+                    <i class="fas fa-dollar-sign"></i>
+                    <div class="data">
+                        <p>Total Value</p>
+                        <span>$<?= number_format($total_price, 2) ?></span>
+                    </div>
+                </div>
             </div>
             <div class="products-section">
                 <div class="products-header">
@@ -97,59 +116,56 @@ $user_id = $_SESSION['user_id'];
                         <p>Products List</p>
                         <i class="fas fa-table"></i>
                     </div>
-                    <button class="add-product-btn"><i class="fas fa-plus"></i> Add Product</button>
+                    <a href="add_product.php" class="add-product-btn"><i class="fas fa-plus"></i> Add Product</a>
                 </div>
                 <table class="product-list-table">
                     <thead>
                         <tr>
-                            <th>Product Name</th>
-                            <th>Product Number</th>
-                            <th>Payment</th>
-                            <th>Status</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Model Year</th>
+                            <th>Image</th>
+                            <th>Price</th>
+                            <th>Category</th>
+                            <th>Brand</th>
+                            <th>Description</th>
+                            <th>Added by</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="product-name">Foldable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td><span class="status status-pending">Pending</span></td>
-                            <td class="action-icons">
-                                <a href="#" title="Edit"><i class="fas fa-pen"></i></a>
-                                <a href="#" title="Delete" class="delete"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="product-name">LARVENDER KF102 Drone</td>
-                            <td>36378</td>
-                            <td>Refunded</td>
-                            <td><span class="status status-inactive">Declined</span></td>
-                            <td class="action-icons">
-                                <a href="#" title="Edit"><i class="fas fa-pen"></i></a>
-                                <a href="#" title="Delete" class="delete"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="product-name">Ruko F11 Pro Drone</td>
-                            <td>49347</td>
-                            <td>Due</td>
-                            <td><span class="status status-pending">Pending</span></td>
-                            <td class="action-icons">
-                                <a href="#" title="Edit"><i class="fas fa-pen"></i></a>
-                                <a href="#" title="Delete" class="delete"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="product-name">Drone with Camera Drone</td>
-                            <td>96996</td>
-                            <td>Paid</td>
-                            <td><span class="status status-active">Delivered</span></td>
-                            <td class="action-icons">
-                                <a href="#" title="Edit"><i class="fas fa-pen"></i></a>
-                                <a href="#" title="Delete" class="delete"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
+                        <?php if (count($products) > 0): ?>
+                            <?php $i = 1;
+                            foreach ($products as $product): ?>
+                                <tr>
+                                    <td><?= $i++ ?></td>
+                                    <td><?= htmlspecialchars($product['product_name']) ?></td>
+                                    <td><?= htmlspecialchars($product['model_year']) ?></td>
+                                    <td>
+                                        <?php if ($product['Images']): ?>
+                                            <img src="/project_2/data/uploads/image_products/<?= htmlspecialchars($product['Images']) ?>" alt="Product Image">
+                                        <?php endif; ?>
+                                    </td>
+                                    <td><?= htmlspecialchars($product['price']) ?></td>
+                                    <td><?= htmlspecialchars($product['c_name']) ?></td>
+                                    <td><?= htmlspecialchars($product['b_name']) ?></td>
+                                    <td class="description-cell"><?= htmlspecialchars($product['description']) ?></td>
+                                    <td><?= htmlspecialchars($product['added_by_name']) ?></td>
+                                    <td>
+                                        <a href="product_dashboard/edit.php?id=<?= $product['product_id'] ?>" class="table-action edit" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="product_dashboard/delete.php?id=<?= $product['product_id'] ?>" class="table-action delete" title="Delete">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="5" style="text-align:center;">No products found.</td>
+                            </tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>

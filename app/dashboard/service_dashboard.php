@@ -14,6 +14,18 @@ if ($_SESSION['user_permissions'] != 'admin') {
 }
 
 $username = $_SESSION['username'];
+
+// جلب كل الخدمات
+$services = mysqli_query($conn, "SELECT * FROM services ORDER BY service_id DESC");
+$services = mysqli_fetch_all($services, MYSQLI_ASSOC);
+
+// إحصائيات
+$total_services = count($services);
+$active_services = 0;
+foreach ($services as $srv) {
+    if ($srv['status'] == 'active') $active_services++;
+}
+$inactive_services = $total_services - $active_services;
 ?>
 <!DOCTYPE html>
 <html lang="en">

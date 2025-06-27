@@ -54,7 +54,7 @@
                 </a>
             </div> -->
             <div class="sidebar">
-                <a href="#">
+                <a href="/project_2/app/dashboard/add_product.php">
                     <i class="fas fa-plus"></i>
                     <h3>Add products</h3>
                 </a>

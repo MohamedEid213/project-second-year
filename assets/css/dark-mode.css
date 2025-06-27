@@ -642,7 +642,6 @@
 
 [data-theme="dark"] .product-table td {
     color: var(--text-color)
-
 }
 
 /* Product Edit Page */
@@ -762,4 +761,169 @@
 
 [data-theme="dark"] .error-messages ul li {
     color: var(--text-color);
+}
+
+/* === Discount Page Dark Mode === */
+[data-theme="dark"] .hero {
+    background: linear-gradient(135deg, #111827 0%, #1e293b 100%);
+    color: #fff;
+}
+
+[data-theme="dark"] .hero h1 {
+    background: linear-gradient(45deg, #fff, #fbbf24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+[data-theme="dark"] .hero p,
+[data-theme="dark"] .stat span {
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .stat strong {
+    color: #fbbf24;
+}
+
+[data-theme="dark"] .hero-cta {
+    background: linear-gradient(45deg, #f59e42, #fbbf24);
+    color: #222;
+}
+
+[data-theme="dark"] .hero-cta:hover {
+    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
+}
+
+[data-theme="dark"] .discounts {
+    background: #1e293b;
+}
+
+[data-theme="dark"] .discounts h2 {
+    color: #60a5fa;
+}
+
+[data-theme="dark"] .section-subtitle {
+    color: #94a3b8;
+}
+
+[data-theme="dark"] .discount-card {
+    background: #232b3b;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .discount-card.featured {
+    border: 3px solid #fbbf24;
+    background: linear-gradient(135deg, #232b3b 0%, #3b4252 100%);
+}
+
+[data-theme="dark"] .discount-badge {
+    background: #f87171;
+    color: #fff;
+}
+
+[data-theme="dark"] .discount-amount,
+[data-theme="dark"] .discount-price {
+    color: #fbbf24;
+}
+
+[data-theme="dark"] .discount-card h3 {
+    color: #60a5fa;
+}
+
+[data-theme="dark"] .discount-card p,
+[data-theme="dark"] .service-includes li {
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .original-price {
+    color: #64748b;
+}
+
+[data-theme="dark"] .book-btn {
+    background: linear-gradient(45deg, #60a5fa, #3b82f6);
+    color: #fff;
+}
+
+[data-theme="dark"] .book-btn:hover {
+    background: linear-gradient(45deg, #2563eb, #1e40af);
+}
+
+[data-theme="dark"] .services {
+    background: #232b3b;
+}
+
+[data-theme="dark"] .services h2 {
+    color: #60a5fa;
+}
+
+[data-theme="dark"] .service-item {
+    background: #1e293b;
+    color: #fff;
+}
+
+[data-theme="dark"] .service-item h3 {
+    color: #fbbf24;
+}
+
+[data-theme="dark"] .service-item p {
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .testimonials {
+    background: #232b3b;
+}
+
+[data-theme="dark"] .testimonials h2 {
+    color: #60a5fa;
+}
+
+[data-theme="dark"] .testimonial {
+    background: #1e293b;
+    color: #fff;
+}
+
+[data-theme="dark"] .stars {
+    color: #fbbf24;
+}
+
+[data-theme="dark"] .testimonial p {
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .customer strong {
+    color: #fbbf24;
+}
+
+[data-theme="dark"] .customer span {
+    color: #94a3b8;
+}
+
+[data-theme="dark"] .contact {
+    background: linear-gradient(135deg, #232b3b 0%, #1e293b 100%);
+    color: #fff;
+}
+
+[data-theme="dark"] .contact h2,
+[data-theme="dark"] .contact-info h3,
+[data-theme="dark"] .contact-item strong,
+[data-theme="dark"] .contact-cta h3 {
+    color: #fbbf24;
+}
+
+[data-theme="dark"] .contact-cta {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .cta-phone {
+    background: #fbbf24;
+    color: #232b3b;
+}
+
+[data-theme="dark"] .cta-phone:hover {
+    background: #f59e42;
+}
+
+[data-theme="dark"] .discount-note {
+    color: #94a3b8;
 }

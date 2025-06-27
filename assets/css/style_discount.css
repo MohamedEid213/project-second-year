@@ -245,7 +245,6 @@ body {
 
 .service-item:hover {
     transform: translateY(-5px);
-    background: #f8fafc;
 }
 
 .service-icon {

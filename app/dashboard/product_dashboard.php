@@ -7,6 +7,11 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
     header('location: ./index.php');
     exit();
 }
+if ($_SESSION['user_permissions'] != 'admin') {
+
+    header('location: /project_2/Home.php');
+    exit();
+}
 
 $permissions = $_SESSION['user_permissions'];
 $username = $_SESSION['username'];

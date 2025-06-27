@@ -30,7 +30,6 @@ $result_Services = mysqli_query($conn, $Sql_Services);
 
 $Select_brand = 'SELECT * FROM `brands` ORDER BY b_name';
 $All_Brands = mysqli_query($conn, $Select_brand);
-}
 
 ?>
 
@@ -38,8 +37,7 @@ $All_Brands = mysqli_query($conn, $Select_brand);
 <html lang="en">
 
 <head>
-    <
-title>Service Details</title>
+    <title>Service Details</title>
     <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/header.php'); ?>
     <link rel="stylesheet" href="/project_2/assets/css/style_dateils_service.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -292,12 +290,12 @@ title>Service Details</title>
     <script>
         function openBookingModal() {
             document.getElementById('bookingModal').style.display = 'block';
-            document.body.style.overflow = 'hidden'; // منع التمرير في الصفحة الخلفية
+            document.body.style.overflow = 'auto'; // إعادة تفعيل التمرير
         }
 
         function closeBookingModal() {
             document.getElementById('bookingModal').style.display = 'none';
-            document.body.style.overflow = 'auto'; // إعادة تفعيل التمرير
+
         }
 
         // إغلاق المودال عند النقر خارج المحتوى
@@ -308,58 +306,36 @@ title>Service Details</title>
             }
         }
 
-        // التحكم في ظهور حقل العنوان
-        document.getElementById('deliveryOption').addEventListener('change', function() {
-            const addressBox = document.getElementById('addressBox');
-            addressBox.style.display = this.value === 'delivery' ? 'block' : 'none';
-        })
-        // التحقق من صحة النموذج
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
-            e.preventDefault();;
-            // هنا يمكنك إضافة التحقق من صحة البيانات وإرسالها
-            const formData = {
-                fullName: document.getElementById('fullName').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                date: document.getElementById('date').value,
-                deliveryOption: document.getElementById('deliveryOption').value,
-                deliveryAddress: document.getElementById('deliveryAddress').value
-            };
 
-            // إظهار رسالة نجاح
-            alert('تم إرسال طلب الحجز بنجاح!');
-            closeBookingModal();
+        // Video play button functionality
+        const videoPlayer = document.querySelector('.video-player');
+        const playButton = document.querySelector('.play-button');
+        const videoOverlay = document.querySelector('.video-overlay');
 
+        if (videoPlayer && playButton && videoOverlay) {
+            playButton.addEventListener('click', () => {
+                videoPlayer.play().catch(error => {
+                    console.log('Error playing video:', error);
+                });
+                videoOverlay.style.display = 'none';
+            });
 
+            videoPlayer.addEventListener('play', () => {
+                videoOverlay.style.display = 'none';
+            });
+
+            videoPlayer.addEventListener('pause', () => {
+                videoOverlay.style.display = 'flex';
+            });
+
+            videoPlayer.addEventListener('error', (e) => {
+                console.log('Video error:', e);
+            });
+        } else {
+            console.log('Video elements not found');
+        }
+    </script>
+
+</body>
 
 </html>
-<scpt src="/project_2/asss/js/sidebar.js"/script>
-<script>
-    // Video play buttounctionality
-   const videoPlayer = documenuerySelector'.viplayer');
-    const playButton cument.querySelector('.play-button');
-    const videoOverlay = dont.querySelector('.video-overlay');
-
-   yButton.addEventListener('click', () => {
-        videoPlayer.play();
-        videoOverlay.style.display = 'none';
-    });
-
-    videoPlayer.addEventListener('play', () => {
-        videoOverlay.style.display = 'none';
-    });
-
-    videoPlayer.addEventListener('pause', () => {
-        videoOverlay.style.display = 'flex';
-    });
-</script>
-
-<!-- 
-
-
-
-
-
-
-
-  -->

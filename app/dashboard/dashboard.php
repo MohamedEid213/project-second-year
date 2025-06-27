@@ -20,6 +20,21 @@ $email = $_SESSION['email'];
 $user_id = $_SESSION['user_id'];
 
 
+
+// جلب آخر 7 طلبات (يمكنك تغيير العدد حسب الحاجة)
+$recent_orders = [];
+$query_recent = "SELECT o.order_id, o.order_status, o.payment_status, o.total_price, o.order_date, 
+                        p.product_name
+                 FROM orders o
+                  JOIN order_items oi ON o.order_id = oi.Order_id
+                  JOIN products p ON oi.Product_id = p.product_id
+                 ORDER BY o.order_date DESC
+                 LIMIT 7";
+$result_recent = mysqli_query($conn, $query_recent);
+if ($result_recent && mysqli_num_rows($result_recent) > 0) {
+  $recent_orders = mysqli_fetch_all($result_recent, MYSQLI_ASSOC);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -106,6 +121,7 @@ $user_id = $_SESSION['user_id'];
         </div>
         <!-- End Insights -->
       </div>
+
       <div class="recent-orders">
         <h2>Recent Orders</h2>
         <table>
@@ -119,59 +135,34 @@ $user_id = $_SESSION['user_id'];
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Foldable Mini Drone</td>
-              <td>85631</td>
-              <td>Due</td>
-              <td class="warning">Pending</td>
-              <td class="primary">Details</td>
-            </tr>
-            <tr>
-              <td>LARVENDER KF102 Drone</td>
-              <td>36378</td>
-              <td>Refunded</td>
-              <td class="danger">Declined</td>
-              <td class="primary">Details</td>
-            </tr>
-            <tr>
-              <td>Ruko F11 Pro Drone</td>
-              <td>49347</td>
-              <td>Due</td>
-              <td class="warning">Pending</td>
-              <td class="primary">Details</td>
-            </tr>
-            <tr>
-              <td>Drone with Camera Drone</td>
-              <td>96996</td>
-              <td>Paid</td>
-              <td class="success">Delivered</td>
-              <td class="primary">Details</td>
-            </tr>
-            <tr>
-              <td>GPS 4k Drone</td>
-              <td>22821</td>
-              <td>Paid</td>
-              <td class="success">Delivered</td>
-              <td class="primary">Details</td>
-            </tr>
-            <tr>
-              <td>DJI Air 2S</td>
-              <td>81475</td>
-              <td>Due</td>
-              <td class="warning">Pending</td>
-              <td class="primary">Details</td>
-            </tr>
-            <tr>
-              <td>Lozenge Drone</td>
-              <td>00482</td>
-              <td>Paid</td>
-              <td class="success">Delivered</td>
-              <td class="primary">Details</td>
-            </tr>
-
+            <?php if (count($recent_orders) > 0): ?>
+              <?php foreach ($recent_orders as $order): ?>
+                <tr>
+                  <td><?= htmlspecialchars($order['product_name'] ?? '---') ?></td>
+                  <td><?= htmlspecialchars($order['order_id']) ?></td>
+                  <td><?= htmlspecialchars($order['payment_status']) ?></td>
+                  <td class="<?php
+                              $status = strtolower($order['order_status']);
+                              if ($status == 'pending') echo 'warning';
+                              elseif ($status == 'completed' || $status == 'delivered') echo 'success';
+                              elseif ($status == 'declined' || $status == 'cancelled') echo 'danger';
+                              else echo 'primary';
+                              ?>">
+                    <?= ucfirst($order['order_status']) ?>
+                  </td>
+                  <td class="primary">
+                    <a href="/project_2/app/dashboard/order_dashboard/view.php?id=<?= $order['order_id'] ?>" style="color:inherit;text-decoration:none;">Details</a>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
+            <?php else: ?>
+              <tr>
+                <td colspan="5">No recent orders found.</td>
+              </tr>
+            <?php endif; ?>
           </tbody>
         </table>
-        <a href="#">Show All</a>
+        <a href="/project_2/app/dashboard/order_dashboard.php">Show All</a>
       </div>
     </main>
     <!-- End main Section  -->
@@ -182,11 +173,11 @@ $user_id = $_SESSION['user_id'];
         </button>
         <div class="profile">
           <div class="info">
-            <p>Hey, <b>Daniel</b></p>
+            <p>Hey, <b><?= htmlspecialchars($username) ?></b></p>
             <small class="text-muted">Admin</small>
           </div>
           <div class="profile-photo">
-            <img src="Images/profile-1.jpg" alt="">
+            <img src="/project_2/assets/image/image_users/photo_private.png" alt="">
           </div>
         </div>
 
@@ -197,7 +188,7 @@ $user_id = $_SESSION['user_id'];
         <div class="updates">
           <div class="update">
             <div class="profile-photo">
-              <img src="Images/profile-2.jpg" alt="">
+              <img src="/project_2/assets/image/photo_dashboard/profile-2.jpg" alt="">
             </div>
             <div class="messages">
               <p><b>Mike Tyson</b>Received his order of Night lion tech GPS drone </p>
@@ -206,7 +197,7 @@ $user_id = $_SESSION['user_id'];
           </div>
           <div class="update">
             <div class="profile-photo">
-              <img src="Images/profile-3.jpeg" alt="">
+              <img src="/project_2/assets/image/photo_dashboard/profile-3.jpeg" alt="">
             </div>
             <div class="messages">
               <p><b>Mike Tyson</b>Received his order of Night lion tech GPS drone </p>
@@ -215,7 +206,7 @@ $user_id = $_SESSION['user_id'];
           </div>
           <div class="update">
             <div class="profile-photo">
-              <img src="Images/profile-1.jpg" alt="">
+              <img src="/project_2/assets/image/photo_dashboard/profile-1.jpg" alt="">
             </div>
             <div class="messages">
               <p><b>Ahmed Hussin</b>Received his order of Night lion tech GPS drone </p>
@@ -269,12 +260,12 @@ $user_id = $_SESSION['user_id'];
           </div>
         </div>
         <!-- End online  -->
-        <div class="item add-product">
+        <a href="/project_2/app/dashboard/add_product.php" class="item add-product" style="text-decoration:none;">
           <div>
             <i class="fas fa-plus"></i>
             <h3>Add Product</h3>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>

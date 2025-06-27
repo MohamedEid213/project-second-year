@@ -301,10 +301,10 @@ if (isset($_POST['submit'])) {
                 <div class="profile">
                     <div class="info">
                         <p>Hey, <b><?= $_SESSION['username'] ?></b></p>
-                        <small class="text-muted"><?= ucfirst($_SESSION['user_permissions']) ?></small>
+                        <p class="text-muted"><?= ucfirst($_SESSION['user_permissions']) ?></p>
                     </div>
                     <div class="profile-photo">
-                        <img src="/project_2/assets/image/photo_dashboard/profile-1.jpg" alt="">
+                        <img src="/project_2/assets/image/image_users/photo_private.png" alt="">
                     </div>
                 </div>
             </div>

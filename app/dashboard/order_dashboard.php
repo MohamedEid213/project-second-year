@@ -69,10 +69,11 @@ foreach ($orders as $order) {
                 <div class="profile">
                     <div class="info">
                         <p>Hey, <b><?php echo htmlspecialchars($username); ?></b></p>
-                        <small class="text-muted">Admin</small>
+                        <p class="text-muted"><?= ucfirst($_SESSION['user_permissions']) ?></p>
+
                     </div>
                     <div class="profile-photo">
-                        <img src="/project_2/assets/image/photo_dashboard/profile-1.jpg" alt="User Avatar">
+                        <img src="/project_2/assets/image/image_users/photo_private.png" alt="User Avatar">
                     </div>
                 </div>
             </div>
@@ -107,7 +108,7 @@ foreach ($orders as $order) {
                 <div class="summary-card">
                     <div class="icon total-revenue"><i class="fas fa-dollar-sign"></i></div>
                     <div class="info">
-                        <h3>$<?= number_format($total_revenue, 2) ?></h3>
+                        <h3>£E <?= number_format($total_revenue, 2) ?></h3>
                         <p>Total Revenue</p>
                     </div>
                 </div>
@@ -145,11 +146,11 @@ foreach ($orders as $order) {
                             <?php $i = 1;
                             foreach ($orders as $order): ?>
                                 <tr>
-                                    <td>#<?= $i++ ?></td>
+                                    <td> <?= $i++ ?></td>
                                     <td><?= htmlspecialchars($order['client_name'] ?? 'Unknown') ?></td>
                                     <td><?= htmlspecialchars($order['store_name'] ?? 'Unknown') ?></td>
                                     <td><?= htmlspecialchars($order['order_date']) ?></td>
-                                    <td>$<?= number_format($order['total_price'], 2) ?></td>
+                                    <td>£E <?= number_format($order['total_price'], 2) ?></td>
                                     <td>
                                         <?php
                                         $status = strtolower($order['order_status']);
@@ -186,8 +187,6 @@ foreach ($orders as $order) {
                                         $payStatus = strtolower($order['payment_status']);
                                         $payClass = 'status ';
                                         if ($payStatus == 'paid') $payClass .= 'status-completed';
-                                        elseif ($payStatus == 'pending') $payClass .= 'status-pending';
-                                        elseif ($payStatus == 'failed' || $payStatus == 'cancelled') $payClass .= 'status-cancelled';
                                         else $payClass .= 'status-pending';
                                         ?>
                                         <span class="<?= $payClass ?>">

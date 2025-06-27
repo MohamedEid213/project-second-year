@@ -68,10 +68,11 @@ $total_price = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(price) as tota
                 <div class="profile">
                     <div class="info">
                         <p>Hey, <b><?php echo htmlspecialchars($username); ?></b></p>
-                        <small class="text-muted">User</small>
+                        <p class="text-muted"><?= ucfirst($_SESSION['user_permissions']) ?></p>
+
                     </div>
                     <div class="profile-photo">
-                        <img src="/project_2/assets/image/photo_dashboard/profile-1.jpg" alt="User Avatar">
+                        <img src="/project_2/assets/image/image_users/photo_private.png" alt="User Avatar">
                     </div>
                 </div>
             </div>

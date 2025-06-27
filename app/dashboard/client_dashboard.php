@@ -120,7 +120,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 
 </head>
 
-<body id="clients_page_layout">
+<body id="clients_page_layout" class="dark-theme-variables"> <!-- Unique ID to prevent CSS conflicts -->
     <div class="container">
         <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/sidebar_dashboard.php'); ?>
 
@@ -130,10 +130,11 @@ if ($result && mysqli_num_rows($result) > 0) {
                 <div class="profile">
                     <div class="info">
                         <p>Hey, <b><?php echo htmlspecialchars($username); ?></b></p>
-                        <small class="text-muted">User</small>
+                        <p class="text-muted"><?= ucfirst($_SESSION['user_permissions']) ?></p>
+
                     </div>
                     <div class="profile-photo">
-                        <img src="/project_2/assets/image/photo_dashboard/profile-1.jpg" alt="User Avatar">
+                        <img src="/project_2/assets/image/image_users/photo_private.png" alt="">
                     </div>
                 </div>
             </div>

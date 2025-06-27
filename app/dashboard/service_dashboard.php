@@ -61,10 +61,12 @@ foreach ($services as $srv) {
                         <div class="service-profile-info">
                             <div class="service-profile-text">
                                 <p>Hey, <span><?php echo htmlspecialchars($username); ?></span></p>
-                                <small class="service-profile-role">User</small>
+
+                                <p class="service-profile-role"><?= ucfirst($_SESSION['user_permissions']) ?></p>
+
                             </div>
                             <div class="service-profile-photo">
-                                <img src="/project_2/assets/image/photo_dashboard/profile-1.jpg" alt="User Avatar">
+                                <img src="/project_2/assets/image/image_users/photo_private.png" alt="User Avatar">
                             </div>
                         </div>
                     </div>
@@ -140,7 +142,7 @@ foreach ($services as $srv) {
                                         </td>
                                         <td>
                                             <?php if ($service['video']): ?>
-                                                <a href="/project_2/data/uploads/image_products/<?= htmlspecialchars($service['video']) ?>" target="_blank">View</a>
+                                                <a href="/project_2/app/dateils_services/Videos/<?= htmlspecialchars($service['video']) ?>" target="_blank">View</a>
                                             <?php endif; ?>
                                         </td>
                                         <td><?= htmlspecialchars($service['create_at']) ?></td>

@@ -1,6 +1,60 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jun 28, 2025 at 02:50 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `repair-center`
+--
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetBookingStats` ()   BEGIN
+    SELECT 
+        COUNT(*) as total_bookings,
+        COUNT(CASE WHEN status = 'pending' THEN 1 END) as pending_bookings,
+        COUNT(CASE WHEN status = 'confirmed' THEN 1 END) as confirmed_bookings,
+        COUNT(CASE WHEN status = 'completed' THEN 1 END) as completed_bookings,
+        COUNT(CASE WHEN status = 'cancelled' THEN 1 END) as cancelled_bookings
+    FROM bookings;
+END$$
+
+--
+-- Functions
+--
+CREATE DEFINER=`root`@`localhost` FUNCTION `GetUserBookingCount` (`user_id_param` INT) RETURNS INT(11) DETERMINISTIC READS SQL DATA BEGIN
+    DECLARE booking_count INT;
+    
+    SELECT COUNT(*) INTO booking_count
+    FROM bookings 
+    WHERE user_id = user_id_param;
+    
+    RETURN booking_count;
+END$$
+
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `address`
+--
 
 CREATE TABLE `address` (
   `address_id` int(11) NOT NULL,
@@ -9,19 +63,39 @@ CREATE TABLE `address` (
   `country` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `basket`
+--
+
 CREATE TABLE `basket` (
   `basket_id` int(11) NOT NULL,
   `Client_id` int(11) NOT NULL,
   `Product_id` int(11) NOT NULL,
-  `added_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `added_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `service_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `basket` (`basket_id`, `Client_id`, `Product_id`, `added_at`) VALUES
-(18, 18, 17, '2025-04-21 09:13:43'),
-(19, 18, 14, '2025-04-21 09:13:56'),
-(20, 18, 12, '2025-04-21 09:14:14'),
-(21, 18, 11, '2025-04-22 12:21:16');
+--
+-- Dumping data for table `basket`
+--
 
+INSERT INTO `basket` (`basket_id`, `Client_id`, `Product_id`, `added_at`, `service_id`) VALUES
+(59, 18, 14, '2025-06-04 17:42:56', NULL),
+(60, 18, 13, '2025-06-04 17:43:05', NULL),
+(61, 18, 17, '2025-06-04 17:43:18', NULL),
+(64, 19, 14, '2025-06-12 14:41:34', NULL),
+(65, 19, 17, '2025-06-12 14:44:24', NULL),
+(72, 17, 15, '2025-06-27 11:21:04', NULL),
+(73, 17, 17, '2025-06-27 11:21:16', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `baskets_products`
+-- (See below for the actual view)
+--
 CREATE TABLE `baskets_products` (
 `product_name` varchar(255)
 ,`product_id` int(11)
@@ -32,10 +106,93 @@ CREATE TABLE `baskets_products` (
 ,`basket_id` int(11)
 );
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookings`
+--
+
+CREATE TABLE `bookings` (
+  `booking_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `service_id` int(11) DEFAULT NULL,
+  `full_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `booking_date` date NOT NULL,
+  `car_type` varchar(100) DEFAULT NULL,
+  `delivery_address` text DEFAULT NULL,
+  `status` enum('pending','confirmed','cancelled','completed') DEFAULT 'pending',
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`booking_id`, `user_id`, `service_id`, `full_name`, `email`, `phone`, `booking_date`, `car_type`, `delivery_address`, `status`, `notes`, `created_at`, `updated_at`) VALUES
+(1, 17, 1, 'أحمد محمد علي', 'ahmed@example.com', '01234567890', '2025-01-15', 'Toyota', NULL, 'confirmed', 'مطلوب فحص شامل للمحرك', '2025-06-18 11:38:02', '2025-06-18 11:38:02'),
+(2, 17, 2, 'فاطمة أحمد', 'fatima@example.com', '01234567891', '2025-01-16', 'Honda', 'شارع النصر، القاهرة', 'pending', 'تغيير زيت وفلتر', '2025-06-18 11:38:02', '2025-06-18 11:38:02'),
+(3, 19, 3, 'محمد عبدالله', 'mohamed@example.com', '01234567892', '2025-01-17', 'BMW', NULL, 'pending', 'فحص نظام الفرامل', '2025-06-18 11:38:02', '2025-06-18 11:38:02'),
+(4, 19, 1, 'سارة محمود', 'sara@example.com', '01234567893', '2025-01-18', 'Mercedes', 'شارع التحرير، الإسكندرية', 'confirmed', 'صيانة دورية', '2025-06-18 11:38:02', '2025-06-18 11:38:02'),
+(5, 17, 4, 'علي حسن', 'ali@example.com', '01234567894', '2025-01-19', 'Audi', NULL, 'pending', 'إصلاح نظام التكييف', '2025-06-18 11:38:02', '2025-06-18 11:38:02'),
+(6, 17, 2, 'Mohamed Eid Ramadan', 'mhm@gmail.com', '01021153637', '2025-06-18', '6', '', 'pending', NULL, '2025-06-18 11:57:31', '2025-06-18 11:57:31'),
+(7, 17, 1, 'Asmaa Ramadan Mohammed', 'ly453145@gmail.com', '01080105668', '2025-07-14', '22', 'Beni Suef', 'pending', NULL, '2025-06-28 00:44:08', '2025-06-28 00:44:08'),
+(8, 17, 1, 'Asmaa Ramadan Mohammed', 'ly453145@gmail.com', '01080105668', '2025-07-14', '22', 'Beni Suef', 'pending', NULL, '2025-06-28 00:45:18', '2025-06-28 00:45:18'),
+(9, 17, 1, 'Ziad Mohammed', 'ziadout360@gmail.com', '01024153986', '2025-07-02', '13', 'Beni Suef', 'pending', NULL, '2025-06-28 00:45:35', '2025-06-28 00:45:35'),
+(10, 17, 1, 'Ziad Mohammed', 'ziadout360@gmail.com', '01024153986', '2025-07-02', '13', 'Beni Suef', 'pending', NULL, '2025-06-28 00:46:44', '2025-06-28 00:46:44'),
+(11, 17, 1, 'Ziad Mohammed', 'ziadout360@gmail.com', '01024153986', '2025-07-02', '13', 'Beni Suef', 'pending', NULL, '2025-06-28 00:47:12', '2025-06-28 00:47:12'),
+(12, 17, 1, 'Ziad Mohammed', 'ziadout360@gmail.com', '01024153986', '2025-07-02', '13', 'Beni Suef', 'pending', NULL, '2025-06-28 00:47:17', '2025-06-28 00:47:17'),
+(13, 17, 1, 'Mohamed Eid Ramadan', 'myg4527@gmail.com', '01021153637', '2025-08-21', '41', 'Beni Suef', 'pending', NULL, '2025-06-28 00:47:53', '2025-06-28 00:47:53');
+
+--
+-- Triggers `bookings`
+--
+DELIMITER $$
+CREATE TRIGGER `update_booking_timestamp` BEFORE UPDATE ON `bookings` FOR EACH ROW BEGIN
+    SET NEW.updated_at = CURRENT_TIMESTAMP;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `bookings_details`
+-- (See below for the actual view)
+--
+CREATE TABLE `bookings_details` (
+`booking_id` int(11)
+,`full_name` varchar(255)
+,`email` varchar(255)
+,`phone` varchar(20)
+,`booking_date` date
+,`car_type` varchar(100)
+,`delivery_address` text
+,`status` enum('pending','confirmed','cancelled','completed')
+,`notes` text
+,`created_at` timestamp
+,`name` varchar(100)
+,`service_name` varchar(255)
+,`service_description` text
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `brands`
+--
+
 CREATE TABLE `brands` (
   `brand_id` int(11) NOT NULL,
   `b_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `brands`
+--
 
 INSERT INTO `brands` (`brand_id`, `b_name`) VALUES
 (1, 'Acura'),
@@ -44,7 +201,7 @@ INSERT INTO `brands` (`brand_id`, `b_name`) VALUES
 (4, 'BMW'),
 (5, 'Buick'),
 (6, 'Cadillac'),
-(7, 'Volkswagen'),
+(7, 'Volkswagen	'),
 (8, 'Subaru'),
 (9, 'Porsche'),
 (10, 'Mazda'),
@@ -88,10 +245,20 @@ INSERT INTO `brands` (`brand_id`, `b_name`) VALUES
 (48, 'Kia'),
 (49, 'Rolls-Royce');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
 CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
   `C_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `categories`
+--
 
 INSERT INTO `categories` (`category_id`, `C_name`) VALUES
 (17, 'Engine'),
@@ -109,12 +276,24 @@ INSERT INTO `categories` (`category_id`, `C_name`) VALUES
 (29, 'Filters'),
 (30, 'Tools & Maintenance');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `favorites`
+--
+
 CREATE TABLE `favorites` (
   `favorite_id` int(11) NOT NULL,
   `Client_id` int(11) NOT NULL,
   `Product_id` int(11) NOT NULL,
   `added_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `features`
+--
 
 CREATE TABLE `features` (
   `feature_id` int(11) NOT NULL,
@@ -123,6 +302,12 @@ CREATE TABLE `features` (
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
 
 CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
@@ -138,6 +323,39 @@ CREATE TABLE `orders` (
   `payment_system` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `order_status`, `order_date`, `delivery_date`, `client_id`, `store_id`, `staff_id`, `total_price`, `payment_status`, `shipped_address`, `payment_system`) VALUES
+(4, 'Pending', '2025-06-25', '2025-06-30', 17, 1, 3, 1350.00, 'Unpaid', '12 El-Nozha St, Cairo', 'Cash'),
+(25, 'Pending', '2025-06-16', '2025-06-21', 17, 5, 15, 1810.00, 'Unpaid', '23 Main Street', 'Bank Transfer'),
+(26, 'Cancelled', '2025-06-17', '2025-06-21', 19, 2, 9, 2260.00, 'Paid', '35 Main Street', 'Cash'),
+(27, 'Processing', '2025-06-01', '2025-06-04', 18, 5, 3, 2960.00, 'Unpaid', '72 Main Street', 'Cash'),
+(28, 'Shipped', '2025-06-11', '2025-06-12', 17, 5, 17, 810.00, 'Unpaid', '22 Main Street', 'Credit Card'),
+(29, 'Delivered', '2025-06-17', '2025-06-20', 19, 5, 15, 2160.00, 'Paid', '59 Main Street', 'Credit Card'),
+(30, 'Pending', '2025-06-13', '2025-06-18', 18, 2, 3, 3510.00, 'Unpaid', '27 Main Street', 'Bank Transfer'),
+(31, 'Processing', '2025-06-03', '2025-06-06', 17, 1, 1, 2210.00, 'Paid', '72 Main Street', 'Cash'),
+(32, 'Pending', '2025-06-14', '2025-06-19', 19, 5, 6, 2070.00, 'Unpaid', '31 Main Street', 'Cash'),
+(33, 'Shipped', '2025-06-20', '2025-06-25', 18, 3, 4, 1730.00, 'Paid', '97 Main Street', 'Cash'),
+(34, 'Delivered', '2025-06-14', '2025-06-19', 17, 5, 15, 1070.00, 'Paid', '26 Main Street', 'Bank Transfer'),
+(35, 'Delivered', '2025-06-14', '2025-06-18', 19, 1, 19, 1630.00, 'Paid', '23 Main Street', 'Credit Card'),
+(36, 'Cancelled', '2025-06-07', '2025-06-09', 18, 1, 6, 2020.00, 'Unpaid', '74 Main Street', 'Bank Transfer'),
+(37, 'Shipped', '2025-06-06', '2025-06-11', 17, 4, 11, 1890.00, 'Unpaid', '80 Main Street', 'Cash'),
+(38, 'Processing', '2025-06-01', '2025-06-06', 19, 2, 2, 3370.00, 'Paid', '30 Main Street', 'Cash'),
+(39, 'Pending', '2025-06-19', '2025-06-20', 18, 1, 6, 2090.00, 'Unpaid', '54 Main Street', 'Cash'),
+(40, 'Shipped', '2025-06-10', '2025-06-13', 17, 2, 6, 2610.00, 'Paid', '74 Main Street', 'Credit Card'),
+(41, 'Cancelled', '2025-06-04', '2025-06-08', 19, 3, 6, 2540.00, 'Unpaid', '57 Main Street', 'Bank Transfer'),
+(42, 'Delivered', '2025-06-18', '2025-06-21', 18, 3, 5, 1530.00, 'Paid', '21 Main Street', 'Bank Transfer'),
+(43, 'Pending', '2025-06-06', '2025-06-07', 17, 3, 13, 2360.00, 'Paid', '18 Main Street', 'Credit Card'),
+(44, 'Pending', '2025-06-11', '2025-06-13', 19, 1, 9, 1810.00, 'Unpaid', '84 Main Street', 'Cash');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_items`
+--
+
 CREATE TABLE `order_items` (
   `O_I_id` int(11) NOT NULL,
   `Order_id` int(11) DEFAULT NULL,
@@ -145,14 +363,99 @@ CREATE TABLE `order_items` (
   `quantity_order` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `discount` decimal(10,2) DEFAULT 0.00,
-  `total_price` decimal(10,2) GENERATED ALWAYS AS (`quantity_order` * `price` - `discount`) STORED
+  `total_price` decimal(10,2) GENERATED ALWAYS AS (`quantity_order` * `price` - `discount`) STORED,
+  `service_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_items`
+--
+
+INSERT INTO `order_items` (`O_I_id`, `Order_id`, `Product_id`, `quantity_order`, `price`, `discount`, `service_id`) VALUES
+(7, 4, 10, 2, 250.00, 20.00, 1),
+(8, 4, 7, 1, 120.00, 0.00, 2),
+(9, 4, 9, 2, 400.00, 50.00, 3),
+(262, 4, 17, 5, 120.00, 10.00, 2),
+(263, 4, 10, 2, 300.00, 10.00, 3),
+(264, 4, 15, 1, 300.00, 20.00, 1),
+(265, 4, 11, 3, 120.00, 10.00, 2),
+(266, 25, 8, 3, 180.00, 10.00, 2),
+(267, 25, 7, 3, 250.00, 0.00, 2),
+(268, 25, 13, 4, 250.00, 20.00, 1),
+(269, 26, 7, 4, 120.00, 10.00, 5),
+(270, 26, 15, 2, 300.00, 10.00, 2),
+(271, 26, 6, 4, 180.00, 10.00, 5),
+(272, 26, 16, 4, 300.00, 10.00, 2),
+(273, 27, 14, 2, 120.00, 20.00, 3),
+(274, 27, 13, 5, 120.00, 10.00, 1),
+(275, 28, 12, 1, 300.00, 0.00, 1),
+(276, 28, 9, 4, 250.00, 20.00, 4),
+(277, 28, 16, 5, 120.00, 20.00, 4),
+(278, 28, 14, 1, 300.00, 0.00, 2),
+(279, 29, 16, 5, 300.00, 0.00, 4),
+(280, 29, 12, 4, 300.00, 20.00, 1),
+(281, 29, 12, 3, 120.00, 10.00, 1),
+(282, 29, 13, 2, 250.00, 20.00, 4),
+(283, 30, 7, 4, 250.00, 10.00, 4),
+(284, 30, 8, 5, 180.00, 20.00, 2),
+(285, 30, 11, 2, 180.00, 20.00, 5),
+(286, 31, 14, 2, 300.00, 0.00, 3),
+(287, 31, 12, 5, 120.00, 10.00, 3),
+(288, 31, 15, 3, 300.00, 20.00, 4),
+(289, 32, 17, 3, 250.00, 10.00, 3),
+(290, 32, 17, 4, 250.00, 10.00, 1),
+(291, 33, 14, 3, 300.00, 0.00, 1),
+(292, 33, 6, 1, 180.00, 10.00, 5),
+(293, 34, 12, 4, 250.00, 0.00, 5),
+(294, 34, 7, 3, 120.00, 20.00, 1),
+(295, 34, 11, 1, 300.00, 10.00, 1),
+(296, 35, 6, 3, 180.00, 0.00, 3),
+(297, 35, 12, 5, 300.00, 20.00, 4),
+(298, 36, 16, 4, 180.00, 10.00, 5),
+(299, 36, 15, 4, 300.00, 20.00, 3),
+(300, 37, 13, 5, 300.00, 10.00, 5),
+(301, 37, 15, 3, 180.00, 20.00, 4),
+(302, 37, 9, 3, 300.00, 0.00, 2),
+(303, 37, 9, 4, 120.00, 20.00, 4),
+(304, 38, 14, 3, 250.00, 20.00, 4),
+(305, 38, 8, 4, 120.00, 10.00, 4),
+(306, 38, 13, 5, 180.00, 10.00, 2),
+(307, 39, 10, 2, 120.00, 0.00, 2),
+(308, 39, 10, 2, 300.00, 10.00, 3),
+(309, 39, 14, 5, 120.00, 20.00, 1),
+(310, 39, 14, 4, 300.00, 0.00, 4),
+(311, 40, 14, 3, 120.00, 20.00, 2),
+(312, 40, 16, 3, 120.00, 10.00, 5),
+(313, 40, 9, 2, 180.00, 10.00, 2),
+(314, 40, 13, 5, 300.00, 0.00, 1),
+(315, 41, 13, 4, 120.00, 20.00, 4),
+(316, 41, 7, 3, 300.00, 10.00, 2),
+(317, 41, 12, 1, 180.00, 0.00, 1),
+(318, 42, 15, 1, 180.00, 20.00, 4),
+(319, 42, 17, 4, 250.00, 0.00, 5),
+(320, 42, 13, 4, 300.00, 0.00, 2),
+(321, 43, 6, 4, 300.00, 0.00, 4),
+(322, 43, 10, 2, 120.00, 20.00, 4),
+(323, 43, 14, 1, 300.00, 10.00, 5),
+(324, 43, 16, 1, 120.00, 20.00, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `phone`
+--
 
 CREATE TABLE `phone` (
   `phone_Id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `phone` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
 
 CREATE TABLE `products` (
   `product_id` int(11) NOT NULL,
@@ -166,19 +469,29 @@ CREATE TABLE `products` (
   `Added by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `products`
+--
+
 INSERT INTO `products` (`product_id`, `product_name`, `model_year`, `Images`, `price`, `Category_id`, `Brand_id`, `description`, `Added by`) VALUES
 (6, 'Oil Filter', '2001', 'OIP.jfif', 10.00, 17, 43, 'Filters impurities from engine oil to keep it clean.', 17),
 (7, 'Car Battery', '2001', 'OIP (1).jfif', 90.00, 22, 20, 'Supplies power to start the engine and power electronics.', 17),
 (8, 'Brake Pads', '2001', 'OIP (2).jfif', 50.00, 20, 4, 'Helps stop the car by creating friction with the brake disc.', 17),
 (9, 'Spark Plugs', '2001', 'istockphoto-187456483-612x612.jpg', 20.00, 17, 40, 'Ignite the fuel-air mixture inside the engine cylinders.', 17),
 (10, 'Car Tire', '2001', 'OIP (3).jfif', 120.00, 25, 1, 'Provides traction, balance, and support for the car.', 17),
-(11, 'Side Mirror', '2001', 'OIP (4).jfif', 45.00, 24, 1, 'Allows the driver to see vehicles on the sides.', 17),
+(11, 'Side Mirror', '2001', 'OIP (4).jfif', 45.00, 24, 1, 'Allows the driver to see vehicles on the sides.	', 17),
 (12, 'Brake Shoes', '2001', 'brake-shoes.jpg', 55.00, 20, 41, 'Used in drum brake systems, usually in rear wheels.', 17),
 (13, 'Timing Belt', '2001', 'R.jfif', 80.00, 17, 4, 'Synchronizes the crankshaft and camshaft movement.', 17),
-(14, 'AC Condenser', '2001', 'OIP (5).jfif', 110.00, 21, 24, 'Cools down refrigerant in the air conditioning system.', 17),
+(14, 'AC Condenser T', '2001', 'OIP (5).jfif', 110.00, 21, 4, 'Cools down refrigerant in the air conditioning system.', 17),
 (15, 'Ignition Coils', '2001', 'R.png', 70.00, 22, 39, 'Transforms battery voltage into high voltage for spark plugs.', 17),
 (16, 'Fuel Filter', '2001', 'OIP (6).jfif', 12.00, 17, 5, 'Removes dirt and rust from the fuel before it reaches the engine.', 17),
-(17, 'Car Battery', '2001', 'OIP (1).jfif', 43.00, 29, 22, 'fhkgv', 17);
+(17, 'Car Battery', '2001', 'OIP (1).jfif', 45.00, 29, 22, 'attribute any by you will', 17);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `promotions`
+--
 
 CREATE TABLE `promotions` (
   `promotion_id` int(11) NOT NULL,
@@ -186,8 +499,15 @@ CREATE TABLE `promotions` (
   `discount` decimal(5,2) DEFAULT NULL CHECK (`discount` >= 0 and `discount` <= 100),
   `start_date` date NOT NULL,
   `end_date` date NOT NULL CHECK (`end_date` > `start_date`),
-  `promotion_description` text DEFAULT NULL
+  `promotion_description` text DEFAULT NULL,
+  `service_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews`
+--
 
 CREATE TABLE `reviews` (
   `review_id` int(11) NOT NULL,
@@ -201,6 +521,12 @@ CREATE TABLE `reviews` (
   `comments` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `services`
+--
+
 CREATE TABLE `services` (
   `service_id` int(11) NOT NULL,
   `s_name` varchar(255) NOT NULL,
@@ -210,6 +536,24 @@ CREATE TABLE `services` (
   `video` varchar(255) DEFAULT NULL,
   `create_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `services`
+--
+
+INSERT INTO `services` (`service_id`, `s_name`, `s_description`, `status`, `image`, `video`, `create_at`) VALUES
+(1, 'Brake Service', 'Professional brake repair and maintenance including:', 'actitive', 'brakes.png', 'transmission_repair.mp4', '2025-04-30 11:46:05'),
+(2, 'Engine Repair', 'Complete diagnostics and repair for all engine types. We specialize in:', 'inactive', 'maintenance_Engine.png', 'engine_diagnatics.mp4', '2025-04-30 11:46:05'),
+(3, 'Oil Change', 'Regular maintenance and oil changes with:', 'actitive', 'oil-change.png', 'oil-chnage.mp4', '2025-04-30 11:46:05'),
+(4, 'Transmission', 'Transmission repair and replacement services including:', 'actitive', 'transmission.png', 'maintenance-brake.mp4', '2025-04-30 11:46:05'),
+(5, 'AC Service', 'Complete air conditioning system service featuring:', 'actitive', 'air-conditioner.png', 'ac repair.mp4', '2025-04-30 11:46:05'),
+(6, 'Tire Service', 'Comprehensive tire care including:', 'actitive', 'car-repair.png', 'tirereplacement.mp4', '2025-04-30 11:46:05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staff`
+--
 
 CREATE TABLE `staff` (
   `staff_id` int(11) NOT NULL,
@@ -221,12 +565,50 @@ CREATE TABLE `staff` (
   `email` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`staff_id`, `staff_name`, `manager_id`, `phone`, `staff_status`, `store_id`, `email`) VALUES
+(1, 'Ahmed Hossam', NULL, '+20 100 123 4567', 'Active', 1, 'ahmed.hossam@repaircenter.com'),
+(2, 'Salma Youssef', 1, '+20 101 234 5678', 'Active', 2, 'salma.youssef@repaircenter.com'),
+(3, 'Mohamed Adel', 1, '+20 102 345 6789', '', 3, 'mohamed.adel@repaircenter.com'),
+(4, 'Rania Khaled', 2, '+20 103 456 7890', 'Active', 4, 'rania.khaled@repaircenter.com'),
+(5, 'Omar Fathy', 2, '+20 104 567 8901', 'Inactive', 5, 'omar.fathy@repaircenter.com'),
+(6, 'Mona Said', 3, '+20 105 678 9012', 'Active', 1, 'mona.said@repaircenter.com'),
+(7, 'Kareem Nabil', 1, '+20 106 789 0123', 'Active', 2, 'kareem.nabil@repaircenter.com'),
+(8, 'Laila Samir', 4, '+20 107 890 1234', 'Active', 3, 'laila.samir@repaircenter.com'),
+(9, 'Hassan Omar', 1, '+20 108 901 2345', '', 4, 'hassan.omar@repaircenter.com'),
+(10, 'Dina Magdy', 5, '+20 109 012 3456', 'Active', 5, 'dina.magdy@repaircenter.com'),
+(11, 'Youssef Galal', 6, '+20 110 123 4567', 'Inactive', 1, 'youssef.galal@repaircenter.com'),
+(12, 'Sara Fathi', 6, '+20 111 234 5678', 'Active', 2, 'sara.fathi@repaircenter.com'),
+(13, 'Tamer Yassin', 7, '+20 112 345 6789', 'Active', 3, 'tamer.yassin@repaircenter.com'),
+(14, 'Nour ElDin', 2, '+20 113 456 7890', '', 4, 'nour.eldin@repaircenter.com'),
+(15, 'Hoda Reda', 1, '+20 114 567 8901', 'Active', 5, 'hoda.reda@repaircenter.com'),
+(16, 'Amr Ashraf', 3, '+20 115 678 9012', 'Active', 1, 'amr.ashraf@repaircenter.com'),
+(17, 'Mai Tarek', 2, '+20 116 789 0123', 'Inactive', 2, 'mai.tarek@repaircenter.com'),
+(18, 'Basel Hesham', 4, '+20 117 890 1234', 'Active', 3, 'basel.hesham@repaircenter.com'),
+(19, 'Yasmin Adel', 5, '+20 118 901 2345', 'Active', 4, 'yasmin.adel@repaircenter.com'),
+(20, 'Mahmoud Nabil', 1, '+20 119 012 3456', 'Active', 5, 'mahmoud.nabil@repaircenter.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stocks`
+--
+
 CREATE TABLE `stocks` (
   `stock_id` int(11) NOT NULL,
   `Product_id` int(11) NOT NULL,
   `Store_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL CHECK (`quantity` >= 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stores`
+--
 
 CREATE TABLE `stores` (
   `store_id` int(11) NOT NULL,
@@ -236,6 +618,23 @@ CREATE TABLE `stores` (
   `street` varchar(60) NOT NULL,
   `ctiy` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `stores`
+--
+
+INSERT INTO `stores` (`store_id`, `store_name`, `email`, `phone`, `street`, `ctiy`) VALUES
+(1, 'Downtown Auto Service', 'contact@downtown-auto.com', '+20 101 234 5678', '15 Tahrir St.', 'Cairo'),
+(2, 'Smart Garage Center', 'info@smartgarage.com', '+20 112 345 6789', '22 Makram Ebeid', 'Nasr City'),
+(3, 'SpeedFix Workshop', 'service@speedfix.com', '+20 100 987 6543', '5 Suez Road', 'Heliopolis'),
+(4, 'ElShark Auto Repairs', 'support@elsharkauto.com', '+20 122 334 5566', '10 Port Said St.', 'Alexandria'),
+(5, 'GreenDrive Motors', 'greendrive@motors.com', '+20 109 876 5432', '30 El-Kornish', 'Mansoura');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
@@ -247,71 +646,157 @@ CREATE TABLE `users` (
   `address_id` int(11) DEFAULT NULL,
   `User_Permissions` enum('user','admin','moderator') DEFAULT 'user',
   `ban` tinyint(4) DEFAULT 0 CHECK (`ban` in (0,1,2,3,4,5)),
-  `image_profile` varchar(255) DEFAULT 'photo_private.jpg'
+  `image_profile` varchar(255) DEFAULT 'photo_private.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `gender`, `birthday`, `address_id`, `User_Permissions`, `ban`, `image_profile`) VALUES
-(17, 'mohamed eid ramadan', 'mhm@gmail.com', '$2y$10$1Kgh754oRRxmzbtjVH8h7.OilGs2CBQKovfAuMsJnWTxwLV4gZTxi', 'custom', '2008-12-19', NULL, 'admin', 0, 'photo_private.jpg'),
-(18, 'mohamed ashraf', 'myg4527@gmail.com', '$2y$10$nDH9Q9j84YkKASMz3bT..ug3Haq2sOdczCqp9KPZZgq5i6dco.q3C', 'custom', '2009-10-17', NULL, 'user', 0, 'photo_private.jpg');
+--
+-- Dumping data for table `users`
+--
 
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `gender`, `birthday`, `address_id`, `User_Permissions`, `ban`, `image_profile`) VALUES
+(17, 'mohamed eid ramadan', 'mhm@gmail.com', '$2y$10$1Kgh754oRRxmzbtjVH8h7.OilGs2CBQKovfAuMsJnWTxwLV4gZTxi', 'custom', '2008-12-19', NULL, 'admin', 0, 'photo_private.png'),
+(18, 'mohamed ashraf', 'myg4527@gmail.com', '$2y$10$nDH9Q9j84YkKASMz3bT..ug3Haq2sOdczCqp9KPZZgq5i6dco.q3C', 'custom', '2009-10-17', NULL, 'user', 0, 'photo_private.png'),
+(19, 'mariam mohame', 'ziadout360@gmail.com', '$2y$10$I6ed65Y3MU82xUTe8tavEufJe4xyBZoKkxhPQeMDEuXXA3wPFh/LK', 'male', '2010-09-09', NULL, 'moderator', 0, 'photo_private.png');
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `baskets_products`
+--
+DROP TABLE IF EXISTS `baskets_products`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `baskets_products`  AS SELECT `products`.`product_name` AS `product_name`, `products`.`product_id` AS `product_id`, `products`.`price` AS `price`, `products`.`Images` AS `Images`, `products`.`description` AS `description`, `basket`.`Client_id` AS `Client_id`, `basket`.`basket_id` AS `basket_id` FROM (`basket` join `products` on(`basket`.`Product_id` = `products`.`product_id`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `bookings_details`
+--
+DROP TABLE IF EXISTS `bookings_details`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `bookings_details`  AS SELECT `b`.`booking_id` AS `booking_id`, `b`.`full_name` AS `full_name`, `b`.`email` AS `email`, `b`.`phone` AS `phone`, `b`.`booking_date` AS `booking_date`, `b`.`car_type` AS `car_type`, `b`.`delivery_address` AS `delivery_address`, `b`.`status` AS `status`, `b`.`notes` AS `notes`, `b`.`created_at` AS `created_at`, `u`.`name` AS `name`, `s`.`s_name` AS `service_name`, `s`.`s_description` AS `service_description` FROM ((`bookings` `b` left join `users` `u` on(`b`.`user_id` = `u`.`id`)) left join `services` `s` on(`b`.`service_id` = `s`.`service_id`)) ORDER BY `b`.`created_at` DESC ;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `address`
+--
 ALTER TABLE `address`
   ADD PRIMARY KEY (`address_id`);
 
+--
+-- Indexes for table `basket`
+--
 ALTER TABLE `basket`
   ADD PRIMARY KEY (`basket_id`),
   ADD KEY `Client_id` (`Client_id`),
-  ADD KEY `Product_id` (`Product_id`);
+  ADD KEY `Product_id` (`Product_id`),
+  ADD KEY `fk_service` (`service_id`);
 
+--
+-- Indexes for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD PRIMARY KEY (`booking_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `service_id` (`service_id`),
+  ADD KEY `status` (`status`),
+  ADD KEY `booking_date` (`booking_date`),
+  ADD KEY `idx_booking_date` (`booking_date`),
+  ADD KEY `idx_booking_status` (`status`),
+  ADD KEY `idx_user_date` (`user_id`,`booking_date`),
+  ADD KEY `idx_service_id` (`service_id`);
+
+--
+-- Indexes for table `brands`
+--
 ALTER TABLE `brands`
   ADD PRIMARY KEY (`brand_id`);
 
+--
+-- Indexes for table `categories`
+--
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`category_id`);
 
+--
+-- Indexes for table `favorites`
+--
 ALTER TABLE `favorites`
   ADD PRIMARY KEY (`favorite_id`),
   ADD KEY `Client_id` (`Client_id`),
   ADD KEY `Product_id` (`Product_id`);
 
+--
+-- Indexes for table `features`
+--
 ALTER TABLE `features`
   ADD PRIMARY KEY (`feature_id`),
   ADD KEY `product_id` (`product_id`),
-  ADD KEY `service_id` (`service_id`);
+  ADD KEY `fk_service_featuer` (`service_id`);
 
+--
+-- Indexes for table `orders`
+--
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`),
   ADD KEY `client_id` (`client_id`),
   ADD KEY `store_id` (`store_id`),
   ADD KEY `staff_id` (`staff_id`);
 
+--
+-- Indexes for table `order_items`
+--
 ALTER TABLE `order_items`
   ADD PRIMARY KEY (`O_I_id`),
   ADD KEY `Order_id` (`Order_id`),
-  ADD KEY `Product_id` (`Product_id`);
+  ADD KEY `Product_id` (`Product_id`),
+  ADD KEY `f_service` (`service_id`);
 
+--
+-- Indexes for table `phone`
+--
 ALTER TABLE `phone`
   ADD PRIMARY KEY (`phone_Id`),
   ADD KEY `user_id` (`user_id`);
 
+--
+-- Indexes for table `products`
+--
 ALTER TABLE `products`
   ADD PRIMARY KEY (`product_id`),
   ADD KEY `Category_id` (`Category_id`),
   ADD KEY `Brand_id` (`Brand_id`);
 
+--
+-- Indexes for table `promotions`
+--
 ALTER TABLE `promotions`
   ADD PRIMARY KEY (`promotion_id`),
-  ADD KEY `Product_id` (`Product_id`);
+  ADD KEY `Product_id` (`Product_id`),
+  ADD KEY `fk_service_promotion` (`service_id`);
 
+--
+-- Indexes for table `reviews`
+--
 ALTER TABLE `reviews`
   ADD PRIMARY KEY (`review_id`),
   ADD KEY `client_id` (`client_id`),
-  ADD KEY `service_id` (`service_id`),
   ADD KEY `order_id` (`order_id`),
-  ADD KEY `product_id` (`product_id`);
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `fk_service_review` (`service_id`);
 
+--
+-- Indexes for table `services`
+--
 ALTER TABLE `services`
   ADD PRIMARY KEY (`service_id`);
 
+--
+-- Indexes for table `staff`
+--
 ALTER TABLE `staff`
   ADD PRIMARY KEY (`staff_id`),
   ADD UNIQUE KEY `phone` (`phone`),
@@ -319,130 +804,253 @@ ALTER TABLE `staff`
   ADD KEY `manager_id` (`manager_id`),
   ADD KEY `store_id` (`store_id`);
 
+--
+-- Indexes for table `stocks`
+--
 ALTER TABLE `stocks`
   ADD PRIMARY KEY (`stock_id`),
   ADD KEY `Product_id` (`Product_id`),
   ADD KEY `Store_id` (`Store_id`);
 
-INSERT INTO `services` (`service_id`, `s_name`, `s_description`, `status`, `image`, `video`, `create_at`) VALUES
-(1, 'Brake Service', 'Professional brake repair and maintenance including:', 'actitive', 'brakes.png', 'engine_diagnatics.mp4', '2025-04-30 11:46:05'),
-(2, 'Engine Repair', 'Complete diagnostics and repair for all engine types. We specialize in:', 'actitive', 'maintenance_Engine.png', 'engine_diagnatics.mp4', '2025-04-30 11:46:05'),
-(3, 'Oil Change', 'Regular maintenance and oil changes with:', 'actitive', 'oil-change.png', 'engine_diagnatics.mp4', '2025-04-30 11:46:05'),
-(4, 'Transmission', 'Transmission repair and replacement services including:', 'actitive', 'transmission.png', 'engine_diagnatics.mp4', '2025-04-30 11:46:05'),
-(5, 'AC Service', 'Complete air conditioning system service featuring:', 'actitive', 'air-conditioner.png', 'engine_diagnatics.mp4', '2025-04-30 11:46:05'),
-(6, 'Tire Service', 'Comprehensive tire care including:', 'actitive', 'car-repair.png', 'engine_diagnatics.mp4', '2025-04-30 11:46:05');
-
-
-
-
-
-
-
-
+--
+-- Indexes for table `stores`
+--
 ALTER TABLE `stores`
   ADD PRIMARY KEY (`store_id`);
 
+--
+-- Indexes for table `users`
+--
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `unique_email` (`email`),
   ADD KEY `address_id` (`address_id`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `address`
+--
 ALTER TABLE `address`
   MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `basket`
+--
 ALTER TABLE `basket`
-  MODIFY `basket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `basket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
+--
+-- AUTO_INCREMENT for table `bookings`
+--
+ALTER TABLE `bookings`
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `brands`
+--
 ALTER TABLE `brands`
   MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
+--
+-- AUTO_INCREMENT for table `categories`
+--
 ALTER TABLE `categories`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
+--
+-- AUTO_INCREMENT for table `favorites`
+--
 ALTER TABLE `favorites`
   MODIFY `favorite_id` int(11) NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `features`
+--
 ALTER TABLE `features`
   MODIFY `feature_id` int(11) NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `orders`
+--
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
+--
+-- AUTO_INCREMENT for table `order_items`
+--
 ALTER TABLE `order_items`
-  MODIFY `O_I_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `O_I_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=325;
 
+--
+-- AUTO_INCREMENT for table `phone`
+--
 ALTER TABLE `phone`
   MODIFY `phone_Id` int(11) NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `products`
+--
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
+--
+-- AUTO_INCREMENT for table `promotions`
+--
 ALTER TABLE `promotions`
   MODIFY `promotion_id` int(11) NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `reviews`
+--
 ALTER TABLE `reviews`
   MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `services`
+--
 ALTER TABLE `services`
-  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
+--
+-- AUTO_INCREMENT for table `staff`
+--
 ALTER TABLE `staff`
-  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
+--
+-- AUTO_INCREMENT for table `stocks`
+--
 ALTER TABLE `stocks`
   MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `stores`
+--
 ALTER TABLE `stores`
-  MODIFY `store_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `store_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
+--
+-- AUTO_INCREMENT for table `users`
+--
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `basket`
+--
 ALTER TABLE `basket`
   ADD CONSTRAINT `basket_ibfk_1` FOREIGN KEY (`Client_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `basket_ibfk_2` FOREIGN KEY (`Product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `basket_ibfk_2` FOREIGN KEY (`Product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_service` FOREIGN KEY (`service_id`) REFERENCES `services` (`service_id`);
 
+--
+-- Constraints for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`service_id`) REFERENCES `services` (`service_id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `favorites`
+--
 ALTER TABLE `favorites`
   ADD CONSTRAINT `favorites_ibfk_1` FOREIGN KEY (`Client_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `favorites_ibfk_2` FOREIGN KEY (`Product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE;
 
+--
+-- Constraints for table `features`
+--
 ALTER TABLE `features`
   ADD CONSTRAINT `features_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),
-  ADD CONSTRAINT `features_ibfk_2` FOREIGN KEY (`service_id`) REFERENCES `services` (`service_id`);
+  ADD CONSTRAINT `features_ibfk_2` FOREIGN KEY (`service_id`) REFERENCES `services` (`service_id`),
+  ADD CONSTRAINT `fk_service_featuer` FOREIGN KEY (`service_id`) REFERENCES `services` (`service_id`);
 
+--
+-- Constraints for table `orders`
+--
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`store_id`) REFERENCES `stores` (`store_id`) ON DELETE SET NULL,
   ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`staff_id`) ON DELETE SET NULL;
 
+--
+-- Constraints for table `order_items`
+--
 ALTER TABLE `order_items`
+  ADD CONSTRAINT `f_service` FOREIGN KEY (`service_id`) REFERENCES `services` (`service_id`),
   ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`Order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`Product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE;
 
+--
+-- Constraints for table `phone`
+--
 ALTER TABLE `phone`
   ADD CONSTRAINT `phone_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
+--
+-- Constraints for table `products`
+--
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`Category_id`) REFERENCES `categories` (`category_id`),
   ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`Brand_id`) REFERENCES `brands` (`brand_id`);
 
+--
+-- Constraints for table `promotions`
+--
 ALTER TABLE `promotions`
+  ADD CONSTRAINT `fk_service_promotion` FOREIGN KEY (`service_id`) REFERENCES `services` (`service_id`),
   ADD CONSTRAINT `promotions_ibfk_1` FOREIGN KEY (`Product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE;
 
+--
+-- Constraints for table `reviews`
+--
 ALTER TABLE `reviews`
+  ADD CONSTRAINT `fk_service_review` FOREIGN KEY (`service_id`) REFERENCES `services` (`service_id`),
   ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`service_id`) REFERENCES `services` (`service_id`),
   ADD CONSTRAINT `reviews_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
   ADD CONSTRAINT `reviews_ibfk_4` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
 
+--
+-- Constraints for table `staff`
+--
 ALTER TABLE `staff`
   ADD CONSTRAINT `staff_ibfk_1` FOREIGN KEY (`manager_id`) REFERENCES `staff` (`staff_id`) ON DELETE SET NULL,
   ADD CONSTRAINT `staff_ibfk_2` FOREIGN KEY (`store_id`) REFERENCES `stores` (`store_id`) ON DELETE CASCADE;
 
+--
+-- Constraints for table `stocks`
+--
 ALTER TABLE `stocks`
   ADD CONSTRAINT `stocks_ibfk_1` FOREIGN KEY (`Product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `stocks_ibfk_2` FOREIGN KEY (`Store_id`) REFERENCES `stores` (`store_id`) ON DELETE CASCADE;
 
+--
+-- Constraints for table `users`
+--
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`) ON DELETE SET NULL;
+
+DELIMITER $$
+--
+-- Events
+--
+CREATE DEFINER=`root`@`localhost` EVENT `CleanOldCancelledBookings` ON SCHEDULE EVERY 1 MONTH STARTS '2025-06-18 14:41:16' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
+    DELETE FROM bookings 
+    WHERE status = 'cancelled' 
+    AND created_at < DATE_SUB(NOW(), INTERVAL 6 MONTH);
+END$$
+
+DELIMITER ;
 COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

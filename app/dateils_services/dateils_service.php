@@ -31,6 +31,20 @@ $result_Services = mysqli_query($conn, $Sql_Services);
 $Select_brand = 'SELECT * FROM `brands` ORDER BY b_name';
 $All_Brands = mysqli_query($conn, $Select_brand);
 
+// معالجة النموذج إذا تم إرساله
+$booking_result = null;
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['fullName'])) {
+    // include ملف معالجة الحجز
+    ob_start();
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/app/booking/create_booking.php');
+    $booking_result = ob_get_clean();
+
+    // تحويل النتيجة إلى array إذا كانت string
+    if (is_string($booking_result)) {
+        $booking_result = json_decode($booking_result, true);
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +65,27 @@ $All_Brands = mysqli_query($conn, $Select_brand);
     include_once($_SERVER['DOCUMENT_ROOT'] . '/project_2/shared/sidebar.php');
     ?>
 
+    <div class="alert-container">
+        <?php if (!empty($booking_success)): ?>
+            <div class="alert alert-success custom-alert animate__animated animate__fadeInDown" role="alert">
+                <i class="fas fa-check-circle me-2"></i>
+                <?= htmlspecialchars($booking_success) ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <?php endif; ?>
+
+        <?php if (!empty($booking_errors)): ?>
+            <div class="alert alert-danger custom-alert animate__animated animate__shakeX" role="alert">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <ul class="mb-0">
+                    <?php foreach ($booking_errors as $error): ?>
+                        <li><?= htmlspecialchars($error) ?></li>
+                    <?php endforeach; ?>
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <?php endif; ?>
+    </div>
 
     <main class="container">
         <section class="page-body">
@@ -245,40 +280,38 @@ $All_Brands = mysqli_query($conn, $Select_brand);
                 <span class="close-modal" onclick="closeBookingModal()">&times;</span>
             </div>
             <div class="modal-body">
-                <form id="bookingForm">
+                <form id="bookingForm" method="POST" action="">
                     <div class="form-group">
                         <label><i class="fa fa-user"></i> Full Name</label>
-                        <input type="text" id="fullName" class="form-control" placeholder="Enter name..." required>
-                        <div class="invalid-feedback">Please enter your full name using letters only.</div>
+                        <input type="text" name="fullName" id="fullName" class="form-control" placeholder="Enter name..." required>
                     </div>
                     <div class="form-group">
                         <label><i class="fa fa-envelope"></i> Email</label>
-                        <input type="email" id="email" class="form-control" placeholder="Enter email..." required>
-                        <div class="invalid-feedback">Please enter a valid email address.</div>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Enter email..." required>
                     </div>
                     <div class="form-group">
                         <label><i class="fa fa-phone"></i> Phone Number</label>
-                        <input type="tel" id="phone" class="form-control" placeholder="Enter phone number..." required>
-                        <div class="invalid-feedback">Please enter a phone number of at least 11 digits.</div>
+                        <input type="tel" name="phone" id="phone" class="form-control" placeholder="Enter phone number..." required>
                     </div>
                     <div class="form-group">
                         <label><i class="fa fa-calendar"></i> Date</label>
-                        <input type="date" id="date" class="form-control" required>
-                        <div class="invalid-feedback">Please select a date.</div>
+                        <input type="date" name="date" id="date" class="form-control" required>
+
                     </div>
                     <div class="form-group">
                         <label><i class="fa fa-truck"></i> Car Type</label>
-                        <select id="deliveryOption" class="form-select">
+                        <select name="carType" id="deliveryOption" class="form-select" required>
+                            <option value="">Select Car Type</option>
                             <?php foreach ($All_Brands as $brand) : ?>
                                 <option class="fw-bold" value="<?= $brand['brand_id'] ?>"> <?= $brand['b_name'] ?></option>
                             <?php endforeach ?>
                         </select>
                     </div>
-                    <div class="form-group" id="addressBox" style="display: none;">
-                        <label><i class="fa fa-map-marker-alt"></i> Delivery address</label>
-                        <input type="text" id="deliveryAddress" class="form-control" placeholder="Enter delivery address">
-                        <div class="invalid-feedback">Please enter your delivery address.</div>
+                    <div class="form-group" id="addressBox" ">
+                        <label><i class=" fa fa-map-marker-alt"></i> Delivery address</label>
+                        <input type="text" name="deliveryAddress" id="deliveryAddress" class="form-control" placeholder="Enter delivery address">
                     </div>
+                    <input type="hidden" name="service_id" value="<?= $service_id ?>">
                     <button type="submit" class="btn btn-primary w-100">Confirm your reservation</button>
                 </form>
             </div>
@@ -290,11 +323,11 @@ $All_Brands = mysqli_query($conn, $Select_brand);
     <script>
         function openBookingModal() {
             document.getElementById('bookingModal').style.display = 'block';
-            document.body.style.overflow = 'auto'; // إعادة تفعيل التمرير
         }
 
         function closeBookingModal() {
             document.getElementById('bookingModal').style.display = 'none';
+            document.body.style.overflow = 'haddin'; // إعادة تفعيل التمرير
 
         }
 
@@ -305,6 +338,7 @@ $All_Brands = mysqli_query($conn, $Select_brand);
                 closeBookingModal();
             }
         }
+
 
 
         // Video play button functionality
@@ -334,6 +368,14 @@ $All_Brands = mysqli_query($conn, $Select_brand);
         } else {
             console.log('Video elements not found');
         }
+
+        // إغلاق الرسالة تلقائياً بعد 4 ثوانٍ
+        setTimeout(function() {
+            var alerts = document.querySelectorAll('.custom-alert');
+            alerts.forEach(function(alert) {
+                alert.style.display = 'none';
+            });
+        }, 4000);
     </script>
 
 </body>
